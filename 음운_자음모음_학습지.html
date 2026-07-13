@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>음운과 음운 체계 — 자음과 모음</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7F5EF;
+    --paper:#FFFFFF;
+    --ink:#232420;
+    --ink-soft:#5B5D57;
+    --line:#E3DFD3;
+    --indigo:#2C3A66;
+    --indigo-soft:#EEF1F8;
+    --jade:#3E6B58;
+    --jade-soft:#E7F1EC;
+    --amber:#B5762A;
+    --amber-soft:#FBF0E1;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Noto Sans KR', sans-serif;
+    line-height:1.7;
+    padding:0 0 6rem;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:0 1.5rem;}
+
+  header{
+    padding:3.2rem 0 2rem;
+    border-bottom:1px solid var(--line);
+    margin-bottom:2.4rem;
+  }
+  .eyebrow{
+    font-size:13px; letter-spacing:.14em; color:var(--indigo);
+    font-weight:700; text-transform:uppercase; margin-bottom:.9rem;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow .dot{width:6px; height:6px; background:var(--indigo); border-radius:50%; display:inline-block;}
+  h1{
+    font-family:'Noto Serif KR', serif;
+    font-weight:700;
+    font-size:34px;
+    margin:0 0 .6rem;
+    letter-spacing:-.01em;
+  }
+  .subtitle{color:var(--ink-soft); font-size:15px;}
+  .jamo-row{
+    margin-top:1.6rem; display:flex; flex-wrap:wrap; gap:8px;
+  }
+  .jamo-row span{
+    font-family:'Noto Serif KR', serif;
+    width:34px; height:34px; border:1px solid var(--line); border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px; color:var(--ink-soft); background:var(--paper);
+  }
+
+  section{margin-bottom:2.6rem;}
+  .sec-head{
+    display:flex; align-items:baseline; gap:10px; margin-bottom:1rem;
+  }
+  .sec-num{
+    font-family:'Noto Serif KR', serif; font-weight:700; color:var(--indigo);
+    font-size:15px;
+  }
+  h2{
+    font-family:'Noto Serif KR', serif;
+    font-size:21px; font-weight:700; margin:0;
+  }
+  .lead{color:var(--ink-soft); font-size:14.5px; margin:0 0 1rem;}
+
+  .card{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+    padding:1.3rem 1.4rem;
+  }
+
+  /* 빈칸 채우기 */
+  .fill{
+    font-size:15px; margin-bottom:.9rem;
+  }
+  .blank{
+    display:inline-flex; align-items:center; justify-content:center;
+    min-width:64px; padding:2px 10px; margin:0 3px;
+    border-bottom:2px solid var(--indigo);
+    cursor:pointer; font-weight:500; color:var(--indigo); user-select:none;
+    transition:background .15s ease;
+  }
+  .blank:hover{background:var(--indigo-soft);}
+  .blank.revealed{
+    border-bottom:2px solid var(--jade); background:var(--jade-soft); color:var(--jade);
+    border-radius:5px;
+  }
+  .hint{font-size:12px; color:var(--ink-soft); margin-top:.4rem;}
+
+  /* 표 */
+  table{width:100%; border-collapse:collapse; font-size:14px;}
+  th, td{border:1px solid var(--line); text-align:center; padding:9px 6px;}
+  th{background:var(--indigo-soft); color:var(--indigo); font-weight:500;}
+  td.label{background:#FAF9F5; font-weight:500;}
+  td.cell{
+    cursor:pointer; color:var(--ink-soft); font-size:13px;
+    transition:background .15s ease;
+  }
+  td.cell:hover{background:var(--indigo-soft);}
+  td.cell.revealed{
+    background:var(--jade-soft); color:var(--jade); font-weight:700; font-size:16px;
+  }
+
+  .toggle-all{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:13px; color:var(--indigo); background:none; border:1px solid var(--indigo);
+    border-radius:20px; padding:6px 14px; cursor:pointer; margin-bottom:.9rem;
+  }
+  .toggle-all:hover{background:var(--indigo-soft);}
+
+  /* 활동 3, 4 표 입력형 */
+  .task-table td.q{color:var(--ink); font-weight:500;}
+  .task-table td.ans-cell{color:var(--ink-soft); font-size:13px;}
+  .task-table td.ans-cell.revealed{background:var(--amber-soft); color:var(--amber); font-weight:500; font-size:13.5px; text-align:left; padding-left:10px;}
+
+  .steps{margin:0; padding-left:1.2rem; font-size:14.5px;}
+  .steps li{margin-bottom:.5rem;}
+
+  .note{
+    background:var(--amber-soft); border:1px solid #EAD6B4; border-radius:var(--radius);
+    padding:.9rem 1.1rem; font-size:13.5px; color:#6B4A17; margin-top:1rem;
+  }
+  .note b{color:var(--amber);}
+
+  footer{
+    max-width:760px; margin:2rem auto 0; padding:1.5rem; text-align:center;
+    color:var(--ink-soft); font-size:12.5px; border-top:1px solid var(--line);
+  }
+
+  @media (max-width:600px){
+    h1{font-size:26px;}
+    .jamo-row span{width:28px; height:28px; font-size:14px;}
+    table{font-size:12.5px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow"><span class="dot"></span>화법과 언어 · 문법</div>
+  <h1>음운과 음운 체계</h1>
+  <div class="subtitle">자음과 모음 — 빈칸과 표를 클릭하면 정답이 나타납니다.</div>
+  <div class="jamo-row">
+    <span>ㄱ</span><span>ㄴ</span><span>ㄷ</span><span>ㄹ</span><span>ㅁ</span><span>ㅂ</span><span>ㅅ</span><span>ㅇ</span><span>ㅈ</span><span>ㅎ</span>
+    <span>ㅏ</span><span>ㅓ</span><span>ㅗ</span><span>ㅜ</span><span>ㅡ</span><span>ㅣ</span>
+  </div>
+</header>
+
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>학습 목표</h2></div>
+  <div class="card">
+    <p style="margin:0 0 .5rem;">① 음운의 개념을 이해하고 자음과 모음을 구별할 수 있다.</p>
+    <p style="margin:0 0 .5rem;">② 자음을 조음 위치와 조음 방법에 따라 분류할 수 있다.</p>
+    <p style="margin:0;">③ 단모음을 혀의 위치·높이, 입술 모양에 따라 분류할 수 있다.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>개념 정리</h2></div>
+  <p class="lead">밑줄 친 빈칸을 클릭하면 답이 보입니다.</p>
+  <div class="card">
+    <p class="fill">음운(音韻)이란 말의 뜻을 구별해 주는 <span class="blank" data-ans="최소의">클릭</span> 소리의 단위이다.</p>
+    <p class="fill">예) 물 – 불 → 'ㅁ'과 'ㅂ'이 다르기 때문에 뜻이 구별됨 → 'ㅁ', 'ㅂ'은 각각 하나의 <span class="blank" data-ans="음운">클릭</span>이다.</p>
+    <p class="fill">자음은 공기의 흐름이 방해를 받으며 나는 소리이고, 모음은 공기의 흐름이 <span class="blank" data-ans="방해(장애)">클릭</span> 없이 나는 소리이다.</p>
+    <p class="fill" style="margin-bottom:0;">국어의 자음은 총 <span class="blank" data-ans="19">클릭</span>개, 단모음은 <span class="blank" data-ans="10">클릭</span>개, 이중모음은 <span class="blank" data-ans="11">클릭</span>개이다.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">03</span><h2>활동 1 — 자음 체계표</h2></div>
+  <p class="lead">보기: ㄱ ㄲ ㅋ ㄷ ㄸ ㅌ ㅂ ㅃ ㅍ ㅈ ㅉ ㅊ ㅅ ㅆ ㅎ ㅁ ㄴ ㅇ ㄹ — 칸을 하나씩 눌러 정답을 확인하세요.</p>
+  <button class="toggle-all" data-target="cons">전체 정답 보기 / 가리기</button>
+  <div class="card" style="overflow-x:auto;">
+    <table id="cons">
+      <tr><th>조음 방법 \ 위치</th><th>입술소리</th><th>잇몸소리</th><th>센입천장소리</th><th>여린입천장소리</th><th>목청소리</th></tr>
+      <tr><td class="label">파열음</td><td class="cell" data-ans="ㅂ ㅃ ㅍ">클릭</td><td class="cell" data-ans="ㄷ ㄸ ㅌ">클릭</td><td class="cell" data-ans="—">클릭</td><td class="cell" data-ans="ㄱ ㄲ ㅋ">클릭</td><td class="cell" data-ans="—">클릭</td></tr>
+      <tr><td class="label">파찰음</td><td class="cell" data-ans="—">클릭</td><td class="cell" data-ans="—">클릭</td><td class="cell" data-ans="ㅈ ㅉ ㅊ">클릭</td><td class="cell" data-ans="—">클릭</td><td class="cell" data-ans="—">클릭</td></tr>
+      <tr><td class="label">마찰음</td><td class="cell" data-ans="—">클릭</td><td class="cell" data-ans="ㅅ ㅆ">클릭</td><td class="cell" data-ans="—">클릭</td><td class="cell" data-ans="—">클릭</td><td class="cell" data-ans="ㅎ">클릭</td></tr>
+      <tr><td class="label">비음</td><td class="cell" data-ans="ㅁ">클릭</td><td class="cell" data-ans="ㄴ">클릭</td><td class="cell" data-ans="—">클릭</td><td class="cell" data-ans="ㅇ">클릭</td><td class="cell" data-ans="—">클릭</td></tr>
+      <tr><td class="label">유음</td><td class="cell" data-ans="—">클릭</td><td class="cell" data-ans="ㄹ">클릭</td><td class="cell" data-ans="—">클릭</td><td class="cell" data-ans="—">클릭</td><td class="cell" data-ans="—">클릭</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">04</span><h2>활동 2 — 단모음 체계표</h2></div>
+  <p class="lead">보기: ㅣ ㅔ ㅐ ㅟ ㅚ ㅡ ㅓ ㅏ ㅜ ㅗ</p>
+  <button class="toggle-all" data-target="vow">전체 정답 보기 / 가리기</button>
+  <div class="card" style="overflow-x:auto;">
+    <table id="vow">
+      <tr><th rowspan="2"></th><th colspan="2">전설모음</th><th colspan="2">후설모음</th></tr>
+      <tr><th>평순</th><th>원순</th><th>평순</th><th>원순</th></tr>
+      <tr><td class="label">고모음</td><td class="cell" data-ans="ㅣ">클릭</td><td class="cell" data-ans="ㅟ">클릭</td><td class="cell" data-ans="ㅡ">클릭</td><td class="cell" data-ans="ㅜ">클릭</td></tr>
+      <tr><td class="label">중모음</td><td class="cell" data-ans="ㅔ">클릭</td><td class="cell" data-ans="ㅚ">클릭</td><td class="cell" data-ans="ㅓ">클릭</td><td class="cell" data-ans="ㅗ">클릭</td></tr>
+      <tr><td class="label">저모음</td><td class="cell" data-ans="ㅐ">클릭</td><td class="cell" data-ans="—">클릭</td><td class="cell" data-ans="ㅏ">클릭</td><td class="cell" data-ans="—">클릭</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">05</span><h2>활동 3 — 단어 속 음운 분석</h2></div>
+  <p class="lead">단어를 음운 단위로 나누고 자음·모음 수를 확인해 보세요. '정답 보기'를 누르면 풀이가 나타납니다.</p>
+  <div class="card" style="overflow-x:auto;">
+    <table class="task-table">
+      <tr><th>단어</th><th>음운으로 나누기 · 자음/모음 수</th></tr>
+      <tr><td class="q">학교</td><td class="cell ans-cell" data-ans="ㅎ/ㅏ/ㄱ/ㄱ/ㅛ → 자음 3, 모음 2">정답 보기</td></tr>
+      <tr><td class="q">구름</td><td class="cell ans-cell" data-ans="ㄱ/ㅜ/ㄹ/ㅡ/ㅁ → 자음 3, 모음 2">정답 보기</td></tr>
+      <tr><td class="q">딸기</td><td class="cell ans-cell" data-ans="ㄸ/ㅏ/ㄹ/ㄱ/ㅣ → 자음 3, 모음 2">정답 보기</td></tr>
+      <tr><td class="q">웃음</td><td class="cell ans-cell" data-ans="ㅜ/ㅅ/ㅡ/ㅁ → 자음 2, 모음 2 (초성 'ㅇ'은 소릿값이 없어 음운으로 세지 않음)">정답 보기</td></tr>
+      <tr><td class="q">희망</td><td class="cell ans-cell" data-ans="ㅎ/ㅢ/ㅁ/ㅏ/ㅇ → 자음 2, 모음 2">정답 보기</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">06</span><h2>활동 4 — 최소 대립쌍 찾기</h2></div>
+  <p class="lead">단 하나의 음운 차이로 뜻이 달라지는 단어 쌍을 찾아보세요. 예시 정답은 학생 답과 다를 수 있습니다.</p>
+  <div class="card" style="overflow-x:auto;">
+    <table class="task-table">
+      <tr><th>제시어</th><th>최소 대립쌍 예시</th></tr>
+      <tr><td class="q">살</td><td class="cell ans-cell" data-ans="쌀(ㅅ↔ㅆ), 발(ㅅ↔ㅂ) 등">정답 보기</td></tr>
+      <tr><td class="q">공</td><td class="cell ans-cell" data-ans="콩(ㄱ↔ㅋ), 곰(ㅇ↔ㅁ) 등">정답 보기</td></tr>
+      <tr><td class="q">강</td><td class="cell ans-cell" data-ans="방(ㄱ↔ㅂ), 공(ㅏ↔ㅗ) 등">정답 보기</td></tr>
+    </table>
+    <div class="note"><b>Tip.</b> 학생 답이 표와 다르더라도 '음운 하나 차이로 뜻이 구별되는 실제 단어'이면 정답으로 인정합니다.</div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">07</span><h2>활동 5 — 조음 위치 맞히기 게임</h2></div>
+  <div class="card">
+    <ol class="steps">
+      <li>두 명이 짝을 이룬다.</li>
+      <li>한 사람이 자음 하나를 골라 소리만 내고 입 모양을 보여준다.</li>
+      <li>짝은 어떤 조음 위치(입술 / 잇몸 / 센입천장 / 여린입천장 / 목청)에서 나는 소리인지 맞힌다.</li>
+      <li>역할을 바꾸어 가며 19개 자음을 모두 확인한다.</li>
+      <li>가장 헷갈렸던 자음 3개와 그 이유를 정리해 본다.</li>
+    </ol>
+  </div>
+</section>
+
+</div>
+
+<footer>화법과 언어 · 음운과 음운 체계 학습지</footer>
+
+<script>
+document.querySelectorAll('.blank').forEach(function(el){
+  el.addEventListener('click', function(){
+    if(el.classList.contains('revealed')){
+      el.textContent = '클릭';
+      el.classList.remove('revealed');
+    } else {
+      el.textContent = el.dataset.ans;
+      el.classList.add('revealed');
+    }
+  });
+});
+
+document.querySelectorAll('td.cell').forEach(function(el){
+  el.addEventListener('click', function(){
+    if(el.classList.contains('revealed')){
+      el.textContent = el.classList.contains('ans-cell') ? '정답 보기' : '클릭';
+      el.classList.remove('revealed');
+    } else {
+      el.textContent = el.dataset.ans;
+      el.classList.add('revealed');
+    }
+  });
+});
+
+document.querySelectorAll('.toggle-all').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var table = document.getElementById(btn.dataset.target);
+    var cells = table.querySelectorAll('td.cell');
+    var anyHidden = Array.from(cells).some(function(c){ return !c.classList.contains('revealed'); });
+    cells.forEach(function(c){
+      if(anyHidden){
+        c.textContent = c.dataset.ans;
+        c.classList.add('revealed');
+      } else {
+        c.textContent = '클릭';
+        c.classList.remove('revealed');
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
