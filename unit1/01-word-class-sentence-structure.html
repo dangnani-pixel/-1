@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>품사와 문장 구조 — 화법과 언어 문법</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF9F5; --paper:#FFFFFF; --ink:#232420; --ink-soft:#5B5D57;
+    --line:#E3DFD3; --indigo:#3B4D8C; --indigo-dark:#28345E; --indigo-soft:#EEF1F8;
+    --jade:#1F7A5C; --jade-soft:#E4F3EC; --amber:#C97F0E; --amber-soft:#FBF0E1;
+    --radius:10px; --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Noto Sans KR', sans-serif; line-height:1.7; padding:0 0 6rem;}
+  .wrap{max-width:800px; margin:0 auto; padding:0 1.5rem;}
+
+  header{padding:3rem 0 2rem; border-bottom:1px solid var(--line); margin-bottom:1.6rem;}
+  .back{font-size:13px; color:var(--indigo); text-decoration:none;}
+  .eyebrow{font-size:13px; letter-spacing:.14em; color:var(--indigo); font-weight:700; text-transform:uppercase; margin:1rem 0 .7rem; display:flex; align-items:center; gap:10px;}
+  .eyebrow .dot{width:6px; height:6px; background:var(--indigo); border-radius:50%; display:inline-block;}
+  h1{font-family:'Noto Serif KR', serif; font-weight:700; font-size:32px; margin:0 0 .6rem; letter-spacing:-.01em;}
+  .subtitle{color:var(--ink-soft); font-size:15px;}
+  .curr-meta{margin-top:1.1rem; font-size:12.5px; color:var(--indigo-dark); background:var(--indigo-soft); border-radius:20px; padding:7px 14px; display:inline-block;}
+  .curr-meta b{font-family:var(--mono); font-weight:700;}
+  .goals{margin-top:1.2rem; padding-left:1.2rem; font-size:13.5px; color:var(--ink-soft);}
+  .goals li{margin-bottom:3px;}
+
+  nav.toc{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:2.4rem;}
+  nav.toc a{
+    font-size:12px; color:var(--indigo-dark); background:var(--paper); border:1px solid var(--line);
+    border-radius:20px; padding:5px 12px; text-decoration:none;
+  }
+  nav.toc a:hover{border-color:var(--indigo); background:var(--indigo-soft);}
+
+  section{margin-bottom:2.6rem; scroll-margin-top:1rem;}
+  .sec-head{display:flex; align-items:baseline; gap:10px; margin-bottom:1rem;}
+  .sec-num{font-family:'Noto Serif KR', serif; font-weight:700; color:var(--indigo); font-size:15px;}
+  h2{font-family:'Noto Serif KR', serif; font-size:21px; font-weight:700; margin:0;}
+  h3{font-family:'Noto Serif KR', serif; font-size:16px; font-weight:700; margin:1.4rem 0 .6rem; color:var(--indigo-dark);}
+  .lead{color:var(--ink-soft); font-size:14px; margin:0 0 1rem;}
+  p.body-text{font-size:14.5px; margin:0 0 .8rem;}
+
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:1.2rem 1.4rem; margin-bottom:1rem;}
+  .ex{font-family:var(--mono); color:var(--indigo-dark); font-weight:500;}
+
+  table{width:100%; border-collapse:collapse; font-size:13.5px; margin:.6rem 0 1rem;}
+  th, td{border:1px solid var(--line); text-align:center; padding:8px 6px; vertical-align:middle;}
+  th{background:var(--indigo-soft); color:var(--indigo-dark); font-weight:500;}
+  td.left{text-align:left;}
+
+  .pos-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:.8rem 0 1.2rem;}
+  .pos-grid div{background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:.6rem .7rem; font-size:12.5px; text-align:center;}
+  .pos-grid .name{font-family:'Noto Serif KR', serif; font-weight:700; color:var(--indigo-dark); font-size:13.5px; display:block; margin-bottom:2px;}
+
+  .note{background:var(--amber-soft); border:1px solid #EAD6B4; border-radius:var(--radius); padding:.85rem 1.05rem; font-size:13px; color:#6B4A17; margin-top:.9rem;}
+  .note b{color:var(--amber);}
+
+  .summary-table td{text-align:left; padding:9px 10px;}
+  .summary-table td:first-child{text-align:center; width:18%;}
+
+  details{border:1px solid var(--line); border-radius:var(--radius); background:var(--paper); margin-bottom:10px; padding:.2rem .2rem;}
+  details > summary{cursor:pointer; padding:.7rem 1rem; font-size:14px; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:10px;}
+  details > summary::-webkit-details-marker{display:none;}
+  details > summary::after{content:'펼치기'; font-size:12px; color:var(--indigo); border:1px solid var(--indigo); border-radius:20px; padding:3px 10px; flex-shrink:0;}
+  details[open] > summary::after{content:'접기'; background:var(--indigo-soft);}
+  details .answer{padding:0 1.1rem 1rem; font-size:13.5px; color:var(--jade); font-weight:500;}
+  details.rule-card > summary{font-family:'Noto Serif KR', serif; font-weight:700; color:var(--indigo-dark); font-size:14.5px;}
+  details.rule-card .answer{color:var(--ink-soft); font-weight:400;}
+  details.rule-card .answer b{color:var(--indigo-dark);}
+  .quiz-q{font-size:14.5px;}
+  .quiz-q b{color:var(--indigo); margin-right:6px;}
+
+  footer{max-width:800px; margin:0 auto; padding:1.5rem; text-align:center; color:var(--ink-soft); font-size:12.5px; border-top:1px solid var(--line);}
+
+  @media (max-width:600px){
+    table{font-size:12px;} th, td{padding:6px 4px;}
+    .pos-grid{grid-template-columns:repeat(2,1fr);}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="index.html">← Ⅰ. 우리말 톺아보기</a>
+<div class="eyebrow"><span class="dot"></span>Ⅰ. 우리말 톺아보기 · 1챕터</div>
+<h1>품사와 문장 구조</h1>
+<div class="subtitle">단어를 분류하는 기준과 아홉 품사, 문장을 이루는 성분과 짜임</div>
+<div class="curr-meta">과목 화법과 언어 · 성취기준 <b>[12화언01-03]</b> 품사와 문장 구조에 대한 지식을 활용하여 언어 자료를 분석하고 설명한다</div>
+<ul class="goals">
+<li>품사 분류의 기준(형태·기능·의미)을 이해하고 아홉 품사의 특성을 탐구한다.</li>
+<li>문장 성분별 특성과 문장의 짜임(홑문장/겹문장)을 탐구한다.</li>
+<li>품사와 문장 구조에 관한 지식을 활용하여 실제 언어 자료를 분석·설명한다.</li>
+</ul>
+</header>
+
+<nav class="toc">
+<a href="#sec1">01 품사의 개념과 분류 기준</a>
+<a href="#sec2">02 체언</a>
+<a href="#sec3">03 용언</a>
+<a href="#sec4">04 관계언</a>
+<a href="#sec5">05 수식언</a>
+<a href="#sec6">06 독립언·품사의 통용</a>
+<a href="#sec7">07 품사 전체 정리</a>
+<a href="#sec8">08 문장 성분</a>
+<a href="#sec9">09 문장의 짜임</a>
+<a href="#sec10">10 확인 문제</a>
+</nav>
+
+<section id="sec1">
+<div class="sec-head"><span class="sec-num">01</span><h2>품사의 개념과 분류 기준</h2></div>
+<p class="lead">품사란 단어를 문법적인 성질의 공통성에 따라 분류한 것이다. 품사를 분류하는 기준으로는 형태, 기능, 의미가 있다.</p>
+<table>
+<tr><th>기준</th><th>내용</th><th>분류</th></tr>
+<tr><td>형태</td><td class="left">단어가 때에 따라 모습을 바꾸는가</td><td>불변어 / 가변어</td></tr>
+<tr><td>기능</td><td class="left">문장에서 어떤 역할을 하는가</td><td>체언·용언·관계언·수식언·독립언</td></tr>
+<tr><td>의미</td><td class="left">단어가 속한 부류 전체의 추상적 의미</td><td>명사·대명사·수사·동사·형용사·조사·관형사·부사·감탄사</td></tr>
+</table>
+<div class="card">
+<p class="body-text" style="margin:0;">세 기준을 단계적으로 적용하면 아홉 품사가 도출된다. 예를 들어 조사는 <b>불변어</b>(형태) 중에서 <b>관계언</b>(기능)에 속하는 품사이다. 단, 서술격 조사 '이다'는 다른 조사와 달리 '(학생)이고, (학생)이니'처럼 형태가 변하는 예외적인 가변어이다.</p>
+</div>
+</section>
+
+<section id="sec2">
+<div class="sec-head"><span class="sec-num">02</span><h2>체언 — 명사·대명사·수사</h2></div>
+<p class="lead">체언은 문장에서 주로 주어·목적어·보어로 쓰이는 단어이다. 형태가 변하지 않고, 관형어의 꾸밈을 받을 수 있으며, 뒤에 다양한 조사가 결합할 수 있다.</p>
+
+<h3>명사 — 사람·사물·장소·시간·사건·행위 등의 이름</h3>
+<table>
+<tr><th>분류 기준</th><th>종류</th><th>개념</th><th>예</th></tr>
+<tr><td rowspan="2">쓰이는 범위</td><td>고유 명사</td><td class="left">다른 것들과 구별되는 유일한 대상</td><td class="ex">안중근, 훈민정음</td></tr>
+<tr><td>보통 명사</td><td class="left">어떤 속성을 지닌 대상들에 두루 쓰임</td><td class="ex">사람, 책</td></tr>
+<tr><td rowspan="2">자립성</td><td>자립 명사</td><td class="left">홀로 쓰일 수 있음</td><td class="ex">꽃, 하늘</td></tr>
+<tr><td>의존 명사</td><td class="left">반드시 앞에 수식하는 말이 와야 함(단위성 의존 명사 포함)</td><td class="ex">것, 수, 줄 · 개, 마리</td></tr>
+</table>
+
+<h3>대명사 — 이름을 대신하여 나타내는 단어</h3>
+<table>
+<tr><th>종류</th><th>개념</th><th>예</th></tr>
+<tr><td>인칭 대명사</td><td class="left">사람을 가리킴 (1인칭/2인칭/3인칭)</td><td class="ex">나, 저 · 너, 당신 · 그, 이분</td></tr>
+<tr><td>재귀칭 대명사</td><td class="left">문장에 쓰인 체언을 다시 나타냄(3인칭)</td><td class="ex">저, 자기, 당신</td></tr>
+<tr><td>지시 대명사</td><td class="left">사물이나 장소를 가리킴</td><td class="ex">이것, 그것, 여기, 저기</td></tr>
+<tr><td>미지칭 대명사</td><td class="left">모르는 대상을 가리킴</td><td class="ex">누구, 무엇, 어디</td></tr>
+<tr><td>부정칭 대명사</td><td class="left">정해지지 않은 대상을 가리킴</td><td class="ex">아무, 무엇, 어디</td></tr>
+</table>
+
+<h3>수사 — 사물의 수량이나 순서를 나타내는 단어</h3>
+<table>
+<tr><th>종류</th><th>개념</th><th>예</th></tr>
+<tr><td>양수사</td><td class="left">수량을 나타냄</td><td class="ex">하나, 둘, 일, 이</td></tr>
+<tr><td>서수사</td><td class="left">순서를 나타냄</td><td class="ex">첫째, 둘째</td></tr>
+</table>
+<div class="note"><b>구별.</b> '한, 두, 세'처럼 뒤에 명사가 오면 체언을 꾸미는 <b>수 관형사</b>이고, 뒤에 명사 없이 그 자체로 쓰이면 <b>수사</b>이다. 사과 다섯 개(수 관형사) / 다섯까지 셀 동안 숨어(수사).</div>
+</section>
+
+<section id="sec3">
+<div class="sec-head"><span class="sec-num">03</span><h2>용언 — 동사·형용사</h2></div>
+<p class="lead">용언은 문장에서 주어의 동작·작용·성질·상태 등을 서술하는 단어이다. 다른 품사와 달리 문장에서 쓰일 때 형태가 변한다(활용).</p>
+
+<table>
+<tr><th>품사</th><th>하위 종류</th><th>개념</th><th>예</th></tr>
+<tr><td rowspan="2">동사</td><td>자동사</td><td class="left">목적어가 필요하지 않음</td><td class="ex">자다, 가다</td></tr>
+<tr><td>타동사</td><td class="left">목적어가 필요함</td><td class="ex">먹다, 알다</td></tr>
+<tr><td rowspan="2">형용사</td><td>성상 형용사</td><td class="left">성질이나 상태를 나타냄</td><td class="ex">희다, 행복하다</td></tr>
+<tr><td>지시 형용사</td><td class="left">성질·상태가 어떠함을 가리킴</td><td class="ex">이렇다, 그렇다, 저렇다</td></tr>
+</table>
+
+<h3>용언의 활용 — 어간과 어미</h3>
+<p class="body-text">형태가 변하지 않는 부분을 <b>어간</b>, 변하는 부분을 <b>어미</b>라 한다. '먹다, 먹고, 먹으면'에서 '먹-'이 어간, '-다, -고, -(으)면'이 어미이다.</p>
+<table>
+<tr><th>분류</th><th>하위 갈래</th><th>기능/예</th></tr>
+<tr><td>선어말 어미</td><td class="left" colspan="2">어말 어미 앞에 오는 어미 — 같- + <b>-았-</b> + -다</td></tr>
+<tr><td rowspan="3">어말 어미</td><td>종결 어미</td><td class="left">문장을 끝맺음 — 같다</td></tr>
+<tr><td>연결 어미</td><td class="left">앞 절과 뒤 절을 연결 — 같고</td></tr>
+<tr><td>전성 어미</td><td class="left">용언이 다른 품사처럼 기능하게 함 — 명사형(-음/-기), 관형사형(-은/-는/-을/-던), 부사형(-게/-도록)</td></tr>
+</table>
+
+<h3>동사와 형용사의 구별</h3>
+<table>
+<tr><th>기준</th><th>동사</th><th>형용사</th></tr>
+<tr><td>현재 시제 선어말 어미 '-는-/-ㄴ-'</td><td>결합 가능 (먹는다)</td><td>결합 불가</td></tr>
+<tr><td>청유형·명령형</td><td>가능 (먹자, 먹어라)</td><td>불가</td></tr>
+<tr><td>의도·목적 어미 '-(으)려, -(으)러'</td><td>결합 가능</td><td>결합 불가</td></tr>
+<tr><td>관형사형 어미 '-는'</td><td>결합 가능</td><td>결합 불가</td></tr>
+<tr><td>반복 구성 '-디, -나'</td><td>불가</td><td>가능 (크디크다, 머나멀다)</td></tr>
+</table>
+<div class="note"><b>참고.</b> 본용언에 기대어 문법적 의미를 더하는 용언을 보조 용언이라 한다. '가지고 싶다'에서 '가지다'는 본용언, '싶다'는 보조 용언(보조 형용사)이다.</div>
+</section>
+
+<section id="sec4">
+<div class="sec-head"><span class="sec-num">04</span><h2>관계언 — 조사</h2></div>
+<p class="lead">조사는 앞에 오는 말에 붙어 다른 말과의 문법적 관계를 표시하거나 특별한 의미를 더해 주는 단어이다.</p>
+<table>
+<tr><th>종류</th><th>기능</th><th>예</th></tr>
+<tr><td>격 조사</td><td class="left">체언이 문장에서 어떤 자격을 담당하는지 표시</td><td class="ex">이/가(주격) · 을/를(목적격) · 의(관형격) · 에서(부사격) · 이다(서술격) · 아/야(호격)</td></tr>
+<tr><td>접속 조사</td><td class="left">단어나 구를 같은 자격으로 이어 줌</td><td class="ex">와/과, 랑, 하고</td></tr>
+<tr><td>보조사</td><td class="left">앞말에 특별한 의미를 더해 줌</td><td class="ex">은/는(대조), 도(포함), 만(단독)</td></tr>
+</table>
+<p class="body-text ex" style="font-size:13px;">지호가 집에서 동생의 숙제를 도와주었다. → 가(주격)·에서(부사격)·의(관형격)·을(목적격) 모두 격 조사</p>
+</section>
+
+<section id="sec5">
+<div class="sec-head"><span class="sec-num">05</span><h2>수식언 — 관형사·부사</h2></div>
+<p class="lead">수식언은 다른 말을 꾸며 주는 단어이다. 관형사는 주로 체언을, 부사는 주로 용언이나 문장을 꾸민다는 점에서 다르다.</p>
+<table>
+<tr><th>품사</th><th>하위 종류</th><th>개념</th><th>예</th></tr>
+<tr><td rowspan="3">관형사</td><td>지시 관형사</td><td class="left">대상을 가리킴</td><td class="ex">이, 그, 저, 다른</td></tr>
+<tr><td>성상 관형사</td><td class="left">성질이나 상태를 나타냄</td><td class="ex">새, 헌, 옛, 온갖</td></tr>
+<tr><td>수 관형사</td><td class="left">수량을 나타냄</td><td class="ex">한, 두, 세</td></tr>
+<tr><td rowspan="2">부사</td><td>성분 부사</td><td class="left">문장의 한 성분만 수식</td><td class="ex">수미가 아주 멀리 떠났다</td></tr>
+<tr><td>문장 부사</td><td class="left">뒤에 오는 문장 전체를 수식</td><td class="ex">그런데 설마 너도 나를 의심하니?</td></tr>
+</table>
+<div class="note"><b>참고.</b> 관형사는 조사와 결합할 수 없고 형태가 변하지 않는다. 부사는 '빨리는 잤다'처럼 보조사와 결합하기도 하며, 드물게 체언을 수식하기도 한다(바로 오늘).</div>
+</section>
+
+<section id="sec6">
+<div class="sec-head"><span class="sec-num">06</span><h2>독립언과 품사의 통용</h2></div>
+<p class="lead">독립언은 다른 단어와 문법적 관계를 맺지 않고 독립성을 가지는 단어이다. 독립언에는 감탄사가 있다.</p>
+<p class="body-text"><b>감탄사</b>는 말하는 이의 놀람, 느낌, 부름, 대답 등을 나타내는 단어이다. 문법적 관계를 맺지 않으므로 문장에서 나타나는 위치가 비교적 자유롭다. <span class="ex">우아, 눈 온다!</span></p>
+
+<h3>품사의 통용</h3>
+<p class="body-text">하나의 단어가 두 개 이상의 품사로 쓰이는 경우를 품사의 통용이라 한다.</p>
+<table>
+<tr><th>문장</th><th>품사</th></tr>
+<tr><td class="left ex">모두가 힘을 모아 문제를 <u>모두</u> 해결하였다.</td><td>앞: 명사(전체) / 뒤: 부사(빠짐없이)</td></tr>
+<tr><td class="left ex">그는 <u>합리적</u>이다. / 그는 <u>합리적</u> 인간이다.</td><td>명사 / 관형사</td></tr>
+<tr><td class="left ex">둘에 셋을 더하면 <u>다섯</u>이다. / 저기 <u>다섯</u> 명의 학생이 있다.</td><td>수사 / 수 관형사</td></tr>
+</table>
+</section>
+
+<section id="sec7">
+<div class="sec-head"><span class="sec-num">07</span><h2>품사 전체 정리</h2></div>
+<div class="pos-grid">
+<div><span class="name">명사</span>이름을 나타냄</div>
+<div><span class="name">대명사</span>이름을 대신함</div>
+<div><span class="name">수사</span>수량·순서</div>
+<div><span class="name">동사</span>동작·작용 서술</div>
+<div><span class="name">형용사</span>성질·상태 서술</div>
+<div><span class="name">조사</span>문법 관계 표시</div>
+<div><span class="name">관형사</span>체언 수식</div>
+<div><span class="name">부사</span>용언·문장 수식</div>
+<div><span class="name">감탄사</span>독립적 표현</div>
+</div>
+<table class="summary-table">
+<tr><th>기능</th><th>내용</th></tr>
+<tr><td>체언</td><td>명사, 대명사, 수사 — 형태 불변, 주어·목적어·보어로 쓰이며 조사가 결합</td></tr>
+<tr><td>용언</td><td>동사, 형용사 — 어간에 어미가 결합하는 활용을 함</td></tr>
+<tr><td>관계언</td><td>조사 — 앞말에 붙어 문법적 관계를 표시하거나 의미를 더함</td></tr>
+<tr><td>수식언</td><td>관형사, 부사 — 다른 말을 꾸며 줌</td></tr>
+<tr><td>독립언</td><td>감탄사 — 문법적 관계를 맺지 않고 독립적으로 쓰임</td></tr>
+</table>
+</section>
+
+<section id="sec8">
+<div class="sec-head"><span class="sec-num">08</span><h2>문장 성분</h2></div>
+<p class="lead">문장 성분이란 문장에서 일정한 문법적 기능을 하는 구성 요소이다. 주성분, 부속 성분, 독립 성분으로 나뉜다.</p>
+
+<h3>주성분 — 주어·서술어·목적어·보어</h3>
+<table>
+<tr><th>성분</th><th>개념</th><th>실현 방법</th></tr>
+<tr><td>주어</td><td class="left">동작·작용·성질·상태를 지닌 대상</td><td class="left">체언 + 이/가, 께서, 에서</td></tr>
+<tr><td>서술어</td><td class="left">주어의 동작·작용·성질·상태를 서술</td><td class="left">동사·형용사, 체언 + 서술격 조사 '이다'</td></tr>
+<tr><td>목적어</td><td class="left">서술어 동작의 대상</td><td class="left">체언 + 을/를</td></tr>
+<tr><td>보어</td><td class="left">'되다', '아니다' 앞에서 반드시 필요한 성분</td><td class="left">체언 + 이/가</td></tr>
+</table>
+<p class="body-text ex" style="font-size:13px;">꽃이 아름답다(주어-서술어) · 학교에서 축제를 열었다(주어-목적어-서술어) · 얼음은 물이 되었다(주어-보어-서술어)</p>
+
+<h3>서술어의 자릿수</h3>
+<p class="body-text">서술어가 필수적으로 요구하는 문장 성분의 개수이다.</p>
+<table>
+<tr><th>구분</th><th>필수 성분</th><th>예</th></tr>
+<tr><td>한 자리 서술어</td><td class="left">주어만 요구</td><td class="ex">꽃이 피었다.</td></tr>
+<tr><td>두 자리 서술어</td><td class="left">주어 + 목적어/보어/부사어 중 하나</td><td class="ex">학생들이 밥을 먹는다.</td></tr>
+<tr><td>세 자리 서술어</td><td class="left">주어 + 목적어 + 부사어</td><td class="ex">선생님께서 우리에게 책을 주셨다.</td></tr>
+</table>
+
+<h3>부속 성분 — 관형어·부사어</h3>
+<table>
+<tr><th>성분</th><th>개념</th><th>실현 방법</th></tr>
+<tr><td>관형어</td><td class="left">체언을 꾸며 줌</td><td class="left">관형사 · 체언+의 · 용언의 관형사형</td></tr>
+<tr><td>부사어</td><td class="left">주로 용언, 때로 관형사·다른 부사·문장 전체를 꾸밈</td><td class="left">부사 · 체언+부사격 조사 · 용언의 부사형</td></tr>
+</table>
+<div class="note"><b>필수적 부사어.</b> 부사어는 대체로 생략 가능하지만, 두 자리·세 자리 서술어 중 일부는 부사어를 반드시 요구한다. <span class="ex">이 옷이 너에게 어울린다.</span></div>
+
+<h3>독립 성분 — 독립어</h3>
+<p class="body-text">다른 성분과 문법적 관계를 맺지 않는 성분이다. 감탄사, 체언 단독형, '체언+호격 조사'로 실현된다. <span class="ex">지수야, 점심 먹었어?</span></p>
+</section>
+
+<section id="sec9">
+<div class="sec-head"><span class="sec-num">09</span><h2>문장의 짜임</h2></div>
+<p class="lead">문장은 주어와 서술어의 관계(절의 개수)에 따라 홑문장과 겹문장으로 나뉜다. 홑문장은 주어-서술어 관계가 한 번, 겹문장은 두 번 이상 나타나는 문장이다. 겹문장은 이어진문장과 안은문장으로 나뉜다.</p>
+
+<h3>이어진문장 — 두 절이 연결 어미로 연결된 문장</h3>
+<table>
+<tr><th>종류</th><th>연결 어미</th><th>의미 관계</th><th>예</th></tr>
+<tr><td>대등하게 연결된 이어진문장</td><td class="left">-고, -(으)나, -지만</td><td class="left">나열, 대조 (앞뒤 절 순서 교환 가능)</td><td class="ex">기온도 높고 습도도 높다</td></tr>
+<tr><td>종속적으로 연결된 이어진문장</td><td class="left">-(으)니까, -(으)면, -(으)러, -아도/-어도</td><td class="left">원인, 조건, 의도, 양보 (순서 교환 어려움)</td><td class="ex">바람이 부니까 기다리자</td></tr>
+</table>
+
+<h3>안은문장 — 한 절이 다른 절을 문장 성분으로 안고 있는 문장</h3>
+<table>
+<tr><th>종류</th><th>실현 어미/조사</th><th>예</th></tr>
+<tr><td>명사절을 가진 안은문장</td><td class="ex">-(으)ㅁ, -기</td><td class="ex">동생이 옳았음을 깨달았다</td></tr>
+<tr><td>관형사절을 가진 안은문장</td><td class="ex">-(으)ㄴ, -는, -(으)ㄹ, -던</td><td class="ex">내가 자주 듣는 노래</td></tr>
+<tr><td>부사절을 가진 안은문장</td><td class="ex">-게, -도록, -듯(이)</td><td class="ex">배가 부르도록 밥을 먹었다</td></tr>
+<tr><td>서술절을 가진 안은문장</td><td class="left">(특정 어미·조사 없음)</td><td class="ex">누나는 솜씨가 좋다</td></tr>
+<tr><td>인용절을 가진 안은문장</td><td class="ex">(이)라고 / 고</td><td class="ex">"먹자."라고 말했다 / 먹자고 말했다</td></tr>
+</table>
+<div class="note"><b>참고.</b> 인용에는 말을 그대로 옮기는 <b>직접 인용</b>(조사 '(이)라고')과 화자의 문장으로 바꾸어 표현하는 <b>간접 인용</b>(조사 '고')이 있다.</div>
+
+<div class="card">
+<p class="body-text" style="margin:0;"><b>표현 효과.</b> 홑문장은 짧고 단순하여 이해하기 쉽고, 사건의 빠른 진행이나 핵심 요약에 적합하다. 겹문장은 길고 복잡한 만큼 더 많은 내용을 담을 수 있어 논리적인 설명이나 상세한 묘사에 적합하다.</p>
+</div>
+</section>
+
+<section id="sec10">
+<div class="sec-head"><span class="sec-num">10</span><h2>확인 문제</h2></div>
+<p class="lead">밑줄 친 부분의 품사, 문장 성분, 문장 짜임을 생각해 본 뒤 문제를 클릭해 정답을 확인하세요.</p>
+
+<details><summary class="quiz-q"><b>①</b>'훈민정음'과 '사람'은 각각 어떤 명사인가?</summary>
+<div class="answer">훈민정음 — 고유 명사 / 사람 — 보통 명사</div></details>
+
+<details><summary class="quiz-q"><b>②</b>"내가 다섯까지 셀 동안 숨어."와 "사과 다섯 개"의 '다섯'은 각각 어떤 품사인가?</summary>
+<div class="answer">앞: 수사(그 자체로 쓰임) / 뒤: 수 관형사(뒤에 명사 '개'가 옴)</div></details>
+
+<details><summary class="quiz-q"><b>③</b>동사 '먹다'와 형용사 '예쁘다'를 구별할 수 있는 활용 형태를 하나 들어 보자.</summary>
+<div class="answer">청유형·명령형 결합 여부 — '먹자/먹어라'는 가능하지만 '예쁘자/예뻐라'는 불가능함(그 밖에 '-는-' 결합, 관형사형 '-는' 결합 등도 기준이 됨)</div></details>
+
+<details><summary class="quiz-q"><b>④</b>"지호가 집에서 동생의 숙제를 도와주었다."에서 '에서'와 '의'는 각각 어떤 조사인가?</summary>
+<div class="answer">에서 — 부사격 조사 / 의 — 관형격 조사 (모두 격 조사)</div></details>
+
+<details><summary class="quiz-q"><b>⑤</b>"수미가 아주 멀리 떠났다."에서 '아주'는 성분 부사인가, 문장 부사인가?</summary>
+<div class="answer">성분 부사 — 문장 전체가 아니라 '멀리'라는 한 성분만 수식함</div></details>
+
+<details><summary class="quiz-q"><b>⑥</b>"얼음은 물이 되었다."에서 '물이'는 어떤 문장 성분인가?</summary>
+<div class="answer">보어 — '되다' 앞에서 주어 이외에 반드시 필요한 성분</div></details>
+
+<details><summary class="quiz-q"><b>⑦</b>"선생님께서 우리에게 책을 주셨다."의 서술어 '주다'는 몇 자리 서술어인가?</summary>
+<div class="answer">세 자리 서술어 — 주어(선생님께서), 부사어(우리에게), 목적어(책을)를 모두 필수로 요구함</div></details>
+
+<details><summary class="quiz-q"><b>⑧</b>"기온도 높고 습도도 높다."는 어떤 이어진문장인가?</summary>
+<div class="answer">대등하게 연결된 이어진문장 — 연결 어미 '-고'가 '나열'의 의미 관계를 나타내며 앞뒤 절의 순서를 바꿀 수 있음</div></details>
+
+<details><summary class="quiz-q"><b>⑨</b>"누나는 솜씨가 좋다."는 어떤 안은문장인가?</summary>
+<div class="answer">서술절을 가진 안은문장 — '솜씨가 좋다' 전체가 주어 '누나는'에 대한 서술어 기능을 함(특정 어미·조사 없이 실현)</div></details>
+
+<details><summary class="quiz-q"><b>⑩</b>"형은 동생에게 어서 밥을 먹자고 말했다."는 직접 인용절인가, 간접 인용절인가?</summary>
+<div class="answer">간접 인용절 — 조사 '고'로 실현되며 화자의 문장으로 바꾸어 표현함(직접 인용이었다면 "어서 밥을 먹자."라고 처럼 조사 '라고'와 큰따옴표가 쓰였을 것)</div></details>
+
+</section>
+
+</div>
+<footer>화법과 언어 · 문법 · Ⅰ. 우리말 톺아보기 — 품사와 문장 구조</footer>
+</body>
+</html>

@@ -4,7 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 프로젝트 개요
 
-고등학교 '화법과 언어' 과목(2022 개정 교육과정) 문법 학습자료를 만드는 GitHub Pages 사이트. 음운(phoneme) / 단어(word) / 문장(sentence) 카테고리별로 폴더를 나눠 인터랙티브 HTML 자료를 제공한다. 빌드 시스템, 패키지 매니저, 테스트 스위트가 없다 — 모든 페이지는 인라인 `<style>`/`<script>`를 포함한 독립적인 `.html` 파일이며, 브라우저에서 직접 열거나 정적 파일로 서빙된다.
+고등학교 '화법과 언어' 과목(2022 개정 교육과정) 문법 학습자료를 만드는 GitHub Pages 사이트. 실제 교과서의 **대단원(단원) / 소단원(챕터)** 구성을 그대로 따라 폴더를 나눈다(과거의 음운/단어/문장 같은 문법 영역별 구성은 폐기됨). 빌드 시스템, 패키지 매니저, 테스트 스위트가 없다 — 모든 페이지는 인라인 `<style>`/`<script>`를 포함한 독립적인 `.html` 파일이며, 브라우저에서 직접 열거나 정적 파일로 서빙된다.
+
+## 콘텐츠 출처 (교사용 지도서 PDF)
+
+학습지 내용은 사용자가 제공하는 단원별 교사용 지도서 PDF(예: `화언_1단원_교사용 교과서.pdf`, `화언_2단원_교사용 교과서.pdf`, 보통 `Downloads` 폴더)를 1차 출처로 삼아 제작한다. 각 PDF는 400여 쪽으로 매우 크므로 `Read` 도구의 `pages` 파라미터로 나눠 읽거나(페이지 렌더링에는 poppler의 `pdftoppm`이 필요), 텍스트로 통째로 추출해 놓고 오프셋으로 탐색하는 방법을 함께 쓴다.
+
+- **주의**: 이 환경(Windows, Git Bash)의 기본 `pdftotext`(`C:\Program Files\Git\mingw64\bin\pdftotext.exe`, xpdf 계열)는 한글(CJK) 글리프를 전혀 추출하지 못하고 공백으로 누락시킨다 — 겉보기엔 정상 종료되지만 결과물엔 한글이 없다. 반드시 **poppler**의 `pdftotext`/`pdftoppm`을 사용해야 한다. 설치가 안 되어 있다면:
+  ```bash
+  winget install --id oschwartz10612.Poppler --source winget --accept-source-agreements --accept-package-agreements -e
+  ```
+  설치 후 바이너리는 `C:\Users\admin\AppData\Local\Microsoft\WinGet\Packages\oschwartz10612.Poppler_Microsoft.Winget.Source_8wekyb3d8bbwe\poppler-25.07.0\Library\bin\`에 있다(같은 세션의 PATH에는 곧바로 반영되지 않을 수 있으니 절대경로로 호출).
+- PDF는 '지도 방법', '예시 답' 같은 교사용 주석이 섞여 있으므로, 학습지에는 개념·분류·예시·활동만 골라 학생용 어조로 정리하고 교사 전용 지도 코멘트는 옮기지 않는다.
 
 ## 명령어
 
@@ -18,15 +29,17 @@ python -m http.server 8000
 
 ## 사이트 구조
 
-- `index.html` — 전체 카테고리로 연결되는 루트 허브
-- `phoneme/index.html` — 음운 카테고리 인덱스
-- `phoneme/01-consonant-vowel.html`, `02-consonant-change.html`, `03-vowel-change.html` ... — 번호 순서로 나열된 개별 학습자료 (`04-`, `05-` 순으로 이어서 추가)
-- 앞으로 `word/`, `sentence/` 폴더도 같은 방식으로 추가될 예정 — 루트 `index.html`에는 이미 이 두 카테고리가 "준비 중" 비활성 카드로 표시되어 있으므로, 새 카테고리를 만들 때는 해당 폴더+`index.html`을 만들고 루트의 카드를 활성화하면 된다.
+- `index.html` — 대단원(Ⅰ, Ⅱ, …) 카드로 연결되는 루트 허브
+- `unit1/index.html`, `unit2/index.html`, … — 각 대단원의 소단원(챕터) 목록. 학습지가 아직 없는 챕터도 교사용 지도서 목차에서 미리 파악해 "준비 중" 비활성 카드로 목록에 올려 둔다
+- `unit1/01-word-class-sentence-structure.html`, `unit1/02-...html` … — 대단원 폴더 안에 번호-영문kebab 이름으로 나열된 개별 학습지 (소단원 1개 = 파일 1개)
+- 현재 상태: `unit1`(Ⅰ. 우리말 톺아보기, [12화언01-03]~[12화언01-06], 4챕터 중 01만 완성) / `unit2`(Ⅱ. 언어와 국어 생활, [12화언01-01]~[12화언01-02], 2챕터 모두 준비 중)
+- 새 대단원(Ⅲ, …)이 생기면 루트 `index.html`에 카드를 추가하고 `unitN/index.html`을 새로 만든다
 
 **새 학습자료 추가 절차**:
-1. 해당 카테고리 폴더에 다음 번호로 파일 생성
-2. 그 카테고리의 `index.html`에 링크 추가
-3. 루트 `index.html`도 필요 시 갱신
+1. 대상 챕터의 성취기준·차시·소단원명을 교사용 지도서 PDF 목차에서 확인
+2. 해당 `unitN` 폴더에 다음 번호로 파일 생성
+3. `unitN/index.html`의 해당 카드를 `disabled`/"준비 중" 해제하고 활성화
+4. 루트 `index.html`도 필요 시 갱신
 
 ## 교육과정 검증 규칙 (중요)
 
@@ -46,8 +59,7 @@ python -m http.server 8000
 - 색상 팔레트: 인디고 `#3B4D8C`(진한 톤 `#28345E`), 제이드 `#1F7A5C`, 앰버 `#C97F0E`, 오프화이트 배경 `#FAF9F5`
 - 카드 기반 섹션 레이아웃, 표는 헤더를 진한 인디고 배경으로 강조
 - 인터랙티브 요소는 순수 HTML `<details>`/`<summary>`로 구현 (아코디언, 정답 펼치기 등) — 별도 JS 프레임워크 사용하지 않음
-  - 주의: `phoneme/01-consonant-vowel.html`, `02-consonant-change.html`은 이 규칙 이전에 만들어져 `data-ans` 속성 + `revealed` 클래스 토글용 vanilla JS(`addEventListener('click', ...)`)로 정답 펼치기를 구현했다. 기존 두 파일을 굳이 고칠 필요는 없지만, 새로 만들거나 수정하는 자료는 `<details>`/`<summary>` 방식을 따른다.
-- 자료 구성 순서: 학습 목표 → 개념 설명 → 규칙별 분류·예시표 → 전체 정리표 → 확인 문제(정답 펼치기)
+- 자료 구성 순서: 학습 목표(성취기준 포함) → 차례(anchor nav, 내용이 길 때) → 개념 설명 → 규칙별 분류·예시표 → 전체 정리표 → 확인 문제(정답 펼치기). 소단원 하나가 여러 하위 주제(예: 품사 9종 + 문장 성분 + 문장의 짜임)를 포괄할 때는 상단에 페이지 내 앵커 링크(`<nav class="toc">`)를 두어 탐색을 돕는다 (`unit1/01-word-class-sentence-structure.html` 참고)
 
 기존 파일에서 CSS 커스텀 프로퍼티(`--bg`, `--paper`, `--ink` 등)나 카드/표 마크업을 그대로 복사해서 시작하면 일관성을 유지하기 쉽다. 공용 CSS/JS 파일은 두지 않고 각 페이지에 인라인한다. 외부 리소스는 Google Fonts(`Noto Serif KR`, `Noto Sans KR`, 및 필요 시 `JetBrains Mono`) 뿐이다.
 
