@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>언어의 특성과 국어 생활의 변화 — 화법과 언어 문법</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF9F5; --paper:#FFFFFF; --ink:#232420; --ink-soft:#5B5D57;
+    --line:#E3DFD3; --indigo:#3B4D8C; --indigo-dark:#28345E; --indigo-soft:#EEF1F8;
+    --jade:#1F7A5C; --jade-soft:#E4F3EC; --amber:#C97F0E; --amber-soft:#FBF0E1;
+    --radius:10px; --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Noto Sans KR', sans-serif; line-height:1.7; padding:0 0 6rem;}
+  .wrap{max-width:800px; margin:0 auto; padding:0 1.5rem;}
+
+  header{padding:3rem 0 2rem; border-bottom:1px solid var(--line); margin-bottom:1.6rem;}
+  .back{font-size:13px; color:var(--indigo); text-decoration:none;}
+  .eyebrow{font-size:13px; letter-spacing:.14em; color:var(--indigo); font-weight:700; text-transform:uppercase; margin:1rem 0 .7rem; display:flex; align-items:center; gap:10px;}
+  .eyebrow .dot{width:6px; height:6px; background:var(--indigo); border-radius:50%; display:inline-block;}
+  h1{font-family:'Noto Serif KR', serif; font-weight:700; font-size:32px; margin:0 0 .6rem; letter-spacing:-.01em;}
+  .subtitle{color:var(--ink-soft); font-size:15px;}
+  .curr-meta{margin-top:1.1rem; font-size:12.5px; color:var(--indigo-dark); background:var(--indigo-soft); border-radius:20px; padding:7px 14px; display:inline-block;}
+  .curr-meta b{font-family:var(--mono); font-weight:700;}
+  .goals{margin-top:1.2rem; padding-left:1.2rem; font-size:13.5px; color:var(--ink-soft);}
+  .goals li{margin-bottom:3px;}
+
+  nav.toc{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:2.4rem;}
+  nav.toc a{font-size:12px; color:var(--indigo-dark); background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:5px 12px; text-decoration:none;}
+  nav.toc a:hover{border-color:var(--indigo); background:var(--indigo-soft);}
+
+  section{margin-bottom:2.6rem; scroll-margin-top:1rem;}
+  .sec-head{display:flex; align-items:baseline; gap:10px; margin-bottom:1rem;}
+  .sec-num{font-family:'Noto Serif KR', serif; font-weight:700; color:var(--indigo); font-size:15px;}
+  h2{font-family:'Noto Serif KR', serif; font-size:21px; font-weight:700; margin:0;}
+  h3{font-family:'Noto Serif KR', serif; font-size:16px; font-weight:700; margin:1.4rem 0 .6rem; color:var(--indigo-dark);}
+  .lead{color:var(--ink-soft); font-size:14px; margin:0 0 1rem;}
+  p.body-text{font-size:14.5px; margin:0 0 .8rem;}
+
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:1.2rem 1.4rem; margin-bottom:1rem;}
+  .ex{font-family:var(--mono); color:var(--indigo-dark); font-weight:500;}
+
+  table{width:100%; border-collapse:collapse; font-size:13.5px; margin:.6rem 0 1rem;}
+  th, td{border:1px solid var(--line); text-align:center; padding:8px 6px; vertical-align:middle;}
+  th{background:var(--indigo-soft); color:var(--indigo-dark); font-weight:500;}
+  td.left{text-align:left;}
+
+  .era-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:.8rem 0 1.2rem;}
+  .era-grid div{background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:.6rem .5rem; font-size:11.5px; text-align:center;}
+  .era-grid .name{font-family:'Noto Serif KR', serif; font-weight:700; color:var(--indigo-dark); font-size:13px; display:block; margin-bottom:2px;}
+
+  .note{background:var(--amber-soft); border:1px solid #EAD6B4; border-radius:var(--radius); padding:.85rem 1.05rem; font-size:13px; color:#6B4A17; margin-top:.9rem;}
+  .note b{color:var(--amber);}
+
+  .summary-table td{text-align:left; padding:9px 10px;}
+  .summary-table td:first-child{text-align:center; width:14%;}
+
+  details{border:1px solid var(--line); border-radius:var(--radius); background:var(--paper); margin-bottom:10px; padding:.2rem .2rem;}
+  details > summary{cursor:pointer; padding:.7rem 1rem; font-size:14px; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:10px;}
+  details > summary::-webkit-details-marker{display:none;}
+  details > summary::after{content:'펼치기'; font-size:12px; color:var(--indigo); border:1px solid var(--indigo); border-radius:20px; padding:3px 10px; flex-shrink:0;}
+  details[open] > summary::after{content:'접기'; background:var(--indigo-soft);}
+  details .answer{padding:0 1.1rem 1rem; font-size:13.5px; color:var(--jade); font-weight:500;}
+  .quiz-q{font-size:14.5px;}
+  .quiz-q b{color:var(--indigo); margin-right:6px;}
+
+  footer{max-width:800px; margin:0 auto; padding:1.5rem; text-align:center; color:var(--ink-soft); font-size:12.5px; border-top:1px solid var(--line);}
+
+  @media (max-width:600px){
+    table{font-size:12px;} th, td{padding:6px 4px;}
+    .era-grid{grid-template-columns:repeat(2,1fr);}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="index.html">← Ⅱ. 언어와 국어 생활</a>
+<div class="eyebrow"><span class="dot"></span>Ⅱ. 언어와 국어 생활 · 2챕터</div>
+<h1>언어의 특성과 국어 생활의 변화</h1>
+<div class="subtitle">언어와 인간의 삶의 관계, 시간에 따라 변화해 온 국어의 모습</div>
+<div class="curr-meta">과목 화법과 언어 · 성취기준 <b>[12화언01-01]</b> 언어를 인간의 삶과 관련지어 이해하고, 국어와 국어 생활이 시간의 흐름에 따라 변화하는 양상을 분석한다</div>
+<ul class="goals">
+<li>언어와 사고·사회·문화의 관계를 이해한다.</li>
+<li>시간의 흐름에 따른 국어와 국어 생활의 변화 양상을 분석한다.</li>
+<li>국어와 국어 생활의 다양한 변이와 변화를 탐구한다.</li>
+</ul>
+</header>
+
+<nav class="toc">
+<a href="#sec1">01 인간의 삶과 언어의 특성</a>
+<a href="#sec2">02 국어가 걸어온 길 — 시대 구분</a>
+<a href="#sec3">03 고대 국어</a>
+<a href="#sec4">04 중세 국어</a>
+<a href="#sec5">05 근대 국어</a>
+<a href="#sec6">06 전체 정리</a>
+<a href="#sec7">07 확인 문제</a>
+</nav>
+
+<section id="sec1">
+<div class="sec-head"><span class="sec-num">01</span><h2>인간의 삶과 언어의 특성</h2></div>
+<p class="lead">인간이 동물과 구별되는 큰 특징은 언어를 가지고 있다는 점이다. 언어는 의사소통의 수단일 뿐 아니라 인간의 삶을 이해하는 도구이며, 사고·사회·문화와 밀접한 관계를 맺는다.</p>
+<table>
+<tr><th>관계</th><th>내용</th><th>예</th></tr>
+<tr><td>언어와 사고</td><td class="left">언어와 사고는 서로 영향을 주고받는 상관관계에 있다</td><td class="ex">"고운 말을 쓰면 마음도 고와진다" · '여기저기'가 '저기여기'보다 자연스러운 것(화자 중심 사고 반영)</td></tr>
+<tr><td>언어와 사회</td><td class="left">언어는 계층·성별·연령·지역 등 사회적 조건에 따라 달라진다</td><td class="ex">2인칭 대명사 너/자네/당신/귀하 · '부추'의 방언(정구지, 솔, 푸초, 염지)</td></tr>
+<tr><td>언어와 문화</td><td class="left">언어에는 그 언어를 사용하는 사람들의 문화가 반영된다</td><td class="ex">영어 'you'가 우리말에서 다양하게 분화(상하 관계를 중시하는 문화) · 'rice'가 벼/쌀/밥으로 분화(농경 문화)</td></tr>
+</table>
+<div class="note"><b>언어의 역사성.</b> 언어는 시간의 흐름에 따라 의미가 변화하기도 한다. '영감'은 본래 정삼품·종이품 벼슬아치를 이르던 말이었으나, 오늘날에는 지체 높은 사람이나 나이 많은 사람을 대접하여 이르는 말로 의미가 변화하였다.</div>
+</section>
+
+<section id="sec2">
+<div class="sec-head"><span class="sec-num">02</span><h2>국어가 걸어온 길 — 시대 구분</h2></div>
+<p class="lead">국어는 유기체처럼 시간의 흐름에 따라 끊임없이 변화해 왔다. 국어사는 보통 다음의 네 시기로 구분한다.</p>
+<div class="era-grid">
+<div><span class="name">고대 국어</span>삼국 시대 ~ 통일 신라</div>
+<div><span class="name">중세 국어</span>고려 건국(10c) ~ 16세기 말</div>
+<div><span class="name">근대 국어</span>17세기 초 ~ 19세기 말</div>
+<div><span class="name">현대 국어</span>20세기 초 ~ 오늘날</div>
+</div>
+</section>
+
+<section id="sec3">
+<div class="sec-head"><span class="sec-num">03</span><h2>고대 국어 — 차자 표기</h2></div>
+<p class="lead">고대 국어 시기에는 우리말을 표기할 고유 문자가 없어, 한자의 음이나 뜻을 빌려 국어를 적는 <b>차자 표기</b>를 사용하였다.</p>
+<table>
+<tr><th>차자 표기</th><th>개념</th><th>예</th></tr>
+<tr><td>고유 명사 표기</td><td class="left">인명·지명 등을 한자의 음(음차)과 뜻(훈차)을 빌려 표기</td><td class="ex">買忽(매홀) 一云 水城(수성) — 買忽은 음차, 水城은 훈차</td></tr>
+<tr><td>이두</td><td class="left">한문을 국어의 문장 구성법에 따라 고치고 토를 붙인 것</td><td></td></tr>
+<tr><td>구결</td><td class="left">한문 구절 아래에 조사·어미 등 문법 요소를 표기</td><td></td></tr>
+<tr><td>향찰</td><td class="left">한자의 음과 뜻을 빌려 국어 문장 전체를 표기</td><td class="ex">善化公主主隱(선화공주주은) → '선화 공주님은' — 主(님·훈차)+隱(은·음차)</td></tr>
+</table>
+<div class="note"><b>향찰의 원리.</b> 어휘적 의미를 지니는 요소는 대체로 한자의 뜻을 빌리는 훈차로, 조사·어미 같은 문법적 의미를 지니는 요소는 한자의 음을 빌리는 음차로 적었다.</div>
+</section>
+
+<section id="sec4">
+<div class="sec-head"><span class="sec-num">04</span><h2>중세 국어</h2></div>
+<p class="lead">중세 국어는 고려 건국부터 16세기 말까지의 국어이다. 1443년 훈민정음 창제로 우리말을 우리글로 직접 기록할 수 있게 되었다.</p>
+<table>
+<tr><th>영역</th><th>특징</th><th>예</th></tr>
+<tr><td>음운</td><td class="left">현대 국어에 없는 'ㅸ(순경음 비읍)', 'ㅿ(반치음)', 'ㆍ(아래아)'가 존재 · 어두 자음군 존재 · 모음 조화가 비교적 잘 지켜짐 · 성조가 존재하여 방점으로 표기</td><td class="ex">도(도와), (뜻), :됴·코(좋고)</td></tr>
+<tr><td>표기</td><td class="left">이어 적기(연철), 세로쓰기 · 받침에 'ㄱㄴㄷㄹㅁㅂㅅㅇ' 8자만 쓰는 팔종성법</td><td class="ex">불휘 기픈(뿌리 깊은)</td></tr>
+<tr><td>문법</td><td class="left">주격 조사 '이/ㅣ/zero' · 관형격 조사 '/의'와 'ㅅ' · 높임 선어말 어미(주체·객체·상대) · 명사형 어미 '-옴/-움'</td><td class="ex">시미 기픈(샘이 깊은)</td></tr>
+<tr><td>어휘</td><td class="left">현대와 뜻이 다른 어휘, 오늘날 사라진 고유어 · 한자어 유입 전 고유어 존재</td><td class="ex">어리다(어리석다), 즈믄(천)</td></tr>
+</table>
+</section>
+
+<section id="sec5">
+<div class="sec-head"><span class="sec-num">05</span><h2>근대 국어</h2></div>
+<p class="lead">근대 국어는 17세기 초부터 19세기 말까지의 국어로, 중세 국어와 현대 국어를 잇는 다리 역할을 한다. 한글 소설·한글 편지가 널리 쓰이며 한글 사용이 일상으로 확대되었다.</p>
+<table>
+<tr><th>영역</th><th>특징</th><th>예</th></tr>
+<tr><td>음운</td><td class="left">'ㅿ' 소실, 'ㆍ' 소실(18세기, 주로 'ㅡ'나 'ㅏ'로 변화) · 구개음화·원순 모음화 발생</td><td class="ex">먹디→먹지, 믈→물</td></tr>
+<tr><td>표기</td><td class="left">팔종성법 → 칠종성법('ㄷ','ㅅ' 받침이 'ㅅ'으로 통합) · 1896년 『독립신문』에서 띄어쓰기 도입</td><td class="ex">믿다→밋다</td></tr>
+<tr><td>문법</td><td class="left">주격 조사 '가'의 사용 확대 · 관형격 조사가 '의'로 축소 · 높임 선어말 어미가 주체 높임 중심으로 축소 · 명사형 어미 '-기'의 쓰임 확대</td><td class="ex">아가(아이가)</td></tr>
+<tr><td>어휘</td><td class="left">개항(1876) 이후 서구 문물과 함께 새 어휘가 대규모로 유입</td><td class="ex">화륜선, 전차, 양말, 호텔, 잉크, 가방</td></tr>
+</table>
+</section>
+
+<section id="sec6">
+<div class="sec-head"><span class="sec-num">06</span><h2>전체 정리</h2></div>
+<table class="summary-table">
+<tr><th>시대</th><th>핵심 특징</th></tr>
+<tr><td>고대 국어</td><td>고유 문자가 없어 한자를 빌린 차자 표기(고유 명사 표기, 이두, 구결, 향찰)로 국어의 모습을 확인함</td></tr>
+<tr><td>중세 국어</td><td>훈민정음 창제(1443)로 국어를 직접 기록. 'ㅸ,ㅿ,ㆍ' 등의 음운과 성조, 팔종성법 이어 적기가 특징</td></tr>
+<tr><td>근대 국어</td><td>'ㅿ,ㆍ'가 소실되고 칠종성법·띄어쓰기가 도입되는 등 현대 국어에 가까운 모습으로 변화</td></tr>
+<tr><td>현대 국어</td><td>20세기 초 이후 오늘날까지의 국어. 근대 국어의 변화가 이어지며 현재의 표준 발음·어휘 체계로 정착</td></tr>
+</table>
+</section>
+
+<section id="sec7">
+<div class="sec-head"><span class="sec-num">07</span><h2>확인 문제</h2></div>
+<p class="lead">문제를 클릭해 정답을 확인하세요.</p>
+
+<details><summary class="quiz-q"><b>①</b>'고운 말을 쓰면 마음도 고와진다'는 언어와 무엇의 관계를 보여 주는 예인가?</summary>
+<div class="answer">언어와 사고 — 언어가 사고에 영향을 미친다는 생각이 담긴 표현</div></details>
+
+<details><summary class="quiz-q"><b>②</b>'부추'가 지역에 따라 '정구지, 솔, 푸초' 등으로 다르게 불리는 것은 언어와 무엇의 관계를 보여 주는가?</summary>
+<div class="answer">언어와 사회 — 언어는 지역이라는 사회적 조건에 따라 그 모습이 달라짐</div></details>
+
+<details><summary class="quiz-q"><b>③</b>영어 'rice'에 해당하는 말이 우리말에서 '벼, 쌀, 밥'으로 나뉘는 것은 무엇을 보여 주는가?</summary>
+<div class="answer">언어와 문화의 관계 — 쌀이 주식인 농경 문화가 언어에 반영된 것</div></details>
+
+<details><summary class="quiz-q"><b>④</b>'買忽 一云 水城'에서 '水城'은 한자의 음과 뜻 중 무엇을 빌린 표기인가?</summary>
+<div class="answer">뜻(훈차) — '買忽'은 한자의 음을 빌린 음차 표기, '水城'은 한자의 뜻을 빌린 훈차 표기</div></details>
+
+<details><summary class="quiz-q"><b>⑤</b>중세 국어 시기에 존재했으나 현대 국어에는 없는 음운을 두 가지 이상 말해 보자.</summary>
+<div class="answer">'ㅸ(순경음 비읍)', 'ㅿ(반치음)', 'ㆍ(아래아)' 등</div></details>
+
+<details><summary class="quiz-q"><b>⑥</b>중세 국어의 '기픈'과 같은 표기 방식의 이름은?</summary>
+<div class="answer">이어 적기(연철) — 앞 음절의 종성을 다음 음절의 초성으로 내려 적는 방식(현대 국어는 형태소의 형태를 밝혀 적는 끊어 적기가 원칙)</div></details>
+
+<details><summary class="quiz-q"><b>⑦</b>중세 국어의 팔종성법과 근대 국어의 칠종성법은 어떻게 다른가?</summary>
+<div class="answer">팔종성법은 받침에 'ㄱㄴㄷㄹㅁㅂㅅㅇ' 8자를 구분해 썼지만, 근대 국어의 칠종성법에서는 'ㄷ' 받침과 'ㅅ' 받침의 표기가 'ㅅ'으로 통합되었다</div></details>
+
+<details><summary class="quiz-q"><b>⑧</b>근대 국어 시기에 주격 조사로 새롭게 쓰임이 확대된 것은?</summary>
+<div class="answer">'가' — 근대 국어에 들어 주격 조사 '가'의 분포가 확대되어 현대 국어와 거의 같은 쓰임을 보임</div></details>
+
+<details><summary class="quiz-q"><b>⑨</b>1896년 『독립신문』이 국어 표기사에서 갖는 의의는?</summary>
+<div class="answer">띄어쓰기의 도입을 강조하고 한글 전용을 표방하여, 한글이 문자 생활의 전면에 등장했음을 보여 줌</div></details>
+
+<details><summary class="quiz-q"><b>⑩</b>'화륜선, 전차, 양말, 호텔' 같은 어휘가 대규모로 들어온 시기와 배경은?</summary>
+<div class="answer">근대 국어 시기 — 1870년대 개항 이래 서구 문물이 도입되며 관련 어휘가 대거 차용됨</div></details>
+
+</section>
+
+</div>
+<footer>화법과 언어 · 문법 · Ⅱ. 언어와 국어 생활 — 언어의 특성과 국어 생활의 변화</footer>
+</body>
+</html>
