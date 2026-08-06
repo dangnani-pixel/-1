@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>어휘와 문법 요소 — 화법과 언어 문법</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF9F5; --paper:#FFFFFF; --ink:#232420; --ink-soft:#5B5D57;
+    --line:#E3DFD3; --indigo:#3B4D8C; --indigo-dark:#28345E; --indigo-soft:#EEF1F8;
+    --jade:#1F7A5C; --jade-soft:#E4F3EC; --amber:#C97F0E; --amber-soft:#FBF0E1;
+    --radius:10px; --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Noto Sans KR', sans-serif; line-height:1.7; padding:0 0 6rem;}
+  .wrap{max-width:800px; margin:0 auto; padding:0 1.5rem;}
+
+  header{padding:3rem 0 2rem; border-bottom:1px solid var(--line); margin-bottom:1.6rem;}
+  .back{font-size:13px; color:var(--indigo); text-decoration:none;}
+  .eyebrow{font-size:13px; letter-spacing:.14em; color:var(--indigo); font-weight:700; text-transform:uppercase; margin:1rem 0 .7rem; display:flex; align-items:center; gap:10px;}
+  .eyebrow .dot{width:6px; height:6px; background:var(--indigo); border-radius:50%; display:inline-block;}
+  h1{font-family:'Noto Serif KR', serif; font-weight:700; font-size:32px; margin:0 0 .6rem; letter-spacing:-.01em;}
+  .subtitle{color:var(--ink-soft); font-size:15px;}
+  .curr-meta{margin-top:1.1rem; font-size:12.5px; color:var(--indigo-dark); background:var(--indigo-soft); border-radius:20px; padding:7px 14px; display:inline-block;}
+  .curr-meta b{font-family:var(--mono); font-weight:700;}
+  .goals{margin-top:1.2rem; padding-left:1.2rem; font-size:13.5px; color:var(--ink-soft);}
+  .goals li{margin-bottom:3px;}
+
+  nav.toc{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:2.4rem;}
+  nav.toc a{font-size:12px; color:var(--indigo-dark); background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:5px 12px; text-decoration:none;}
+  nav.toc a:hover{border-color:var(--indigo); background:var(--indigo-soft);}
+
+  section{margin-bottom:2.6rem; scroll-margin-top:1rem;}
+  .sec-head{display:flex; align-items:baseline; gap:10px; margin-bottom:1rem;}
+  .sec-num{font-family:'Noto Serif KR', serif; font-weight:700; color:var(--indigo); font-size:15px;}
+  h2{font-family:'Noto Serif KR', serif; font-size:21px; font-weight:700; margin:0;}
+  h3{font-family:'Noto Serif KR', serif; font-size:16px; font-weight:700; margin:1.4rem 0 .6rem; color:var(--indigo-dark);}
+  .lead{color:var(--ink-soft); font-size:14px; margin:0 0 1rem;}
+  p.body-text{font-size:14.5px; margin:0 0 .8rem;}
+
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:1.2rem 1.4rem; margin-bottom:1rem;}
+  .ex{font-family:var(--mono); color:var(--indigo-dark); font-weight:500;}
+
+  table{width:100%; border-collapse:collapse; font-size:13.5px; margin:.6rem 0 1rem;}
+  th, td{border:1px solid var(--line); text-align:center; padding:8px 6px; vertical-align:middle;}
+  th{background:var(--indigo-soft); color:var(--indigo-dark); font-weight:500;}
+  td.left{text-align:left;}
+
+  .note{background:var(--amber-soft); border:1px solid #EAD6B4; border-radius:var(--radius); padding:.85rem 1.05rem; font-size:13px; color:#6B4A17; margin-top:.9rem;}
+  .note b{color:var(--amber);}
+
+  .summary-table td{text-align:left; padding:9px 10px;}
+  .summary-table td:first-child{text-align:center; width:16%;}
+
+  details{border:1px solid var(--line); border-radius:var(--radius); background:var(--paper); margin-bottom:10px; padding:.2rem .2rem;}
+  details > summary{cursor:pointer; padding:.7rem 1rem; font-size:14px; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:10px;}
+  details > summary::-webkit-details-marker{display:none;}
+  details > summary::after{content:'펼치기'; font-size:12px; color:var(--indigo); border:1px solid var(--indigo); border-radius:20px; padding:3px 10px; flex-shrink:0;}
+  details[open] > summary::after{content:'접기'; background:var(--indigo-soft);}
+  details .answer{padding:0 1.1rem 1rem; font-size:13.5px; color:var(--jade); font-weight:500;}
+  .quiz-q{font-size:14.5px;}
+  .quiz-q b{color:var(--indigo); margin-right:6px;}
+
+  footer{max-width:800px; margin:0 auto; padding:1.5rem; text-align:center; color:var(--ink-soft); font-size:12.5px; border-top:1px solid var(--line);}
+
+  @media (max-width:600px){ table{font-size:12px;} th, td{padding:6px 4px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="index.html">← Ⅰ. 우리말 톺아보기</a>
+<div class="eyebrow"><span class="dot"></span>Ⅰ. 우리말 톺아보기 · 3챕터</div>
+<h1>어휘와 문법 요소</h1>
+<div class="subtitle">담화 맥락에 맞는 어휘 선택과 일곱 가지 문법 요소로 화자의 태도 드러내기</div>
+<div class="curr-meta">과목 화법과 언어 · 성취기준 <b>[12화언01-05]</b> 담화의 맥락에 적절한 어휘와 문법 요소를 선택하여 화자의 태도를 드러낸다</div>
+<ul class="goals">
+<li>담화 맥락에 적절한 어휘를 선택하는 방법을 이해한다.</li>
+<li>문장 종결·높임·시간·피동·사동·부정·인용 표현의 개념과 실현 방법을 탐구한다.</li>
+<li>어휘와 문법 요소를 활용하여 화자의 태도를 효과적으로 드러낸다.</li>
+</ul>
+</header>
+
+<nav class="toc">
+<a href="#sec1">01 어휘와 화자의 태도</a>
+<a href="#sec2">02 문장 종결 표현</a>
+<a href="#sec3">03 높임 표현</a>
+<a href="#sec4">04 시간 표현</a>
+<a href="#sec5">05 피동 표현</a>
+<a href="#sec6">06 사동 표현</a>
+<a href="#sec7">07 부정 표현</a>
+<a href="#sec8">08 인용 표현</a>
+<a href="#sec9">09 전체 정리</a>
+<a href="#sec10">10 확인 문제</a>
+</nav>
+
+<section id="sec1">
+<div class="sec-head"><span class="sec-num">01</span><h2>어휘와 화자의 태도</h2></div>
+<p class="lead">어휘 능력이란 담화 맥락(화자의 의도, 청자의 특성, 담화의 목적, 시공간적 배경)에 맞는 어휘를 선택해 활용하는 능력이다. 어휘는 홀로 존재하지 않고 다른 어휘와 <b>연어 관계</b>(모자를 쓰다, 신발을 신다처럼 긴밀히 결합하는 관계)를 맺는다.</p>
+<table>
+<tr><th>선택 양상</th><th>화자의 태도</th><th>예</th></tr>
+<tr><td>완곡어 ↔ 비속어</td><td class="left">청자에게 불쾌감을 주지 않으려 함</td><td class="ex">완곡어 사용, 비속어 회피</td></tr>
+<tr><td>표준어 ↔ 지역 방언</td><td class="left">원활한 의사소통 또는 친밀감·정서 표현</td><td class="ex">공적 상황엔 표준어, 지역색 표현엔 방언</td></tr>
+<tr><td>유행어·은어</td><td class="left">특정 집단의 유대감 형성, 효율적 소통(공적 상황에서는 지양)</td><td class="ex">또래 집단의 유행어</td></tr>
+<tr><td>의미 관계 활용</td><td class="left">반의어로 대조 강조, 상하어로 분류, 유의어로 어감 조절</td><td class="ex">'부탁'보다 강한 요청은 '요구'</td></tr>
+<tr><td>어종(고유어/한자어/외래어)</td><td class="left">어감의 차이를 세밀하게 표현</td><td class="ex">고유어는 의미가 넓고, 한자어는 의미가 세분화됨</td></tr>
+</table>
+</section>
+
+<section id="sec2">
+<div class="sec-head"><span class="sec-num">02</span><h2>문장 종결 표현</h2></div>
+<p class="lead">화자가 종결 어미를 통해 생각이나 느낌을 나타내는 방법이다. 문장 종결 표현과 화자의 의도가 일치하는 <b>직접 발화</b>와, 다른 <b>간접 발화</b>가 있다.</p>
+<table>
+<tr><th>종류</th><th>개념</th><th>예</th></tr>
+<tr><td>평서문</td><td class="left">정보를 전달</td><td class="ex">지호가 학교에 간다.</td></tr>
+<tr><td>의문문</td><td class="left">질문하여 대답을 요구</td><td class="ex">오늘 날씨는 어떤가요?</td></tr>
+<tr><td>명령문</td><td class="left">행동을 하도록 요구</td><td class="ex">손 씻고 와라.</td></tr>
+<tr><td>청유문</td><td class="left">행동을 함께 할 것을 요청</td><td class="ex">내일 같이 밥 먹자.</td></tr>
+<tr><td>감탄문</td><td class="left">느낌을 표현</td><td class="ex">꽃이 참 예쁘구나!</td></tr>
+</table>
+<div class="note"><b>간접 발화.</b> 명령·청유는 청자의 체면을 위협할 수 있어, 화자는 의문문·평서문으로 부드럽게 돌려 말하기도 한다. "창문이 열려 있어서 좀 춥네요."(평서문)로 창문을 닫아 달라는 요청을 간접적으로 전달하는 것이 그 예이다.</div>
+</section>
+
+<section id="sec3">
+<div class="sec-head"><span class="sec-num">03</span><h2>높임 표현</h2></div>
+<p class="lead">화자가 어떤 대상을 높이거나 낮추는 태도를 표현한 것이다. 높이는 대상에 따라 주체·객체·상대 높임으로 나뉜다.</p>
+<table>
+<tr><th>종류</th><th>높이는 대상</th><th>실현 방법</th><th>예</th></tr>
+<tr><td>주체 높임</td><td class="left">문장의 주어</td><td class="left">주격 조사 '께서', 선어말 어미 '-(으)시-', 특수 어휘(계시다)</td><td class="ex">할아버지께서 가신다.</td></tr>
+<tr><td>객체 높임</td><td class="left">목적어·부사어</td><td class="left">부사격 조사 '께', 특수 어휘(모시다, 여쭈다)</td><td class="ex">할머니를 모시고 갔다.</td></tr>
+<tr><td>상대 높임</td><td class="left">청자</td><td class="left">종결 어미(격식체/비격식체)</td><td class="ex">아래 표 참고</td></tr>
+</table>
+<table>
+<tr><th>구분</th><th>등급</th><th>예</th></tr>
+<tr><td rowspan="4">격식체</td><td>하십시오체(아주 높임)</td><td class="ex">가십시오</td></tr>
+<tr><td>하오체(예사 높임)</td><td class="ex">가오</td></tr>
+<tr><td>하게체(예사 낮춤)</td><td class="ex">가게</td></tr>
+<tr><td>해라체(아주 낮춤)</td><td class="ex">가(거)라</td></tr>
+<tr><td rowspan="2">비격식체</td><td>해요체(두루 높임)</td><td class="ex">가요</td></tr>
+<tr><td>해체(두루 낮춤)</td><td class="ex">가</td></tr>
+</table>
+<div class="note"><b>참고.</b> "삼촌은 키가 크시다."처럼 주체와 밀접한 대상(신체 등)을 높이는 것을 <b>간접 높임</b>이라 한다. 단, "음식 나오셨습니다."처럼 주체와 밀접한 관련이 없는 대상에는 '-시-'를 쓸 수 없다.</div>
+</section>
+
+<section id="sec4">
+<div class="sec-head"><span class="sec-num">04</span><h2>시간 표현</h2></div>
+<p class="lead">시간을 문법적으로 표현한 것에는 시제와 동작상이 있다.</p>
+<table>
+<tr><th>시제</th><th>개념</th><th>실현 방법</th><th>예</th></tr>
+<tr><td>과거</td><td class="left">사건시가 발화시보다 앞섬</td><td class="left">'-았-/-었-', 관형사형 '-(으)ㄴ'</td><td class="ex">동생은 빵을 먹었다.</td></tr>
+<tr><td>현재</td><td class="left">사건시와 발화시가 일치</td><td class="left">'-는-/-ㄴ-', 관형사형 '-는'</td><td class="ex">동생은 빵을 먹는다.</td></tr>
+<tr><td>미래</td><td class="left">사건시가 발화시보다 나중</td><td class="left">'-겠-', '-(으)ㄹ 것이-'</td><td class="ex">동생은 빵을 먹겠다.</td></tr>
+</table>
+<table>
+<tr><th>동작상</th><th>개념</th><th>예</th></tr>
+<tr><td>진행상</td><td class="left">동작이 진행되고 있음('-고 있다', '-아/어 가다')</td><td class="ex">밥을 먹고 있다.</td></tr>
+<tr><td>완료상</td><td class="left">동작이 끝나고 결과가 지속됨('-아/어 있다', '-아/어 버리다')</td><td class="ex">공책이 놓여 있다.</td></tr>
+</table>
+<div class="note"><b>화자의 태도.</b> '-았었-'으로 현재와 단절된 과거를(아까는 창문이 열렸었다), '-겠-'으로 추측이나 의지를(꼭 꿈을 이루겠다) 드러낼 수 있다. '-고 있다'는 진행상·완료상으로 모두 해석되어 중의성을 띠기도 한다(구두를 신고 있다).</div>
+</section>
+
+<section id="sec5">
+<div class="sec-head"><span class="sec-num">05</span><h2>피동 표현</h2></div>
+<p class="lead">주어가 스스로 동작을 하면 <b>능동</b>, 다른 주체에 의해 동작을 당하면 <b>피동</b>이다. 능동문의 주어는 피동문에서 부사어로, 목적어는 주어로 바뀐다.</p>
+<table>
+<tr><th>종류</th><th>실현 방법</th><th>예</th></tr>
+<tr><td>파생적 피동문</td><td class="left">어간+피동 접미사 '-이-,-히-,-리-,-기-'</td><td class="ex">종이가 찢겼다.</td></tr>
+<tr><td>통사적 피동문</td><td class="left">동사+'-아/어지다'</td><td class="ex">종이가 찢어졌다.</td></tr>
+</table>
+<p class="body-text ex" style="font-size:13px;">능동: 엄마가 아이를 업었다. → 피동: 아이가 엄마에게 업혔다.</p>
+<div class="note"><b>화자의 태도.</b> 피동 표현은 행위자보다 대상에 초점을 두어 행위에 대한 집중을 덜어 내거나(창문이 깨졌어요), 판단의 주체를 숨겨 객관적으로 전달하는(내일 비가 내릴 것으로 보입니다) 효과가 있다.</div>
+</section>
+
+<section id="sec6">
+<div class="sec-head"><span class="sec-num">06</span><h2>사동 표현</h2></div>
+<p class="lead">주어가 동작을 직접 하면 <b>주동</b>, 남에게 동작을 시키면 <b>사동</b>이다. 사동문에서는 새로운 주어가 도입되고, 주동문의 주어는 부사어나 목적어로 바뀐다.</p>
+<table>
+<tr><th>종류</th><th>실현 방법</th><th>예</th></tr>
+<tr><td>파생적 사동문</td><td class="left">어간+사동 접미사 '-이-,-히-,-리-,-기-,-우-,-구-,-추-'</td><td class="ex">아빠가 아이에게 밥을 먹인다.</td></tr>
+<tr><td>통사적 사동문</td><td class="left">'-게 하다'</td><td class="ex">아빠가 아이에게 밥을 먹게 했다.</td></tr>
+</table>
+<div class="note"><b>직접 사동 vs 간접 사동.</b> 파생적 사동은 주어가 직접 행하는 직접 사동과 지시하는 간접 사동 둘 다로 해석될 수 있지만(언니가 동생에게 옷을 입힌다), 통사적 사동은 주로 간접 사동을 나타낸다(언니가 동생에게 옷을 입게 한다).</div>
+</section>
+
+<section id="sec7">
+<div class="sec-head"><span class="sec-num">07</span><h2>부정 표현</h2></div>
+<p class="lead">부정 표현이 문장으로 실현된 것을 부정문이라 하며, 길이에 따라 짧은 부정문과 긴 부정문으로 나뉜다.</p>
+<table>
+<tr><th>길이</th><th>실현 방법</th><th>예</th></tr>
+<tr><td>짧은 부정문</td><td class="left">용언 앞에 '안', '못'</td><td class="ex">도서관에 안/못 갔다.</td></tr>
+<tr><td>긴 부정문</td><td class="left">용언 뒤에 '(-지) 않다', '(-지) 못하다'</td><td class="ex">도서관에 가지 않았다/못했다.</td></tr>
+</table>
+<table>
+<tr><th>의미</th><th>실현 방법</th><th>예</th></tr>
+<tr><td>의지 부정</td><td class="left">'안', '(-지) 아니하다' — 화자의 의지</td><td class="ex">축구는 안 하고 싶어.</td></tr>
+<tr><td>능력 부정</td><td class="left">'못', '(-지) 못하다' — 능력·불가피한 상황</td><td class="ex">배가 아파서 밥을 못 먹겠어요.</td></tr>
+<tr><td>단순 부정</td><td class="left">중립적인 의미의 부정</td><td class="ex">꽃이 아직 안 피었다.</td></tr>
+</table>
+<div class="note"><b>참고.</b> 청유문·명령문의 부정에는 '(-지) 말다'를 쓴다("늦지 말자/마라."). 부정문은 부정하는 대상이 무엇인지에 따라 여러 의미로 해석되는 중의성을 띨 수 있다.</div>
+</section>
+
+<section id="sec8">
+<div class="sec-head"><span class="sec-num">08</span><h2>인용 표현</h2></div>
+<p class="lead">말이나 글, 생각을 옮겨 표현하는 것으로, 그대로 옮기는 직접 인용과 화자의 표현으로 바꿔 옮기는 간접 인용으로 나뉜다.</p>
+<table>
+<tr><th>종류</th><th>실현 방법</th><th>예</th></tr>
+<tr><td>직접 인용</td><td class="left">인용격 조사 '라고'</td><td class="ex">"나는 좋아해."라고 말씀하셨다.</td></tr>
+<tr><td>간접 인용</td><td class="left">인용격 조사 '고'</td><td class="ex">자신은 좋아한다고 말씀하셨다.</td></tr>
+</table>
+<div class="note"><b>주의.</b> 간접 인용에서는 문장 종결·지시·높임·시간 표현을 화자의 관점과 발화 시점에 맞게 바꾸어야 한다(평서문 '-다고', 의문문 '-냐고', 명령문 '-(으)라고', 청유문 '-자고').</div>
+</section>
+
+<section id="sec9">
+<div class="sec-head"><span class="sec-num">09</span><h2>전체 정리</h2></div>
+<table class="summary-table">
+<tr><th>문법 요소</th><th>핵심 내용</th></tr>
+<tr><td>문장 종결 표현</td><td>평서문·의문문·명령문·청유문·감탄문. 직접 발화와 간접 발화</td></tr>
+<tr><td>높임 표현</td><td>주체·객체·상대 높임. 상대 높임은 6단계(격식체 4 + 비격식체 2)</td></tr>
+<tr><td>시간 표현</td><td>시제(과거/현재/미래) + 동작상(진행상/완료상)</td></tr>
+<tr><td>피동 표현</td><td>파생적 피동(접미사) / 통사적 피동('-아/어지다')</td></tr>
+<tr><td>사동 표현</td><td>파생적 사동(접미사) / 통사적 사동('-게 하다')</td></tr>
+<tr><td>부정 표현</td><td>짧은/긴 부정문, 의지/능력/단순 부정</td></tr>
+<tr><td>인용 표현</td><td>직접 인용('라고') / 간접 인용('고')</td></tr>
+</table>
+</section>
+
+<section id="sec10">
+<div class="sec-head"><span class="sec-num">10</span><h2>확인 문제</h2></div>
+<p class="lead">문제를 클릭해 정답을 확인하세요.</p>
+
+<details><summary class="quiz-q"><b>①</b>"창문이 열려 있어서 좀 춥네요."로 창문을 닫아 달라고 요청했다면 직접 발화인가, 간접 발화인가?</summary>
+<div class="answer">간접 발화 — 문장 유형(평서문)과 화자의 실제 의도(요청)가 일치하지 않음</div></details>
+
+<details><summary class="quiz-q"><b>②</b>"할아버지께서는 시력이 좋으시다."의 높임 표현은?</summary>
+<div class="answer">주체 높임(간접 높임) — '시력'은 높임의 대상인 '할아버지'와 밀접한 신체 관련 속성이므로 간접적으로 높임의 대상이 됨</div></details>
+
+<details><summary class="quiz-q"><b>③</b>"지구는 태양 주위를 돈다."에 쓰인 현재 시제 선어말 어미는 어떤 의미를 나타내는가?</summary>
+<div class="answer">발화시와 사건시가 일치하지 않지만(보편적 진리이므로 늘 참), 현재 시제 어미를 사용해 보편적 진리를 나타냄</div></details>
+
+<details><summary class="quiz-q"><b>④</b>"종이가 찢겼다."와 "종이가 찢어졌다."는 각각 어떤 피동문인가?</summary>
+<div class="answer">찢겼다 — 파생적 피동문(찢-+-기-) / 찢어졌다 — 통사적 피동문(찢다+-어지다)</div></details>
+
+<details><summary class="quiz-q"><b>⑤</b>"언니가 동생에게 옷을 입힌다."는 직접 사동과 간접 사동 중 어느 쪽으로 해석될 수 있는가?</summary>
+<div class="answer">둘 다 가능 — 파생적 사동문은 언니가 직접 옷을 입혀 주는 직접 사동, 또는 동생 스스로 입도록 시키는 간접 사동으로 모두 해석될 수 있음</div></details>
+
+<details><summary class="quiz-q"><b>⑥</b>"배가 아파서 밥을 못 먹겠어요."는 어떤 부정문인가?</summary>
+<div class="answer">짧은 부정문('못'을 용언 앞에 씀) + 능력 부정(피치 못할 상황으로 인한 부정)</div></details>
+
+<details><summary class="quiz-q"><b>⑦</b>"나는 '집에 있어요.'라고 말했다."를 간접 인용으로 바꾸면?</summary>
+<div class="answer">나는 집에 있다고 말했다. — 인용격 조사가 '라고'에서 '고'로, 상대 높임(해요체)이 사라지고 평서형 어미 '-다'로 바뀜</div></details>
+
+<details><summary class="quiz-q"><b>⑧</b>'부탁'과 '요구' 중 화자의 주장을 더 강하게 드러내는 어휘는?</summary>
+<div class="answer">요구 — 두 어휘는 유의 관계에 있지만 '요구'가 '부탁'보다 더 강한 요청의 의미를 드러냄</div></details>
+
+<details><summary class="quiz-q"><b>⑨</b>공적인 상황에서 유행어나 은어 사용을 피해야 하는 이유는?</summary>
+<div class="answer">해당 어휘를 사용하지 않는 사람과의 의사소통에 방해가 되고, 상대방에게 소외감을 줄 수 있기 때문</div></details>
+
+<details><summary class="quiz-q"><b>⑩</b>"(엄마가 아이에게 굳은 표정으로) 자꾸 음식 흘릴 건가요?"에서 평소와 다른 높임 표현으로 화자는 무엇을 드러내는가?</summary>
+<div class="answer">높임의 대상이 아닌 아이에게 해요체를 사용해 거리감을 형성함으로써 화자(엄마)의 서운하거나 화난 감정을 드러냄</div></details>
+
+</section>
+
+</div>
+<footer>화법과 언어 · 문법 · Ⅰ. 우리말 톺아보기 — 어휘와 문법 요소</footer>
+</body>
+</html>

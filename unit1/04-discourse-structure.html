@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>담화의 구조 — 화법과 언어 문법</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF9F5; --paper:#FFFFFF; --ink:#232420; --ink-soft:#5B5D57;
+    --line:#E3DFD3; --indigo:#3B4D8C; --indigo-dark:#28345E; --indigo-soft:#EEF1F8;
+    --jade:#1F7A5C; --jade-soft:#E4F3EC; --amber:#C97F0E; --amber-soft:#FBF0E1;
+    --radius:10px; --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Noto Sans KR', sans-serif; line-height:1.7; padding:0 0 6rem;}
+  .wrap{max-width:800px; margin:0 auto; padding:0 1.5rem;}
+
+  header{padding:3rem 0 2rem; border-bottom:1px solid var(--line); margin-bottom:1.6rem;}
+  .back{font-size:13px; color:var(--indigo); text-decoration:none;}
+  .eyebrow{font-size:13px; letter-spacing:.14em; color:var(--indigo); font-weight:700; text-transform:uppercase; margin:1rem 0 .7rem; display:flex; align-items:center; gap:10px;}
+  .eyebrow .dot{width:6px; height:6px; background:var(--indigo); border-radius:50%; display:inline-block;}
+  h1{font-family:'Noto Serif KR', serif; font-weight:700; font-size:32px; margin:0 0 .6rem; letter-spacing:-.01em;}
+  .subtitle{color:var(--ink-soft); font-size:15px;}
+  .curr-meta{margin-top:1.1rem; font-size:12.5px; color:var(--indigo-dark); background:var(--indigo-soft); border-radius:20px; padding:7px 14px; display:inline-block;}
+  .curr-meta b{font-family:var(--mono); font-weight:700;}
+  .goals{margin-top:1.2rem; padding-left:1.2rem; font-size:13.5px; color:var(--ink-soft);}
+  .goals li{margin-bottom:3px;}
+
+  nav.toc{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:2.4rem;}
+  nav.toc a{font-size:12px; color:var(--indigo-dark); background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:5px 12px; text-decoration:none;}
+  nav.toc a:hover{border-color:var(--indigo); background:var(--indigo-soft);}
+
+  section{margin-bottom:2.6rem; scroll-margin-top:1rem;}
+  .sec-head{display:flex; align-items:baseline; gap:10px; margin-bottom:1rem;}
+  .sec-num{font-family:'Noto Serif KR', serif; font-weight:700; color:var(--indigo); font-size:15px;}
+  h2{font-family:'Noto Serif KR', serif; font-size:21px; font-weight:700; margin:0;}
+  h3{font-family:'Noto Serif KR', serif; font-size:16px; font-weight:700; margin:1.4rem 0 .6rem; color:var(--indigo-dark);}
+  .lead{color:var(--ink-soft); font-size:14px; margin:0 0 1rem;}
+  p.body-text{font-size:14.5px; margin:0 0 .8rem;}
+
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:1.2rem 1.4rem; margin-bottom:1rem;}
+  .ex{font-family:var(--mono); color:var(--indigo-dark); font-weight:500;}
+
+  table{width:100%; border-collapse:collapse; font-size:13.5px; margin:.6rem 0 1rem;}
+  th, td{border:1px solid var(--line); text-align:center; padding:8px 6px; vertical-align:middle;}
+  th{background:var(--indigo-soft); color:var(--indigo-dark); font-weight:500;}
+  td.left{text-align:left;}
+
+  .flow{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:.8rem 0 1.2rem;}
+  .flow span{background:var(--indigo-soft); color:var(--indigo-dark); border-radius:8px; padding:8px 14px; font-size:13px; font-weight:500;}
+  .flow .arrow{background:none; color:var(--ink-soft); padding:0;}
+
+  .note{background:var(--amber-soft); border:1px solid #EAD6B4; border-radius:var(--radius); padding:.85rem 1.05rem; font-size:13px; color:#6B4A17; margin-top:.9rem;}
+  .note b{color:var(--amber);}
+
+  .summary-table td{text-align:left; padding:9px 10px;}
+  .summary-table td:first-child{text-align:center; width:16%;}
+
+  details{border:1px solid var(--line); border-radius:var(--radius); background:var(--paper); margin-bottom:10px; padding:.2rem .2rem;}
+  details > summary{cursor:pointer; padding:.7rem 1rem; font-size:14px; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:10px;}
+  details > summary::-webkit-details-marker{display:none;}
+  details > summary::after{content:'펼치기'; font-size:12px; color:var(--indigo); border:1px solid var(--indigo); border-radius:20px; padding:3px 10px; flex-shrink:0;}
+  details[open] > summary::after{content:'접기'; background:var(--indigo-soft);}
+  details .answer{padding:0 1.1rem 1rem; font-size:13.5px; color:var(--jade); font-weight:500;}
+  .quiz-q{font-size:14.5px;}
+  .quiz-q b{color:var(--indigo); margin-right:6px;}
+
+  footer{max-width:800px; margin:0 auto; padding:1.5rem; text-align:center; color:var(--ink-soft); font-size:12.5px; border-top:1px solid var(--line);}
+
+  @media (max-width:600px){ table{font-size:12px;} th, td{padding:6px 4px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="index.html">← Ⅰ. 우리말 톺아보기</a>
+<div class="eyebrow"><span class="dot"></span>Ⅰ. 우리말 톺아보기 · 4챕터</div>
+<h1>담화의 구조</h1>
+<div class="subtitle">담화의 개념과 맥락, 응집성·응결성을 갖춘 담화 구성 방법</div>
+<div class="curr-meta">과목 화법과 언어 · 성취기준 <b>[12화언01-06]</b> 담화의 구조를 고려하여 적절한 어휘와 문장으로 응집성 있는 담화를 구성한다</div>
+<ul class="goals">
+<li>담화의 개념과 구성 요소, 담화 맥락의 종류를 이해한다.</li>
+<li>담화가 응집성과 응결성을 갖추기 위한 조건을 탐구한다.</li>
+<li>담화 유형별 구조를 고려하여 적절한 어휘와 문장으로 응집성 있는 담화를 구성한다.</li>
+</ul>
+</header>
+
+<nav class="toc">
+<a href="#sec1">01 담화의 개념과 구성 요소</a>
+<a href="#sec2">02 담화 맥락</a>
+<a href="#sec3">03 응집성과 응결성</a>
+<a href="#sec4">04 응결성을 갖추는 표현</a>
+<a href="#sec5">05 담화의 구조</a>
+<a href="#sec6">06 전체 정리</a>
+<a href="#sec7">07 확인 문제</a>
+</nav>
+
+<section id="sec1">
+<div class="sec-head"><span class="sec-num">01</span><h2>담화의 개념과 구성 요소</h2></div>
+<p class="lead">담화란 둘 이상의 발화나 문장이 맥락 속에서 연속되어 이루어지는 말의 단위이다.</p>
+<table>
+<tr><th>구성 요소</th><th>내용</th></tr>
+<tr><td>화자(글쓴이)</td><td class="left">발화를 생산하는 담화 참여자</td></tr>
+<tr><td>청자(독자)</td><td class="left">발화를 받아들이는 담화 참여자</td></tr>
+<tr><td>발화(문장)</td><td class="left">담화를 이루는 언어 표현</td></tr>
+<tr><td>맥락</td><td class="left">이야기가 이루어지는 배경이나 상황</td></tr>
+</table>
+</section>
+
+<section id="sec2">
+<div class="sec-head"><span class="sec-num">02</span><h2>담화 맥락</h2></div>
+<table>
+<tr><th>종류</th><th>개념</th></tr>
+<tr><td>언어적 맥락</td><td class="left">발화의 앞뒤에 나타난 언어 표현을 통해 파악할 수 있는 맥락</td></tr>
+<tr><td>상황 맥락</td><td class="left">발화가 이루어지는 시간적·공간적 배경 및 상황</td></tr>
+<tr><td>사회·문화적 맥락</td><td class="left">담화 공동체가 공유하는 사회적 상황, 이념·가치·문화가 반영된 배경</td></tr>
+</table>
+<div class="card">
+<p class="body-text" style="margin:0;"><b>예.</b> (카페에서) 직원 "매장 컵에 드릴까요, 일회용 컵에 드릴까요?" / 손님 "포장해 가서 마실 거예요." — 언어적 맥락만 보면 동문서답 같지만, '포장에는 일회용 컵이 필요하다'는 <b>상황 맥락</b>을 고려하면 자연스러운 응답임을 알 수 있다.</p>
+</div>
+</section>
+
+<section id="sec3">
+<div class="sec-head"><span class="sec-num">03</span><h2>응집성과 응결성</h2></div>
+<p class="lead">적절하고 자연스러운 담화가 되려면 내용 면에서 <b>응집성</b>을, 형식 면에서 <b>응결성</b>을 갖추어야 한다.</p>
+<table>
+<tr><th>구분</th><th>개념</th><th>갖추는 방법</th></tr>
+<tr><td>응집성</td><td class="left">발화나 문장들이 하나의 주제 아래 내용상 유기적으로 관련을 맺는 것</td><td class="left">화자와 청자가 공통된 주제로 협력하여 연결</td></tr>
+<tr><td>응결성</td><td class="left">발화나 문장들이 서로 형식상 긴밀하게 연결되는 것</td><td class="left">접속 표현, 지시 표현, 대용 표현 등 담화 표지 사용</td></tr>
+</table>
+<div class="note"><b>예.</b> 영수: "오늘 본 영화에서 주인공의 행동이 이해가 돼." → 민지: "어떤 면에서?" → 영수: "지난번에 봤던 영화가 재밌었어." — 마지막 발화가 앞의 주제와 무관해 <b>응집성</b>이 깨지고, 민지가 이해하지 못하는 상황이 벌어진다.</div>
+</section>
+
+<section id="sec4">
+<div class="sec-head"><span class="sec-num">04</span><h2>응결성을 갖추는 표현</h2></div>
+<table>
+<tr><th>종류</th><th>개념</th><th>예</th></tr>
+<tr><td>접속 표현</td><td class="left">발화 간 연결 관계를 나타냄</td><td class="ex">그리고, 그래서, 하지만, 다시 말해, 예를 들어, 첫째</td></tr>
+<tr><td>지시 표현</td><td class="left">담화상의 대상(화자·청자·사물·시간·장소)을 직접 가리킴</td><td class="ex">이, 그, 저 / 이것, 그것 / 여기, 거기</td></tr>
+<tr><td>대용 표현</td><td class="left">앞서 언급했거나 뒤에 언급될 내용을 대신 가리킴</td><td class="ex">그거, 그 색깔</td></tr>
+</table>
+<div class="note"><b>비교.</b> "…자연적으로 치유된다. 어린이나 노약자는…"처럼 접속 표현이 없으면 두 발화의 관계가 잘 드러나지 않지만, "…치유된다. <b>그러나</b> 어린이나 노약자는…"처럼 접속 표현을 쓰면 역접 관계가 분명해져 응결성이 높아진다.</div>
+</section>
+
+<section id="sec5">
+<div class="sec-head"><span class="sec-num">05</span><h2>담화의 구조</h2></div>
+<p class="lead">담화가 가지는 저마다의 일정한 구성 방식을 담화 구조라 한다. 담화 구조는 정보 전달·설득 등 담화의 목적을 효율적으로 달성하기 위한 구조적 장치이며, 담화의 형식·유형에 따라 달라진다.</p>
+<table>
+<tr><th>담화 유형</th><th>구조</th></tr>
+<tr><td>신문 기사·뉴스 보도</td><td class="left">표제 → 부제 → 전문 → 본문</td></tr>
+<tr><td>발표·연설</td><td class="left">도입 → 전개 → 정리</td></tr>
+<tr><td>설명문</td><td class="left">처음 → 가운데 → 끝</td></tr>
+<tr><td>논설문</td><td class="left">서론 → 본론 → 결론</td></tr>
+</table>
+<div class="flow">
+<span>정보 전달 담화</span><span class="arrow">→</span><span>부연 설명·예시·이해를 돕는 표현</span>
+</div>
+<div class="flow">
+<span>설득 담화</span><span class="arrow">→</span><span>근거→주장 정리, 대조, 가정 표현</span>
+</div>
+
+<h3>내용 연결 표현</h3>
+<p class="body-text">화자의 발화 의도나 심리적 태도를 효과적으로 전달하기 위해 쓰이는 표현이다. 접속·지시·대용 표현도 넓게는 내용 연결 표현에 포함된다.</p>
+<table>
+<tr><th>기능</th><th>예</th></tr>
+<tr><td>예고</td><td class="ex">지금부터 ~에 대해 살펴보겠습니다.</td></tr>
+<tr><td>강조</td><td class="ex">다시 말하자면</td></tr>
+<tr><td>요약</td><td class="ex">한마디로</td></tr>
+<tr><td>예시</td><td class="ex">예를 들어</td></tr>
+<tr><td>열거</td><td class="ex">그리고, 또한, 첫째, 둘째</td></tr>
+<tr><td>부연</td><td class="ex">~이기 때문입니다.</td></tr>
+</table>
+</section>
+
+<section id="sec6">
+<div class="sec-head"><span class="sec-num">06</span><h2>전체 정리</h2></div>
+<table class="summary-table">
+<tr><th>주제</th><th>내용</th></tr>
+<tr><td>담화</td><td>화자·청자·발화·맥락으로 구성. 언어적·상황·사회문화적 맥락을 고려해야 함</td></tr>
+<tr><td>응집성</td><td>내용상 하나의 주제로 유기적으로 연결되는 것</td></tr>
+<tr><td>응결성</td><td>형식상 접속·지시·대용 표현으로 긴밀하게 연결되는 것</td></tr>
+<tr><td>담화 구조</td><td>유형에 따라 다름 — 신문기사(표제-부제-전문-본문), 발표(도입-전개-정리), 설명문(처음-가운데-끝), 논설문(서론-본론-결론)</td></tr>
+</table>
+</section>
+
+<section id="sec7">
+<div class="sec-head"><span class="sec-num">07</span><h2>확인 문제</h2></div>
+<p class="lead">문제를 클릭해 정답을 확인하세요.</p>
+
+<details><summary class="quiz-q"><b>①</b>담화를 구성하는 네 가지 요소는?</summary>
+<div class="answer">화자(글쓴이), 청자(독자), 발화(문장), 맥락</div></details>
+
+<details><summary class="quiz-q"><b>②</b>카페에서 "매장 컵에 드릴까요?"라는 질문에 "포장해 가서 마실 거예요."라고 대답한 것이 자연스러운 이유를 설명하는 맥락은?</summary>
+<div class="answer">상황 맥락 — 포장할 때는 일회용 컵을 쓴다는 시공간적 배경 상황을 고려해야 대화가 이해됨</div></details>
+
+<details><summary class="quiz-q"><b>③</b>여러 발화가 하나의 주제 아래 내용상 유기적으로 연결되는 것을 무엇이라 하는가?</summary>
+<div class="answer">응집성</div></details>
+
+<details><summary class="quiz-q"><b>④</b>"오늘 음식점 말고는 간 곳이 없거든. 그래서 아마 거기에 가방을 두고 온 것 같아."에서 접속 표현과 지시 표현을 각각 찾으면?</summary>
+<div class="answer">접속 표현 '그래서'(순접 관계) / 지시 표현 '거기'(앞의 '음식점'을 가리킴)</div></details>
+
+<details><summary class="quiz-q"><b>⑤</b>"…치유된다. 그러나 어린이나 노약자는…"에서 '그러나'는 어떤 표현이며 무엇을 높이는가?</summary>
+<div class="answer">접속 표현 — 두 발화가 역접 관계로 연결됨을 드러내어 담화의 응결성을 높임</div></details>
+
+<details><summary class="quiz-q"><b>⑥</b>뉴스 보도의 담화 구조와 논설문의 담화 구조를 각각 말해 보자.</summary>
+<div class="answer">뉴스 보도 — 표제·부제·전문·본문 / 논설문 — 서론·본론·결론</div></details>
+
+<details><summary class="quiz-q"><b>⑦</b>"지금부터 ~에 대해 살펴보겠습니다."는 내용 연결 표현 중 어떤 기능을 하는가?</summary>
+<div class="answer">예고 — 앞으로 이야기할 내용을 미리 안내함</div></details>
+
+<details><summary class="quiz-q"><b>⑧</b>대용 표현과 지시 표현의 차이는?</summary>
+<div class="answer">지시 표현은 담화 장면의 대상(화자·청자·사물·시간·장소 등)을 직접 가리키는 반면, 대용 표현은 앞뒤 발화에서 이미 언급했거나 언급할 내용을 대신 가리켜 간략하게 표현함</div></details>
+
+<details><summary class="quiz-q"><b>⑨</b>설명문의 담화 구조와 발표·연설의 담화 구조는 각각 어떻게 되는가?</summary>
+<div class="answer">설명문 — 처음·가운데·끝 / 발표·연설 — 도입·전개·정리</div></details>
+
+<details><summary class="quiz-q"><b>⑩</b>담화 구조가 담화 목적을 효율적으로 달성하는 데 기여한다는 것은 무슨 의미인가?</summary>
+<div class="answer">정보 전달, 설득 등 담화가 가진 목적에 맞게 형식이나 유형에 따른 일정한 구성 방식(구조)을 갖춤으로써, 화자의 의도가 청자에게 효과적으로 전달되도록 돕는다는 의미</div></details>
+
+</section>
+
+</div>
+<footer>화법과 언어 · 문법 · Ⅰ. 우리말 톺아보기 — 담화의 구조</footer>
+</body>
+</html>
