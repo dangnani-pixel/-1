@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>음운과 음운 체계 — 화법과 언어 문법</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF9F5; --paper:#FFFFFF; --ink:#232420; --ink-soft:#5B5D57;
+    --line:#E3DFD3; --indigo:#3B4D8C; --indigo-dark:#28345E; --indigo-soft:#EEF1F8;
+    --jade:#1F7A5C; --jade-soft:#E4F3EC; --amber:#C97F0E; --amber-soft:#FBF0E1;
+    --radius:10px; --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Noto Sans KR', sans-serif; line-height:1.7; padding:0 0 6rem;}
+  .wrap{max-width:800px; margin:0 auto; padding:0 1.5rem;}
+
+  header{padding:3rem 0 2rem; border-bottom:1px solid var(--line); margin-bottom:1.6rem;}
+  .back{font-size:13px; color:var(--indigo); text-decoration:none;}
+  .eyebrow{font-size:13px; letter-spacing:.14em; color:var(--indigo); font-weight:700; text-transform:uppercase; margin:1rem 0 .7rem; display:flex; align-items:center; gap:10px;}
+  .eyebrow .dot{width:6px; height:6px; background:var(--indigo); border-radius:50%; display:inline-block;}
+  h1{font-family:'Noto Serif KR', serif; font-weight:700; font-size:32px; margin:0 0 .6rem; letter-spacing:-.01em;}
+  .subtitle{color:var(--ink-soft); font-size:15px;}
+  .curr-meta{margin-top:1.1rem; font-size:12.5px; color:var(--indigo-dark); background:var(--indigo-soft); border-radius:20px; padding:7px 14px; display:inline-block;}
+  .curr-meta b{font-family:var(--mono); font-weight:700;}
+  .jamo-row{margin-top:1.2rem; display:flex; flex-wrap:wrap; gap:8px;}
+  .jamo-row span{
+    font-family:'Noto Serif KR', serif; width:32px; height:32px; border:1px solid var(--line); border-radius:8px;
+    display:flex; align-items:center; justify-content:center; font-size:15px; color:var(--ink-soft); background:var(--paper);
+  }
+
+  nav.toc{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:2.4rem;}
+  nav.toc a{font-size:12px; color:var(--indigo-dark); background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:5px 12px; text-decoration:none;}
+  nav.toc a:hover{border-color:var(--indigo); background:var(--indigo-soft);}
+
+  section{margin-bottom:2.6rem; scroll-margin-top:1rem;}
+  .sec-head{display:flex; align-items:baseline; gap:10px; margin-bottom:1rem;}
+  .sec-num{font-family:'Noto Serif KR', serif; font-weight:700; color:var(--indigo); font-size:15px;}
+  h2{font-family:'Noto Serif KR', serif; font-size:21px; font-weight:700; margin:0;}
+  h3{font-family:'Noto Serif KR', serif; font-size:16px; font-weight:700; margin:1.4rem 0 .6rem; color:var(--indigo-dark);}
+  .lead{color:var(--ink-soft); font-size:14px; margin:0 0 1rem;}
+  p.body-text{font-size:14.5px; margin:0 0 .8rem;}
+
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:1.2rem 1.4rem; margin-bottom:1rem;}
+  .ex{font-family:var(--mono); color:var(--indigo-dark); font-weight:500;}
+
+  table{width:100%; border-collapse:collapse; font-size:13.5px; margin:.6rem 0 1rem;}
+  th, td{border:1px solid var(--line); text-align:center; padding:8px 6px; vertical-align:middle;}
+  th{background:var(--indigo-soft); color:var(--indigo-dark); font-weight:500;}
+  td.left{text-align:left;}
+  td.label{background:#FAF9F5; color:var(--ink-soft); font-weight:500;}
+  td.jamo{font-family:'Noto Serif KR', serif; font-size:15px; color:var(--indigo-dark); font-weight:700;}
+
+  .note{background:var(--amber-soft); border:1px solid #EAD6B4; border-radius:var(--radius); padding:.85rem 1.05rem; font-size:13px; color:#6B4A17; margin-top:.9rem;}
+  .note b{color:var(--amber);}
+
+  .summary-table td{text-align:left; padding:9px 10px;}
+  .summary-table td:first-child{text-align:center; width:20%;}
+
+  details{border:1px solid var(--line); border-radius:var(--radius); background:var(--paper); margin-bottom:10px; padding:.2rem .2rem;}
+  details > summary{cursor:pointer; padding:.7rem 1rem; font-size:14px; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:10px;}
+  details > summary::-webkit-details-marker{display:none;}
+  details > summary::after{content:'펼치기'; font-size:12px; color:var(--indigo); border:1px solid var(--indigo); border-radius:20px; padding:3px 10px; flex-shrink:0;}
+  details[open] > summary::after{content:'접기'; background:var(--indigo-soft);}
+  details .answer{padding:0 1.1rem 1rem; font-size:13.5px; color:var(--jade); font-weight:500;}
+  .quiz-q{font-size:14.5px;}
+  .quiz-q b{color:var(--indigo); margin-right:6px;}
+
+  footer{max-width:800px; margin:0 auto; padding:1.5rem; text-align:center; color:var(--ink-soft); font-size:12.5px; border-top:1px solid var(--line);}
+
+  @media (max-width:600px){ table{font-size:12px;} th, td{padding:6px 4px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="index.html">← 기초 지식 목록</a>
+<div class="eyebrow"><span class="dot"></span>기초 지식 · 음운</div>
+<h1>음운과 음운 체계</h1>
+<div class="subtitle">음운의 개념, 자음 체계와 단모음 체계 — 자음·모음 변동을 배우기 전에 다지는 선수 지식</div>
+<div class="curr-meta">과목 화법과 언어 · 관련 성취기준 <b>[12화언01-02]</b> 표준 발음을 이해하고 정확하게 발음하는 국어 생활을 한다</div>
+<div class="jamo-row">
+<span>ㄱ</span><span>ㄴ</span><span>ㄷ</span><span>ㄹ</span><span>ㅁ</span><span>ㅂ</span><span>ㅅ</span><span>ㅇ</span><span>ㅈ</span><span>ㅎ</span>
+<span>ㅏ</span><span>ㅓ</span><span>ㅗ</span><span>ㅜ</span><span>ㅡ</span><span>ㅣ</span>
+</div>
+</header>
+
+<nav class="toc">
+<a href="#sec1">01 음운의 개념</a>
+<a href="#sec2">02 자음 체계</a>
+<a href="#sec3">03 단모음 체계</a>
+<a href="#sec4">04 전체 정리</a>
+<a href="#sec5">05 확인 문제</a>
+</nav>
+
+<section id="sec1">
+<div class="sec-head"><span class="sec-num">01</span><h2>음운의 개념</h2></div>
+<p class="lead">음운(音韻)이란 말의 뜻을 구별해 주는 최소의 소리 단위이다. '물'과 '불'은 'ㅁ'과 'ㅂ'이 다르기 때문에 뜻이 구별되므로, 'ㅁ'과 'ㅂ'은 각각 하나의 음운이다.</p>
+<table>
+<tr><th>구분</th><th>개념</th><th>개수</th></tr>
+<tr><td>자음</td><td class="left">공기의 흐름이 방해(장애)를 받으며 나는 소리</td><td>19개</td></tr>
+<tr><td>모음 — 단모음</td><td class="left">공기의 흐름이 방해 없이 나며, 발음하는 동안 입 모양이 변하지 않는 소리</td><td>10개</td></tr>
+<tr><td>모음 — 이중 모음</td><td class="left">발음하는 동안 입 모양이 변하는 소리(반모음+단모음)</td><td>11개</td></tr>
+</table>
+<div class="note"><b>참고.</b> 표준 발음법 제2~5항에서 국어의 자음을 19개, 모음을 단모음 10개·이중 모음 11개로 규정하고 있다.</div>
+</section>
+
+<section id="sec2">
+<div class="sec-head"><span class="sec-num">02</span><h2>자음 체계</h2></div>
+<p class="lead">자음은 소리 내는 위치(조음 위치)와 방법(조음 방법)에 따라 분류한다.</p>
+<div class="card" style="overflow-x:auto;">
+<table>
+<tr><th>조음 방법 \ 위치</th><th>입술소리</th><th>잇몸소리</th><th>센입천장소리</th><th>여린입천장소리</th><th>목청소리</th></tr>
+<tr><td class="label">파열음</td><td class="jamo">ㅂ ㅃ ㅍ</td><td class="jamo">ㄷ ㄸ ㅌ</td><td>—</td><td class="jamo">ㄱ ㄲ ㅋ</td><td>—</td></tr>
+<tr><td class="label">파찰음</td><td>—</td><td>—</td><td class="jamo">ㅈ ㅉ ㅊ</td><td>—</td><td>—</td></tr>
+<tr><td class="label">마찰음</td><td>—</td><td class="jamo">ㅅ ㅆ</td><td>—</td><td>—</td><td class="jamo">ㅎ</td></tr>
+<tr><td class="label">비음</td><td class="jamo">ㅁ</td><td class="jamo">ㄴ</td><td>—</td><td class="jamo">ㅇ</td><td>—</td></tr>
+<tr><td class="label">유음</td><td>—</td><td class="jamo">ㄹ</td><td>—</td><td>—</td><td>—</td></tr>
+</table>
+</div>
+<div class="note"><b>참고.</b> 파열음·파찰음·마찰음은 소리의 세기에 따라 예사소리(ㄱㄷㅂㅈㅅ)·된소리(ㄲㄸㅃㅉㅆ)·거센소리(ㅋㅌㅍㅊ)로 나뉜다. 비음(ㅁㄴㅇ)과 유음(ㄹ)은 울림소리이고, 나머지는 안울림소리이다.</div>
+</section>
+
+<section id="sec3">
+<div class="sec-head"><span class="sec-num">03</span><h2>단모음 체계</h2></div>
+<p class="lead">단모음은 혀의 앞뒤 위치, 혀의 높이, 입술 모양에 따라 분류한다.</p>
+<div class="card" style="overflow-x:auto;">
+<table>
+<tr><th rowspan="2"></th><th colspan="2">전설 모음</th><th colspan="2">후설 모음</th></tr>
+<tr><th>평순</th><th>원순</th><th>평순</th><th>원순</th></tr>
+<tr><td class="label">고모음</td><td class="jamo">ㅣ</td><td class="jamo">ㅟ</td><td class="jamo">ㅡ</td><td class="jamo">ㅜ</td></tr>
+<tr><td class="label">중모음</td><td class="jamo">ㅔ</td><td class="jamo">ㅚ</td><td class="jamo">ㅓ</td><td class="jamo">ㅗ</td></tr>
+<tr><td class="label">저모음</td><td class="jamo">ㅐ</td><td>—</td><td class="jamo">ㅏ</td><td>—</td></tr>
+</table>
+</div>
+<div class="note"><b>참고.</b> 단모음 'ㅚ, ㅟ'는 표준 발음법 제4항에 따라 이중 모음으로도 발음할 수 있다(예: 참외[차뫼/차뭬]).</div>
+</section>
+
+<section id="sec4">
+<div class="sec-head"><span class="sec-num">04</span><h2>전체 정리</h2></div>
+<table class="summary-table">
+<tr><th>주제</th><th>내용</th></tr>
+<tr><td>음운</td><td>말의 뜻을 구별해 주는 최소의 소리 단위. 자음 19개, 단모음 10개, 이중 모음 11개</td></tr>
+<tr><td>자음 체계</td><td>조음 위치(입술·잇몸·센입천장·여린입천장·목청) × 조음 방법(파열음·파찰음·마찰음·비음·유음)</td></tr>
+<tr><td>단모음 체계</td><td>혀의 앞뒤(전설·후설) × 혀의 높이(고·중·저) × 입술 모양(평순·원순)</td></tr>
+</table>
+</section>
+
+<section id="sec5">
+<div class="sec-head"><span class="sec-num">05</span><h2>확인 문제</h2></div>
+<p class="lead">문제를 클릭해 정답을 확인하세요.</p>
+
+<details><summary class="quiz-q"><b>①</b>'학교'를 음운 단위로 나누고 자음·모음의 개수를 세어 보자.</summary>
+<div class="answer">ㅎ/ㅏ/ㄱ/ㄱ/ㅛ → 자음 3개, 모음 2개</div></details>
+
+<details><summary class="quiz-q"><b>②</b>'웃음'을 음운 단위로 나누고 자음·모음의 개수를 세어 보자.</summary>
+<div class="answer">ㅜ/ㅅ/ㅡ/ㅁ → 자음 2개, 모음 2개 (초성 'ㅇ'은 소릿값이 없어 음운으로 세지 않음)</div></details>
+
+<details><summary class="quiz-q"><b>③</b>'살'과 단 하나의 음운 차이로 뜻이 구별되는 단어(최소 대립쌍)를 찾아보자.</summary>
+<div class="answer">쌀(ㅅ↔ㅆ), 발(ㅅ↔ㅂ) 등 — 하나의 음운만 다른데 뜻이 달라지는 단어 쌍이면 정답으로 인정</div></details>
+
+<details><summary class="quiz-q"><b>④</b>'ㄱ, ㄲ, ㅋ'은 조음 위치와 조음 방법이 각각 무엇인가?</summary>
+<div class="answer">조음 위치 — 여린입천장소리 / 조음 방법 — 파열음(예사소리 ㄱ, 된소리 ㄲ, 거센소리 ㅋ)</div></details>
+
+<details><summary class="quiz-q"><b>⑤</b>'ㅣ'와 'ㅜ'는 단모음 체계에서 각각 어디에 속하는가?</summary>
+<div class="answer">ㅣ — 전설 고모음(평순) / ㅜ — 후설 고모음(원순)</div></details>
+
+</section>
+
+</div>
+<footer>화법과 언어 · 문법 · 기초 지식 — 음운과 음운 체계</footer>
+</body>
+</html>

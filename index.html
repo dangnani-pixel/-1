@@ -40,6 +40,9 @@ display:flex; align-items:center; justify-content:center; flex-shrink:0;
 .status.soon{color:var(--ink-soft); background:#EFEDE6;}
 .unit-desc{margin:0 0 8px; font-size:13.5px; color:var(--ink-soft);}
 .unit-meta{font-size:12px; color:var(--indigo-dark);}
+.group-label{font-size:12.5px; letter-spacing:.08em; color:var(--ink-soft); font-weight:700; margin:0 0 10px; text-transform:uppercase;}
+.group{margin-bottom:2rem;}
+.unit-num.basics{background:var(--amber-soft); color:var(--amber);}
 footer{max-width:760px; margin:0 auto; padding:1.5rem; text-align:center; color:var(--ink-soft); font-size:12.5px; border-top:1px solid var(--line);}
 </style>
 </head>
@@ -51,6 +54,23 @@ footer{max-width:760px; margin:0 auto; padding:1.5rem; text-align:center; color:
 <div class="subtitle">교과서 대단원을 선택해서 학습을 시작하세요.</div>
 </header>
 
+<div class="group">
+<p class="group-label">기초 지식</p>
+<div class="units">
+<a class="unit-card" href="basics/index.html">
+<div class="unit-top">
+<div class="unit-num basics">音</div>
+<h2>음운 기초 지식</h2>
+<div class="status">바로가기</div>
+</div>
+<p class="unit-desc">음운과 음운 체계(자음·모음 체계), 자음 변동, 모음 변동 — 단원 학습 전에 다지는 선수 지식</p>
+<div class="unit-meta">교과서 대단원과 무관한 선수 학습 자료 · 3개 자료</div>
+</a>
+</div>
+</div>
+
+<div class="group">
+<p class="group-label">교과서 대단원</p>
 <div class="units">
 <a class="unit-card" href="unit1/index.html">
 <div class="unit-top">
@@ -71,6 +91,7 @@ footer{max-width:760px; margin:0 auto; padding:1.5rem; text-align:center; color:
 <p class="unit-desc">표준 발음으로 국어 생활하기, 언어의 특성과 국어 생활의 변화</p>
 <div class="unit-meta">[12화언01-01] ~ [12화언01-02] · 13차시 · 2개 챕터</div>
 </a>
+</div>
 </div>
 </div>
 <footer>화법과 언어 · 문법 학습지</footer>
