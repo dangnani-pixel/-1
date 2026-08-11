@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>품사와 문장 구조 · 문제 — 화법과 언어 문법</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF9F5; --paper:#FFFFFF; --ink:#232420; --ink-soft:#5B5D57;
+    --line:#E3DFD3; --indigo:#3B4D8C; --indigo-dark:#28345E; --indigo-soft:#EEF1F8;
+    --jade:#1F7A5C; --jade-soft:#E4F3EC; --amber:#C97F0E; --amber-soft:#FBF0E1;
+    --radius:10px; --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Noto Sans KR', sans-serif; line-height:1.7; padding:0 0 6rem;}
+  .wrap{max-width:760px; margin:0 auto; padding:0 1.5rem;}
+
+  header{padding:3rem 0 2rem; border-bottom:1px solid var(--line); margin-bottom:2rem;}
+  .back{font-size:13px; color:var(--indigo); text-decoration:none;}
+  .eyebrow{font-size:13px; letter-spacing:.14em; color:var(--indigo); font-weight:700; text-transform:uppercase; margin:1rem 0 .7rem; display:flex; align-items:center; gap:10px;}
+  .eyebrow .dot{width:6px; height:6px; background:var(--indigo); border-radius:50%; display:inline-block;}
+  h1{font-family:'Noto Serif KR', serif; font-weight:700; font-size:30px; margin:0 0 .6rem; letter-spacing:-.01em;}
+  .subtitle{color:var(--ink-soft); font-size:14.5px;}
+  .curr-meta{margin-top:1.1rem; font-size:12.5px; color:var(--indigo-dark); background:var(--indigo-soft); border-radius:20px; padding:7px 14px; display:inline-block;}
+  .curr-meta b{font-family:var(--mono); font-weight:700;}
+
+  .header-actions{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+  .print-btn{
+    display:inline-flex; align-items:center; gap:6px; font-size:12.5px; color:var(--indigo);
+    background:var(--paper); border:1px solid var(--indigo); border-radius:20px; padding:6px 14px;
+    cursor:pointer; font-family:'Noto Sans KR', sans-serif;
+  }
+  .print-btn:hover{background:var(--indigo-soft);}
+  .print-name-field{display:none;}
+
+  .problem{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:1.3rem 1.4rem; margin-bottom:1.2rem;}
+  .prob-head{display:flex; align-items:baseline; gap:10px; margin-bottom:.7rem;}
+  .prob-num{font-family:'Noto Serif KR', serif; font-weight:700; color:var(--indigo); font-size:15px; flex-shrink:0;}
+  .prob-tag{font-size:11.5px; color:var(--jade); background:var(--jade-soft); border-radius:20px; padding:2px 10px;}
+  .prob-q{font-size:15px; margin:0 0 .8rem; font-weight:500;}
+  .prob-passage{
+    background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:.8rem 1rem;
+    font-size:14px; color:var(--ink-soft); margin:0 0 .9rem;
+  }
+  .prob-passage b{color:var(--indigo-dark);}
+  .choices{list-style:none; margin:0; padding:0; font-size:14.5px;}
+  .choices li{margin-bottom:6px; padding-left:1.6em; text-indent:-1.6em;}
+
+  details{border:1px solid var(--line); border-radius:8px; background:var(--bg); margin-top:1rem; padding:.2rem .2rem;}
+  details > summary{cursor:pointer; padding:.6rem .9rem; font-size:13px; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:10px; color:var(--indigo);}
+  details > summary::-webkit-details-marker{display:none;}
+  details > summary::after{content:'정답·해설 보기'; font-size:12px; color:var(--indigo); border:1px solid var(--indigo); border-radius:20px; padding:3px 10px; flex-shrink:0;}
+  details[open] > summary::after{content:'접기'; background:var(--indigo-soft);}
+  details .answer{padding:0 1rem 1rem; font-size:13.5px;}
+  details .answer .verdict{color:var(--jade); font-weight:700; margin-bottom:.3rem;}
+
+  footer{max-width:760px; margin:0 auto; padding:1.5rem; text-align:center; color:var(--ink-soft); font-size:12.5px; border-top:1px solid var(--line);}
+
+  @media (max-width:600px){ .problem{padding:1rem 1.1rem;} }
+
+  @media print{
+    @page{ size:A4; margin:16mm 14mm; }
+    body{background:#fff; -webkit-print-color-adjust:exact; print-color-adjust:exact; padding-bottom:0;}
+    .wrap{max-width:100%;}
+    .back, .print-btn{display:none !important;}
+    details > summary::after{display:none;}
+    a[href]{color:inherit; text-decoration:none;}
+    .problem{break-inside:avoid; page-break-inside:avoid;}
+    .print-name-field{display:flex; gap:22px; justify-content:flex-end; align-items:baseline; font-size:12px; color:#333; margin:0 0 14px;}
+    .print-name-field .blank{display:inline-block; width:46px; border-bottom:1px solid #333; margin-left:4px;}
+    .print-name-field .field.name .blank{width:100px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="print-name-field">
+<span class="field">학년<span class="blank"></span></span>
+<span class="field">반<span class="blank"></span></span>
+<span class="field">번호<span class="blank"></span></span>
+<span class="field name">이름<span class="blank"></span></span>
+</div>
+<header>
+<div class="header-actions">
+<a class="back" href="01-word-class-sentence-structure.html">← 품사와 문장 구조</a>
+<button class="print-btn" onclick="window.print()">🖨️ 인쇄하기</button>
+</div>
+<div class="eyebrow"><span class="dot"></span>Ⅰ. 우리말 톺아보기 · 1챕터 문제</div>
+<h1>품사와 문장 구조 · 문제</h1>
+<div class="subtitle">품사 9종, 문장 성분, 문장의 짜임을 확인하는 연습 문제 10제</div>
+<div class="curr-meta">과목 화법과 언어 · 성취기준 <b>[12화언01-03]</b> 품사와 문장 구조에 대한 지식을 활용하여 언어 자료를 분석하고 설명한다</div>
+</header>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">01</span><span class="prob-tag">품사 분류 기준</span></div>
+<p class="prob-q">다음 중 품사를 분류하는 기준과 그 설명을 잘못 짝지은 것은?</p>
+<ol class="choices">
+<li>① 형태 — 활용 여부에 따라 불변어와 가변어로 나뉜다.</li>
+<li>② 기능 — 문장에서의 역할에 따라 체언, 용언, 관계언, 수식언, 독립언으로 나뉜다.</li>
+<li>③ 의미 — 개별 단어의 구체적 의미가 아니라 단어 부류 전체의 추상적 의미를 기준으로 삼는다.</li>
+<li>④ 형태 — 조사는 예외 없이 모두 형태가 변하지 않는 불변어이다.</li>
+<li>⑤ 기능 — 관형사와 부사는 모두 수식언에 속하지만 수식하는 대상이 다르다.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ④</div>조사는 대부분 형태가 변하지 않는 불변어이지만, 서술격 조사 '이다'는 '(학생)이고, (학생)이니'처럼 예외적으로 활용하는 가변어이다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">02</span><span class="prob-tag">체언</span></div>
+<p class="prob-q">다음 밑줄 친 단어 중 품사가 나머지 넷과 다른 하나는?</p>
+<ol class="choices">
+<li>① 저기 보이는 다리를 건너면 우리 동네야.</li>
+<li>② 그것은 어제 새로 산 물건이다.</li>
+<li>③ 여기에 앉아서 잠깐 쉬자.</li>
+<li>④ 이 가방은 누구의 것이니?</li>
+<li>⑤ 우리는 내일 다시 만나기로 했다.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ④</div>①②③⑤의 '저기, 그것, 여기, 우리'는 모두 대명사이다. ④의 '이'는 뒤의 체언 '가방'을 꾸며 주는 관형사이다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">03</span><span class="prob-tag">대명사</span></div>
+<p class="prob-q">다음 밑줄 친 '자기'가 재귀칭 대명사로 쓰인 것은?</p>
+<ol class="choices">
+<li>① 자기 마음대로 결정하면 안 되지.</li>
+<li>② 동생은 자기가 잘못했다고 인정했다.</li>
+<li>③ 자기, 우리 이제 그만 화해하자.</li>
+<li>④ 그건 자기한테 물어보는 게 빠를 거야.</li>
+<li>⑤ 자기가 누군지도 모르면서 큰소리치지 마라.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ②</div>재귀칭 대명사는 문장 안에서 앞서 나온 체언(주로 주어)을 다시 가리킬 때 쓰인다. ②의 '자기'는 앞에 나온 '동생'을 도로 가리키므로 재귀칭 대명사이다. 나머지는 특정 인물을 부르는 호칭이거나 특정 대상을 가리키지 않는 일반적 쓰임이다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">04</span><span class="prob-tag">수사·수 관형사</span></div>
+<p class="prob-q">다음 밑줄 친 단어 중 수사에 해당하는 것은?</p>
+<ol class="choices">
+<li>① 사과 두 개를 깎아서 나누어 먹었다.</li>
+<li>② 참가자 스물이 결승까지 진출했다.</li>
+<li>③ 세 사람이 나란히 걸어가고 있다.</li>
+<li>④ 다섯 시간 동안 쉬지 않고 걸었다.</li>
+<li>⑤ 두 그루의 나무를 정원에 심었다.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ②</div>수 관형사는 뒤의 명사를 꾸미며 조사와 결합할 수 없다. 수사는 그 자체로 체언 역할을 하며 조사와 결합할 수 있다. '스물' 뒤에 주격 조사 '이'가 결합되어 있으므로 수사이다. 나머지 밑줄 친 단어는 모두 뒤의 명사를 꾸미는 수 관형사이다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">05</span><span class="prob-tag">조사</span></div>
+<p class="prob-q">다음 밑줄 친 '와/과'의 성격이 나머지 넷과 다른 것은?</p>
+<ol class="choices">
+<li>① 나는 사과와 배를 좋아한다.</li>
+<li>② 책상 위에 연필과 지우개가 놓여 있다.</li>
+<li>③ 언니와 나는 성격이 정반대이다.</li>
+<li>④ 그는 어제 친구와 다투었다.</li>
+<li>⑤ 오늘 저녁에는 국과 김치를 먹었다.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ④</div>①②③⑤의 '와/과'는 두 체언을 같은 자격으로 이어 주는 접속 조사이다. ④의 '와'는 서술어 '다투었다'가 필수적으로 요구하는 부사어를 만드는 부사격 조사이다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">06</span><span class="prob-tag">동사·형용사</span></div>
+<p class="prob-q">다음 밑줄 친 단어 중 형용사인 것은?</p>
+<ol class="choices">
+<li>① 아이가 무럭무럭 자란다.</li>
+<li>② 하늘이 눈부시게 푸르다.</li>
+<li>③ 그는 매일 아침 일찍 일어난다.</li>
+<li>④ 학생들이 운동장에 모였다.</li>
+<li>⑤ 나는 매일 책을 읽는다.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ②</div>동사는 청유형·명령형으로 활용할 수 있지만 형용사는 원칙적으로 그럴 수 없다. '푸르다'는 '*푸르자, *푸르러라'가 성립하지 않는 형용사이다. 나머지 밑줄 친 단어는 모두 동작이나 작용을 나타내는 동사이다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">07</span><span class="prob-tag">본용언·보조 용언</span></div>
+<p class="prob-q">다음 밑줄 친 부분 중 '본용언+보조 용언' 구성이 아닌 것은?</p>
+<ol class="choices">
+<li>① 창문을 열어 두었다.</li>
+<li>② 편지를 써서 보냈다.</li>
+<li>③ 숙제를 다 끝내 버렸다.</li>
+<li>④ 밥을 먹고 싶다.</li>
+<li>⑤ 그 일은 이미 잊어 갔다.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ②</div>②의 '보냈다'는 '보내다'라는 실질적 의미를 그대로 지니고 있으므로, '쓰다'와 '보내다'가 각각의 뜻을 온전히 지닌 '본용언+본용언' 구성이다. 나머지는 뒤의 용언(두다, 버리다, 싶다, 가다)이 앞 용언에 완료·희망·진행 등의 문법적 의미만 더해 주는 보조 용언이다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">08</span><span class="prob-tag">문장 성분</span></div>
+<p class="prob-q">다음 문장의 문장 성분에 대한 설명으로 적절하지 않은 것은?</p>
+<div class="prob-passage">동생이 새 옷을 나에게 선물로 주었다.</div>
+<ol class="choices">
+<li>① '동생이'는 주어이다.</li>
+<li>② '새'는 체언 '옷'을 꾸미는 관형어이다.</li>
+<li>③ '옷을'은 서술어 '주다'의 동작이 미치는 대상인 목적어이다.</li>
+<li>④ '나에게'는 생략해도 문장의 의미가 온전히 유지되는 수의적 부사어이다.</li>
+<li>⑤ '선물로'는 부사어이다.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ④</div>'주다'는 '누가+누구에게+무엇을+주다'의 구조를 필수로 요구하는 세 자리 서술어이다. 따라서 '나에게'는 생략하면 문장이 어색해지는 필수적 부사어이다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">09</span><span class="prob-tag">이어진문장</span></div>
+<p class="prob-q">다음 중 종속적으로 이어진문장에 해당하는 것은?</p>
+<ol class="choices">
+<li>① 낮은 짧고 밤은 길다.</li>
+<li>② 시간이 없으니 서둘러 가자.</li>
+<li>③ 형은 축구를 좋아하지만 나는 야구를 좋아한다.</li>
+<li>④ 산에도 가고 바다에도 갔다.</li>
+<li>⑤ 어머니는 요리를 하시고 아버지는 청소를 하신다.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ②</div>②는 '시간이 없다'는 원인이 '서둘러 가자'는 행동에 종속적으로 연결된 문장으로, 두 절의 순서를 바꾸면 의미가 성립하지 않는다. 나머지는 나열·대조의 의미로 대등하게 연결되어 순서를 바꾸어도 의미가 크게 달라지지 않는다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">10</span><span class="prob-tag">인용절</span></div>
+<p class="prob-q">다음 직접 인용을 간접 인용으로 바르게 바꾼 것은?</p>
+<div class="prob-passage">수진이가 나에게 "내일 네가 발표해."라고 말했다.</div>
+<ol class="choices">
+<li>① 수진이가 나에게 내일 네가 발표해라고 말했다.</li>
+<li>② 수진이가 나에게 내일 내가 발표한다고 말했다.</li>
+<li>③ 수진이가 나에게 내일 자기가 발표한다고 말했다.</li>
+<li>④ 수진이가 나에게 내일 내가 발표하라고 말했다.</li>
+<li>⑤ 수진이가 나에게 내일 나보고 발표하겠다고 말했다.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ④</div>직접 인용문의 명령형 종결 표현('발표해')은 간접 인용에서 '-(으)라고'로 바뀐다. 또한 직접 인용문에서 청자인 '나'를 가리키던 '네가'는, 간접 인용문에서는 화자인 '나'의 관점으로 서술되므로 '내가'로 바뀐다.</div></details>
+</div>
+
+</div>
+<footer>화법과 언어 · 문법 · Ⅰ. 우리말 톺아보기 — 품사와 문장 구조 문제</footer>
+</body>
+</html>
