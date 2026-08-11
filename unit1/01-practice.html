@@ -31,23 +31,39 @@
   .print-btn{
     display:inline-flex; align-items:center; gap:6px; font-size:12.5px; color:var(--indigo);
     background:var(--paper); border:1px solid var(--indigo); border-radius:20px; padding:6px 14px;
-    cursor:pointer; font-family:'Noto Sans KR', sans-serif;
+    cursor:pointer; font-family:'Noto Sans KR', sans-serif; text-decoration:none;
   }
   .print-btn:hover{background:var(--indigo-soft);}
+  .header-btns{display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
   .print-name-field{display:none;}
 
-  .problem{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:1.3rem 1.4rem; margin-bottom:1.2rem;}
+  .set{margin-bottom:2.2rem;}
+  .set-label{
+    font-family:var(--mono); font-size:12.5px; color:var(--indigo-dark); background:var(--indigo-soft);
+    display:inline-block; border-radius:6px; padding:4px 10px; margin-bottom:.7rem;
+  }
+  .passage-box{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+    padding:1.1rem 1.3rem; margin-bottom:1rem; font-size:14.5px; color:var(--ink);
+  }
+  .passage-box p{margin:0 0 .7rem;}
+  .passage-box p:last-child{margin-bottom:0;}
+
+  .problem{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:1.2rem 1.4rem; margin-bottom:1.1rem;}
   .prob-head{display:flex; align-items:baseline; gap:10px; margin-bottom:.7rem;}
   .prob-num{font-family:'Noto Serif KR', serif; font-weight:700; color:var(--indigo); font-size:15px; flex-shrink:0;}
   .prob-tag{font-size:11.5px; color:var(--jade); background:var(--jade-soft); border-radius:20px; padding:2px 10px;}
   .prob-q{font-size:15px; margin:0 0 .8rem; font-weight:500;}
-  .prob-passage{
+  .prob-data{
     background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:.8rem 1rem;
     font-size:14px; color:var(--ink-soft); margin:0 0 .9rem;
   }
-  .prob-passage b{color:var(--indigo-dark);}
+  .prob-data p{margin:0 0 .35rem;}
+  .prob-data p:last-child{margin-bottom:0;}
+  .prob-data b{color:var(--indigo-dark);}
   .choices{list-style:none; margin:0; padding:0; font-size:14.5px;}
   .choices li{margin-bottom:6px; padding-left:1.6em; text-indent:-1.6em;}
+  .choices.match li{padding-left:0; text-indent:0;}
 
   details{border:1px solid var(--line); border-radius:8px; background:var(--bg); margin-top:1rem; padding:.2rem .2rem;}
   details > summary{cursor:pointer; padding:.6rem .9rem; font-size:13px; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:10px; color:var(--indigo);}
@@ -59,7 +75,7 @@
 
   footer{max-width:760px; margin:0 auto; padding:1.5rem; text-align:center; color:var(--ink-soft); font-size:12.5px; border-top:1px solid var(--line);}
 
-  @media (max-width:600px){ .problem{padding:1rem 1.1rem;} }
+  @media (max-width:600px){ .problem, .passage-box{padding:1rem 1.1rem;} }
 
   @media print{
     @page{ size:A4; margin:16mm 14mm; }
@@ -68,7 +84,7 @@
     .back, .print-btn{display:none !important;}
     details > summary::after{display:none;}
     a[href]{color:inherit; text-decoration:none;}
-    .problem{break-inside:avoid; page-break-inside:avoid;}
+    .problem, .passage-box{break-inside:avoid; page-break-inside:avoid;}
     .print-name-field{display:flex; gap:22px; justify-content:flex-end; align-items:baseline; font-size:12px; color:#333; margin:0 0 14px;}
     .print-name-field .blank{display:inline-block; width:46px; border-bottom:1px solid #333; margin-left:4px;}
     .print-name-field .field.name .blank{width:100px;}
@@ -86,136 +102,217 @@
 <header>
 <div class="header-actions">
 <a class="back" href="01-word-class-sentence-structure.html">← 품사와 문장 구조</a>
+<div class="header-btns">
 <button class="print-btn" onclick="window.print()">🖨️ 인쇄하기</button>
+</div>
 </div>
 <div class="eyebrow"><span class="dot"></span>Ⅰ. 우리말 톺아보기 · 1챕터 문제</div>
 <h1>품사와 문장 구조 · 문제</h1>
-<div class="subtitle">품사 9종, 문장 성분, 문장의 짜임을 확인하는 연습 문제 10제</div>
+<div class="subtitle">품사, 용언의 활용, 문장의 짜임을 지문·자료와 함께 확인하는 연습 문제 14제</div>
 <div class="curr-meta">과목 화법과 언어 · 성취기준 <b>[12화언01-03]</b> 품사와 문장 구조에 대한 지식을 활용하여 언어 자료를 분석하고 설명한다</div>
 </header>
 
+<div class="set">
+<div class="set-label">[01~03] 다음 글을 읽고 물음에 답하시오.</div>
+<div class="passage-box">
+<p>단어는 문법적 성질에 따라 아홉 개의 품사로 나뉜다. 이때 품사 분류의 기준이 되는 형태, 기능, 의미는 서로 독립적인 것이 아니라 위계를 이루며 작동한다. 먼저 단어가 문장 속에서 형태를 바꾸는지에 따라 불변어와 가변어를 나누고, 다음으로 각 단어가 문장에서 수행하는 기능에 따라 체언·용언·관계언·수식언·독립언으로 나눈다. 마지막으로 같은 기능을 하는 단어들을 다시 의미에 따라 세분하여 아홉 품사를 확정한다.</p>
+<p>이렇게 분류된 품사는 고정된 것이 아니라, 문맥에 따라 하나의 단어가 서로 다른 품사로 쓰이는 품사의 통용을 보이기도 한다. 예를 들어 '내일'은 "내일 다시 오겠다."에서는 부사이지만, "내일은 월요일이다."에서는 명사이다. 이처럼 같은 형태의 단어라도 문장에서 어떤 문법적 역할을 하는지에 따라 품사가 달라질 수 있으므로, 단어의 품사를 판단할 때는 그 단어가 놓인 문맥을 함께 살펴야 한다.</p>
+</div>
+
 <div class="problem">
 <div class="prob-head"><span class="prob-num">01</span><span class="prob-tag">품사 분류 기준</span></div>
-<p class="prob-q">다음 중 품사를 분류하는 기준과 그 설명을 잘못 짝지은 것은?</p>
+<p class="prob-q">윗글을 이해한 내용으로 적절하지 않은 것은?</p>
 <ol class="choices">
-<li>① 형태 — 활용 여부에 따라 불변어와 가변어로 나뉜다.</li>
-<li>② 기능 — 문장에서의 역할에 따라 체언, 용언, 관계언, 수식언, 독립언으로 나뉜다.</li>
-<li>③ 의미 — 개별 단어의 구체적 의미가 아니라 단어 부류 전체의 추상적 의미를 기준으로 삼는다.</li>
-<li>④ 형태 — 조사는 예외 없이 모두 형태가 변하지 않는 불변어이다.</li>
-<li>⑤ 기능 — 관형사와 부사는 모두 수식언에 속하지만 수식하는 대상이 다르다.</li>
+<li>① 품사를 분류하는 세 기준은 순서 없이 동시에 적용된다.</li>
+<li>② 형태 기준에 따라 단어는 불변어와 가변어로 나뉜다.</li>
+<li>③ 기능 기준에 따라 나뉜 갈래를 의미에 따라 다시 세분하면 아홉 품사가 된다.</li>
+<li>④ 하나의 단어가 문맥에 따라 서로 다른 품사로 쓰일 수 있다.</li>
+<li>⑤ 단어의 품사를 판단하려면 그 단어가 쓰인 문맥을 살펴야 한다.</li>
 </ol>
-<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ④</div>조사는 대부분 형태가 변하지 않는 불변어이지만, 서술격 조사 '이다'는 '(학생)이고, (학생)이니'처럼 예외적으로 활용하는 가변어이다.</div></details>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ①</div>윗글은 형태 → 기능 → 의미의 순서로 기준이 위계를 이루며 적용된다고 설명하고 있다. 따라서 세 기준이 '순서 없이 동시에' 적용된다는 설명은 적절하지 않다.</div></details>
 </div>
 
 <div class="problem">
-<div class="prob-head"><span class="prob-num">02</span><span class="prob-tag">체언</span></div>
-<p class="prob-q">다음 밑줄 친 단어 중 품사가 나머지 넷과 다른 하나는?</p>
+<div class="prob-head"><span class="prob-num">02</span><span class="prob-tag">품사의 통용</span></div>
+<p class="prob-q">윗글을 바탕으로 할 때, 다음 밑줄 친 '오늘'의 품사가 나머지와 다른 것은?</p>
 <ol class="choices">
-<li>① 저기 보이는 다리를 건너면 우리 동네야.</li>
-<li>② 그것은 어제 새로 산 물건이다.</li>
-<li>③ 여기에 앉아서 잠깐 쉬자.</li>
-<li>④ 이 가방은 누구의 것이니?</li>
-<li>⑤ 우리는 내일 다시 만나기로 했다.</li>
+<li>① 오늘 할 일을 내일로 미루지 말자.</li>
+<li>② 오늘 안으로 이 일을 끝내야 한다.</li>
+<li>③ 오늘은 유난히 하늘이 맑다.</li>
+<li>④ 오늘 나는 그를 처음 만났다.</li>
+<li>⑤ 오늘 저녁에 만나서 이야기하자.</li>
 </ol>
-<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ④</div>①②③⑤의 '저기, 그것, 여기, 우리'는 모두 대명사이다. ④의 '이'는 뒤의 체언 '가방'을 꾸며 주는 관형사이다.</div></details>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ③</div>③의 '오늘'은 뒤에 보조사 '은'이 결합하여 문장의 주어로 쓰인 명사이다. 나머지는 모두 조사 없이 용언을 직접 수식하는 부사로 쓰였다.</div></details>
 </div>
 
 <div class="problem">
-<div class="prob-head"><span class="prob-num">03</span><span class="prob-tag">대명사</span></div>
-<p class="prob-q">다음 밑줄 친 '자기'가 재귀칭 대명사로 쓰인 것은?</p>
-<ol class="choices">
-<li>① 자기 마음대로 결정하면 안 되지.</li>
-<li>② 동생은 자기가 잘못했다고 인정했다.</li>
-<li>③ 자기, 우리 이제 그만 화해하자.</li>
-<li>④ 그건 자기한테 물어보는 게 빠를 거야.</li>
-<li>⑤ 자기가 누군지도 모르면서 큰소리치지 마라.</li>
-</ol>
-<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ②</div>재귀칭 대명사는 문장 안에서 앞서 나온 체언(주로 주어)을 다시 가리킬 때 쓰인다. ②의 '자기'는 앞에 나온 '동생'을 도로 가리키므로 재귀칭 대명사이다. 나머지는 특정 인물을 부르는 호칭이거나 특정 대상을 가리키지 않는 일반적 쓰임이다.</div></details>
+<div class="prob-head"><span class="prob-num">03</span><span class="prob-tag">서술형</span></div>
+<p class="prob-q">윗글의 내용을 참고하여, 다음 문장에서 밑줄 친 '내일'의 품사를 밝히고 그 이유를 형태·기능·의미 기준에 따라 서술하시오.</p>
+<div class="prob-data"><p><b>내일부터</b> 새 학기가 시작된다.</p></div>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">모범 답안</div>'내일'의 품사는 명사이다. 형태가 변하지 않는 불변어이며(형태 기준), 뒤에 조사 '부터'가 결합하여 문장에서 부사어 역할을 하고 있어 체언에 해당하고(기능 기준), 그중에서도 시간을 나타내는 대상의 이름이므로 명사로 분류된다(의미 기준).</div></details>
+</div>
+</div>
+
+<div class="set">
+<div class="set-label">[04~06] 다음 글을 읽고 물음에 답하시오.</div>
+<div class="passage-box">
+<p>용언은 문장에서 주어의 동작이나 상태를 서술하며, 다른 품사와 달리 문장 속에서 형태가 바뀌는 활용을 한다. 용언은 동사와 형용사로 나뉘는데, 두 품사는 활용 양상에서 뚜렷한 차이를 보인다. 동사는 동작이나 작용을 나타내므로 현재 진행이나 명령, 청유의 의미를 표현할 수 있지만, 형용사는 성질이나 상태를 나타내므로 이러한 표현이 자연스럽지 않다. 예를 들어 '걷다'는 '걷는다, 걸어라, 걷자'처럼 자유롭게 활용하지만 '예쁘다'는 '예쁜다, 예뻐라, 예쁘자'와 같은 활용이 성립하지 않는다.</p>
+<p>그런데 하나의 단어가 문맥에 따라 동사로도 쓰이고 형용사로도 쓰이는 경우가 있어 주의가 필요하다. '크다'는 "나무가 쑥쑥 큰다."처럼 성장의 의미로 쓰일 때는 동사이지만, "나무가 매우 크다."처럼 크기를 나타낼 때는 형용사이다. 이처럼 동일한 형태의 단어라도 어떤 의미로 쓰였는지에 따라 품사가 달라질 수 있으므로, 활용 양상과 의미를 함께 살펴 품사를 판단해야 한다.</p>
 </div>
 
 <div class="problem">
-<div class="prob-head"><span class="prob-num">04</span><span class="prob-tag">수사·수 관형사</span></div>
-<p class="prob-q">다음 밑줄 친 단어 중 수사에 해당하는 것은?</p>
+<div class="prob-head"><span class="prob-num">04</span><span class="prob-tag">동사·형용사</span></div>
+<p class="prob-q">윗글을 이해한 내용으로 적절하지 않은 것은?</p>
 <ol class="choices">
-<li>① 사과 두 개를 깎아서 나누어 먹었다.</li>
-<li>② 참가자 스물이 결승까지 진출했다.</li>
-<li>③ 세 사람이 나란히 걸어가고 있다.</li>
-<li>④ 다섯 시간 동안 쉬지 않고 걸었다.</li>
-<li>⑤ 두 그루의 나무를 정원에 심었다.</li>
+<li>① 동사와 형용사는 모두 문장에서 형태가 변하는 가변어에 해당한다.</li>
+<li>② 형용사는 명령형이나 청유형 어미와 결합하기 어렵다.</li>
+<li>③ '걷다'가 동사인 것은 현재 진행의 의미로 활용할 수 있기 때문이다.</li>
+<li>④ '크다'는 어떤 문맥에서 쓰이든 항상 성장의 의미를 나타내는 동사이다.</li>
+<li>⑤ 하나의 단어가 문맥에 따라 서로 다른 품사로 쓰이는 경우가 있다.</li>
 </ol>
-<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ②</div>수 관형사는 뒤의 명사를 꾸미며 조사와 결합할 수 없다. 수사는 그 자체로 체언 역할을 하며 조사와 결합할 수 있다. '스물' 뒤에 주격 조사 '이'가 결합되어 있으므로 수사이다. 나머지 밑줄 친 단어는 모두 뒤의 명사를 꾸미는 수 관형사이다.</div></details>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ④</div>윗글에 따르면 '크다'는 문맥에 따라 동사로도, 형용사로도 쓰일 수 있다. 따라서 어떤 문맥에서든 항상 동사라는 설명은 적절하지 않다.</div></details>
 </div>
 
 <div class="problem">
-<div class="prob-head"><span class="prob-num">05</span><span class="prob-tag">조사</span></div>
-<p class="prob-q">다음 밑줄 친 '와/과'의 성격이 나머지 넷과 다른 것은?</p>
+<div class="prob-head"><span class="prob-num">05</span><span class="prob-tag">적용</span></div>
+<p class="prob-q">윗글을 참고할 때, 다음 밑줄 친 단어 중 동사로 쓰인 것은?</p>
 <ol class="choices">
-<li>① 나는 사과와 배를 좋아한다.</li>
-<li>② 책상 위에 연필과 지우개가 놓여 있다.</li>
-<li>③ 언니와 나는 성격이 정반대이다.</li>
-<li>④ 그는 어제 친구와 다투었다.</li>
-<li>⑤ 오늘 저녁에는 국과 김치를 먹었다.</li>
+<li>① 아이가 무럭무럭 큰다.</li>
+<li>② 이 가방은 저것보다 크다.</li>
+<li>③ 목소리가 커서 잘 들린다.</li>
+<li>④ 기대보다 실망이 컸다.</li>
+<li>⑤ 오늘따라 발소리가 크게 들린다.</li>
 </ol>
-<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ④</div>①②③⑤의 '와/과'는 두 체언을 같은 자격으로 이어 주는 접속 조사이다. ④의 '와'는 서술어 '다투었다'가 필수적으로 요구하는 부사어를 만드는 부사격 조사이다.</div></details>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ①</div>'큰다'는 현재 시제 선어말 어미 '-ㄴ-'과 결합하여 '자라다'라는 동작의 진행을 나타내므로 동사이다. 나머지는 모두 크기나 정도가 큰 상태를 나타내는 형용사이다.</div></details>
 </div>
 
 <div class="problem">
-<div class="prob-head"><span class="prob-num">06</span><span class="prob-tag">동사·형용사</span></div>
-<p class="prob-q">다음 밑줄 친 단어 중 형용사인 것은?</p>
-<ol class="choices">
-<li>① 아이가 무럭무럭 자란다.</li>
-<li>② 하늘이 눈부시게 푸르다.</li>
-<li>③ 그는 매일 아침 일찍 일어난다.</li>
-<li>④ 학생들이 운동장에 모였다.</li>
-<li>⑤ 나는 매일 책을 읽는다.</li>
-</ol>
-<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ②</div>동사는 청유형·명령형으로 활용할 수 있지만 형용사는 원칙적으로 그럴 수 없다. '푸르다'는 '*푸르자, *푸르러라'가 성립하지 않는 형용사이다. 나머지 밑줄 친 단어는 모두 동작이나 작용을 나타내는 동사이다.</div></details>
+<div class="prob-head"><span class="prob-num">06</span><span class="prob-tag">서술형</span></div>
+<p class="prob-q">윗글의 내용을 바탕으로, 다음 두 문장에 쓰인 '늦다'의 품사가 서로 다른 이유를 서술하시오.</p>
+<div class="prob-data">
+<p>가) 그는 약속 시간에 항상 늦는다.</p>
+<p>나) 시계가 오 분 늦다.</p>
+</div>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">모범 답안</div>(가)의 '늦는다'는 현재 시제 선어말 어미 '-는-'과 결합하여 '정해진 때보다 지나서 이르는' 동작을 나타내므로 동사이다. 반면 (나)의 '늦다'는 '정해진 시간보다 뒤져 있는' 상태를 나타내며 '시계가 늦는다'처럼 활용할 수 없으므로 형용사이다. 이처럼 '늦다'는 문맥에 따라 동사와 형용사로 모두 쓰이는 단어이다.</div></details>
+</div>
+</div>
+
+<div class="set">
+<div class="set-label">[07~09] 다음 글을 읽고 물음에 답하시오.</div>
+<div class="passage-box">
+<p>문장은 주어와 서술어의 관계가 나타나는 횟수에 따라 홑문장과 겹문장으로 나뉜다. 겹문장은 절이 결합하는 방식에 따라 이어진문장과 안은문장으로 구분된다. 이어진문장은 두 절이 연결 어미로 나란히 이어진 문장으로, 절과 절의 의미 관계에 따라 대등하게 이어진문장과 종속적으로 이어진문장으로 나뉜다. 대등하게 이어진문장은 나열이나 대조처럼 앞뒤 절의 지위가 동등한 반면, 종속적으로 이어진문장은 앞 절이 뒤 절에 원인이나 조건 등의 의미로 종속된다.</p>
+<p>안은문장은 한 절이 다른 절 속에 하나의 문장 성분처럼 들어가 있는 문장이다. 안긴절이 문장에서 하는 역할에 따라 명사절, 관형사절, 부사절, 서술절, 인용절로 나눌 수 있다. 문장의 짜임을 정확히 파악하려면 절과 절이 어떤 표지로, 어떤 관계로 결합되어 있는지를 꼼꼼히 살펴야 한다.</p>
 </div>
 
 <div class="problem">
-<div class="prob-head"><span class="prob-num">07</span><span class="prob-tag">본용언·보조 용언</span></div>
-<p class="prob-q">다음 밑줄 친 부분 중 '본용언+보조 용언' 구성이 아닌 것은?</p>
+<div class="prob-head"><span class="prob-num">07</span><span class="prob-tag">문장의 짜임</span></div>
+<p class="prob-q">윗글을 이해한 내용으로 적절하지 않은 것은?</p>
 <ol class="choices">
-<li>① 창문을 열어 두었다.</li>
-<li>② 편지를 써서 보냈다.</li>
-<li>③ 숙제를 다 끝내 버렸다.</li>
-<li>④ 밥을 먹고 싶다.</li>
-<li>⑤ 그 일은 이미 잊어 갔다.</li>
+<li>① 겹문장은 이어진문장과 안은문장으로 나뉜다.</li>
+<li>② 종속적으로 이어진문장은 앞 절과 뒤 절의 지위가 대등하다.</li>
+<li>③ 안은문장에서 안긴절은 문장의 한 성분처럼 기능한다.</li>
+<li>④ 이어진문장의 종류는 절과 절의 의미 관계에 따라 구분된다.</li>
+<li>⑤ 안긴절의 종류는 그것이 문장에서 하는 역할에 따라 나뉜다.</li>
 </ol>
-<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ②</div>②의 '보냈다'는 '보내다'라는 실질적 의미를 그대로 지니고 있으므로, '쓰다'와 '보내다'가 각각의 뜻을 온전히 지닌 '본용언+본용언' 구성이다. 나머지는 뒤의 용언(두다, 버리다, 싶다, 가다)이 앞 용언에 완료·희망·진행 등의 문법적 의미만 더해 주는 보조 용언이다.</div></details>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ②</div>윗글에서 종속적으로 이어진문장은 앞 절이 뒤 절에 원인·조건 등의 의미로 '종속'된다고 하였다. 지위가 대등한 것은 대등하게 이어진문장이다.</div></details>
 </div>
 
 <div class="problem">
-<div class="prob-head"><span class="prob-num">08</span><span class="prob-tag">문장 성분</span></div>
-<p class="prob-q">다음 문장의 문장 성분에 대한 설명으로 적절하지 않은 것은?</p>
-<div class="prob-passage">동생이 새 옷을 나에게 선물로 주었다.</div>
-<ol class="choices">
-<li>① '동생이'는 주어이다.</li>
-<li>② '새'는 체언 '옷'을 꾸미는 관형어이다.</li>
-<li>③ '옷을'은 서술어 '주다'의 동작이 미치는 대상인 목적어이다.</li>
-<li>④ '나에게'는 생략해도 문장의 의미가 온전히 유지되는 수의적 부사어이다.</li>
-<li>⑤ '선물로'는 부사어이다.</li>
+<div class="prob-head"><span class="prob-num">08</span><span class="prob-tag">적용</span></div>
+<p class="prob-q">&lt;자료&gt;의 ㉠~㉢에 해당하는 문장의 종류를 바르게 짝지은 것은?</p>
+<div class="prob-data">
+<p>㉠ 우리는 그가 성실함을 알고 있다.</p>
+<p>㉡ 바람이 세게 불어서 나뭇가지가 흔들렸다.</p>
+<p>㉢ 할머니께서는 마음이 넓으시다.</p>
+</div>
+<ol class="choices match">
+<li>① ㉠ 명사절을 가진 안은문장 — ㉡ 대등하게 이어진문장 — ㉢ 서술절을 가진 안은문장</li>
+<li>② ㉠ 명사절을 가진 안은문장 — ㉡ 종속적으로 이어진문장 — ㉢ 서술절을 가진 안은문장</li>
+<li>③ ㉠ 관형사절을 가진 안은문장 — ㉡ 종속적으로 이어진문장 — ㉢ 부사절을 가진 안은문장</li>
+<li>④ ㉠ 명사절을 가진 안은문장 — ㉡ 대등하게 이어진문장 — ㉢ 관형사절을 가진 안은문장</li>
+<li>⑤ ㉠ 관형사절을 가진 안은문장 — ㉡ 대등하게 이어진문장 — ㉢ 서술절을 가진 안은문장</li>
 </ol>
-<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ④</div>'주다'는 '누가+누구에게+무엇을+주다'의 구조를 필수로 요구하는 세 자리 서술어이다. 따라서 '나에게'는 생략하면 문장이 어색해지는 필수적 부사어이다.</div></details>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ②</div>㉠은 명사형 어미 '-음'이 결합한 명사절 '그가 성실함'이 목적어로 안겨 있는 안은문장이다. ㉡은 연결 어미 '-어서'로 원인의 의미를 나타내며 앞뒤 절의 순서를 바꾸면 어색해지는 종속적으로 이어진문장이다. ㉢은 '마음이 넓으시다' 전체가 서술어처럼 기능하는 서술절을 가진 안은문장이다.</div></details>
 </div>
 
 <div class="problem">
-<div class="prob-head"><span class="prob-num">09</span><span class="prob-tag">이어진문장</span></div>
-<p class="prob-q">다음 중 종속적으로 이어진문장에 해당하는 것은?</p>
+<div class="prob-head"><span class="prob-num">09</span><span class="prob-tag">서술형</span></div>
+<p class="prob-q">다음 문장이 홑문장으로 해석될 때와 겹문장으로 해석될 때의 의미 차이를 서술하시오.</p>
+<div class="prob-data"><p>민수와 지우가 도서관에서 만났다.</p></div>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">모범 답안</div>홑문장으로 볼 경우 '민수와 지우가'를 접속 조사 '와'로 묶인 하나의 공동 주어로 보아, 민수와 지우가 도서관에서 서로 만났다는 의미가 된다. 겹문장으로 볼 경우에는 '민수가 도서관에서 만났다.'와 '지우가 도서관에서 만났다.'라는 두 문장이 결합된 것으로 보아, 각자 도서관에서 (제3의 인물을) 만났다는 의미로 해석될 수 있다.</div></details>
+</div>
+</div>
+
+<div class="set">
+<div class="set-label">10~14. 다음 물음에 답하시오.</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">10</span><span class="prob-tag">대명사</span></div>
+<p class="prob-q">&lt;자료&gt;의 밑줄 친 대명사에 대한 설명으로 적절하지 않은 것은?</p>
+<div class="prob-data">
+<p>ㄱ. 저기 앉아 있는 사람이 누구인지 아니?</p>
+<p>ㄴ. 아무나 와서 도와줘도 괜찮아.</p>
+<p>ㄷ. 동생은 자기 몫을 남에게 양보했다.</p>
+</div>
 <ol class="choices">
-<li>① 낮은 짧고 밤은 길다.</li>
-<li>② 시간이 없으니 서둘러 가자.</li>
-<li>③ 형은 축구를 좋아하지만 나는 야구를 좋아한다.</li>
-<li>④ 산에도 가고 바다에도 갔다.</li>
-<li>⑤ 어머니는 요리를 하시고 아버지는 청소를 하신다.</li>
+<li>① ㄱ의 '저기'는 특정 장소를 가리키는 지시 대명사이다.</li>
+<li>② ㄱ의 '누구'는 모르는 대상을 가리키는 미지칭 대명사이다.</li>
+<li>③ ㄴ의 '아무나'는 특별히 정해지지 않은 대상을 가리키는 부정칭 대명사이다.</li>
+<li>④ ㄷ의 '자기'는 화자 자신을 낮추어 가리키는 인칭 대명사이다.</li>
+<li>⑤ ㄷ의 '자기'는 문장 안에서 앞에 나온 체언 '동생'을 다시 가리킨다.</li>
 </ol>
-<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ②</div>②는 '시간이 없다'는 원인이 '서둘러 가자'는 행동에 종속적으로 연결된 문장으로, 두 절의 순서를 바꾸면 의미가 성립하지 않는다. 나머지는 나열·대조의 의미로 대등하게 연결되어 순서를 바꾸어도 의미가 크게 달라지지 않는다.</div></details>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ④</div>ㄷ의 '자기'는 화자인 '나'를 가리키는 것이 아니라, 문장 안에서 앞서 나온 주어 '동생'을 다시 가리키는 재귀칭 대명사이다.</div></details>
 </div>
 
 <div class="problem">
-<div class="prob-head"><span class="prob-num">10</span><span class="prob-tag">인용절</span></div>
+<div class="prob-head"><span class="prob-num">11</span><span class="prob-tag">조사</span></div>
+<p class="prob-q">&lt;자료&gt;에 쓰인 조사에 대한 설명으로 적절하지 않은 것은?</p>
+<div class="prob-data">
+<p>ㄱ. 동생이 나보다 키가 크다.</p>
+<p>ㄴ. 이 옷은 저것과 색깔이 다르다.</p>
+<p>ㄷ. 친구와 나는 어제 함께 영화를 보았다.</p>
+</div>
+<ol class="choices">
+<li>① ㄱ의 '보다'는 비교의 대상임을 나타내는 부사격 조사이다.</li>
+<li>② ㄴ의 '과'는 ㄱ의 '보다'와 마찬가지로 비교의 기준이 되는 대상을 나타낸다.</li>
+<li>③ ㄷ의 '와'는 '친구'와 '나'를 같은 자격으로 이어 주는 접속 조사이다.</li>
+<li>④ ㄱ~ㄷ에 쓰인 조사는 모두 체언 뒤에 결합하여 문법적 관계를 나타낸다.</li>
+<li>⑤ ㄷ의 '와'를 제외한 나머지 조사는 모두 접속 조사에 해당한다.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ⑤</div>ㄱ의 '보다'와 ㄴ의 '과'는 비교의 대상을 나타내는 부사격 조사이며, 접속 조사가 아니다. &lt;자료&gt;에서 접속 조사로 쓰인 것은 ㄷ의 '와'뿐이다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">12</span><span class="prob-tag">관형사·부사</span></div>
+<p class="prob-q">다음 밑줄 친 단어의 품사가 나머지 넷과 다른 하나는?</p>
+<ol class="choices">
+<li>① 새 옷을 사고 싶다.</li>
+<li>② 헌 책이지만 소중하다.</li>
+<li>③ 다른 생각은 하지 마.</li>
+<li>④ 온갖 꽃이 피었다.</li>
+<li>⑤ 방긋 웃는 아기가 귀엽다.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ⑤</div>①~④의 밑줄 친 단어는 모두 뒤에 오는 체언을 꾸며 주는 관형사이다. ⑤의 '방긋'은 용언 '웃는'을 꾸며 주는 부사이다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">13</span><span class="prob-tag">문장 성분</span></div>
+<p class="prob-q">다음 문장의 서술어 '삼다'가 필수적으로 요구하는 문장 성분으로 적절한 것은?</p>
+<div class="prob-data"><p>그는 어려운 이웃을 가족으로 삼았다.</p></div>
+<ol class="choices">
+<li>① 주어, 목적어 (두 자리 서술어)</li>
+<li>② 주어, 부사어 (두 자리 서술어)</li>
+<li>③ 주어, 목적어, 부사어 (세 자리 서술어)</li>
+<li>④ 주어, 목적어, 보어 (세 자리 서술어)</li>
+<li>⑤ 주어만 필요 (한 자리 서술어)</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ③</div>'삼다'는 '누가+무엇을+무엇으로 삼다'의 구조를 필수로 요구하는 세 자리 서술어이다. '그는'(주어), '이웃을'(목적어), '가족으로'(부사어)가 모두 필수 성분으로 쓰였다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">14</span><span class="prob-tag">인용절</span></div>
 <p class="prob-q">다음 직접 인용을 간접 인용으로 바르게 바꾼 것은?</p>
-<div class="prob-passage">수진이가 나에게 "내일 네가 발표해."라고 말했다.</div>
+<div class="prob-data"><p>수진이가 나에게 "내일 네가 발표해."라고 말했다.</p></div>
 <ol class="choices">
 <li>① 수진이가 나에게 내일 네가 발표해라고 말했다.</li>
 <li>② 수진이가 나에게 내일 내가 발표한다고 말했다.</li>
@@ -224,6 +321,7 @@
 <li>⑤ 수진이가 나에게 내일 나보고 발표하겠다고 말했다.</li>
 </ol>
 <details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ④</div>직접 인용문의 명령형 종결 표현('발표해')은 간접 인용에서 '-(으)라고'로 바뀐다. 또한 직접 인용문에서 청자인 '나'를 가리키던 '네가'는, 간접 인용문에서는 화자인 '나'의 관점으로 서술되므로 '내가'로 바뀐다.</div></details>
+</div>
 </div>
 
 </div>
