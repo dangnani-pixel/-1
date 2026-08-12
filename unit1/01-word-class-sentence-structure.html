@@ -47,10 +47,17 @@
   .card{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:1.2rem 1.4rem; margin-bottom:1rem;}
   .ex{font-family:var(--mono); color:var(--indigo-dark); font-weight:500;}
 
-  table{width:100%; border-collapse:collapse; font-size:13.5px; margin:.6rem 0 1rem;}
+  table{width:100%; border-collapse:collapse; font-size:13.5px; margin:.6rem 0 1rem; word-break:keep-all; overflow-wrap:break-word;}
   th, td{border:1px solid var(--line); text-align:center; padding:8px 6px; vertical-align:middle;}
   th{background:var(--indigo-soft); color:var(--indigo-dark); font-weight:500;}
   td.left{text-align:left;}
+  .irregular-table th:nth-child(1), .irregular-table td:nth-child(1){width:10%;}
+  .irregular-table th:nth-child(2), .irregular-table td:nth-child(2){width:13%; white-space:nowrap;}
+  .irregular-table th:nth-child(3), .irregular-table td:nth-child(3){width:27%;}
+  .irregular-table th:nth-child(4), .irregular-table td:nth-child(4){width:25%;}
+  .irregular-table th:nth-child(5), .irregular-table td:nth-child(5){width:25%;}
+  .irregular-table td.ex{font-size:12.5px;}
+  @media (max-width:600px){ .irregular-table th:nth-child(2), .irregular-table td:nth-child(2){white-space:normal;} }
 
   .pos-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:.8rem 0 1.2rem;}
   .pos-grid div{background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:.6rem .7rem; font-size:12.5px; text-align:center;}
@@ -218,12 +225,12 @@
 
 <h3>용언의 불규칙 활용</h3>
 <p class="body-text">용언이 활용할 때 어간이나 어미의 형태가 변하지 않거나, 변하더라도 그 변화를 일정한 음운 규칙으로 설명할 수 있으면 <b>규칙 활용</b>이라 한다. 반면 그 변화를 일반적인 규칙으로 설명할 수 없으면 <b>불규칙 활용</b>이라 하며, 형태가 바뀌는 범위에 따라 어간이 바뀌는 경우, 어미가 바뀌는 경우, 어간과 어미가 모두 바뀌는 경우로 나뉜다.</p>
-<table>
+<table class="irregular-table">
 <tr><th>변화 범위</th><th>명칭</th><th>변화 양상</th><th>예</th><th>규칙 활용(비교)</th></tr>
 <tr><td rowspan="5">어간이 바뀜</td><td>'ㅅ' 불규칙</td><td class="left">모음 어미 앞에서 어간 끝 'ㅅ' 탈락</td><td class="ex">잇다→이어, 짓다→지어</td><td class="ex">씻다→씻어, 벗다→벗어</td></tr>
 <tr><td>'ㄷ' 불규칙</td><td class="left">모음 어미 앞에서 어간 끝 'ㄷ'→'ㄹ'</td><td class="ex">걷다(步)→걸어, 듣다→들어</td><td class="ex">얻다→얻어, 믿다→믿어</td></tr>
 <tr><td>'ㅂ' 불규칙</td><td class="left">모음 어미 앞에서 어간 끝 'ㅂ'→'오/우'</td><td class="ex">돕다→도와, 줍다→주워</td><td class="ex">잡다→잡아, 뽑다→뽑아</td></tr>
-<tr><td>'르' 불규칙</td><td class="left">모음 어미 앞에서 '르'→'ㄹㄹ'</td><td class="ex">흐르다→흘러, 오르다→올라</td><td class="ex">따르다→따라, 다다르다→다다라</td></tr>
+<tr><td>'르' 불규칙</td><td class="left">모음 어미 앞에서 '르'→'ㄹㄹ'</td><td class="ex">흐르다→흘러, 오르다→올라</td><td class="ex">따르다→따라</td></tr>
 <tr><td>'우' 불규칙</td><td class="left">모음 어미 앞에서 어간 끝 'ㅜ' 탈락</td><td class="ex">푸다→퍼</td><td class="ex">주다→주어</td></tr>
 <tr><td rowspan="2">어미가 바뀜</td><td>'여' 불규칙</td><td class="left">'하다'류 어간 뒤에서 어미 '-아'→'-여'</td><td class="ex">공부하다→공부하여</td><td class="ex">파다→파, 막다→막아</td></tr>
 <tr><td>'러' 불규칙</td><td class="left">어간 '르' 뒤에서 어미 '-어'→'-러'</td><td class="ex">이르다(至)→이르러, 푸르다→푸르러</td><td class="ex">치르다→치러</td></tr>
