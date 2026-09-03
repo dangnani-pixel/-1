@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2학기 대비 학습 체크리스트</title>
+<style>
+  :root{
+    --bg:#EEF1EA;
+    --panel:#F7F8F4;
+    --ink:#2B332C;
+    --ink-soft:#5C665C;
+    --line:#D7DBD1;
+    --math:#145C52;
+    --math-bg:#DEEBE7;
+    --eng:#8A5A2B;
+    --eng-bg:#EFE3D3;
+    --other:#5B4B6E;
+    --other-bg:#E6E1EC;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+    padding:20px 14px 60px;
+  }
+  .wrap{max-width:520px;margin:0 auto;}
+  h1{
+    font-family:"Nanum Myeongjo","Batang",serif;
+    font-size:22px;
+    font-weight:700;
+    margin:0 0 4px;
+  }
+  .sub{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin:0 0 20px;
+    line-height:1.6;
+  }
+  .tabs{
+    display:flex;
+    gap:4px;
+    margin-bottom:16px;
+    border-bottom:1px solid var(--line);
+  }
+  .tab{
+    flex:1;
+    text-align:center;
+    padding:10px 4px;
+    font-size:13px;
+    color:var(--ink-soft);
+    background:none;
+    border:none;
+    border-bottom:2px solid transparent;
+    cursor:pointer;
+  }
+  .tab.active{
+    color:var(--ink);
+    font-weight:700;
+    border-bottom:2px solid var(--ink);
+  }
+  .phase-note{
+    font-size:12px;
+    color:var(--ink-soft);
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:10px 12px;
+    margin-bottom:14px;
+    line-height:1.6;
+  }
+  .week{display:none;}
+  .week.active{display:block;}
+  .day{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    margin-bottom:10px;
+    overflow:hidden;
+  }
+  .day-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:8px 12px;
+    font-size:12px;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--line);
+  }
+  .row{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:9px 12px;
+    border-left:4px solid transparent;
+  }
+  .row + .row{border-top:1px solid var(--line);}
+  .row.math{border-left-color:var(--math);}
+  .row.eng{border-left-color:var(--eng);}
+  .row.other{border-left-color:var(--other);}
+  .row input[type=checkbox]{
+    margin-top:2px;
+    width:16px;
+    height:16px;
+    flex-shrink:0;
+    accent-color:var(--ink);
+  }
+  .row label{
+    font-size:13.5px;
+    line-height:1.5;
+    flex:1;
+  }
+  .tag{
+    display:inline-block;
+    font-size:11px;
+    font-weight:700;
+    padding:1px 6px;
+    border-radius:5px;
+    margin-right:6px;
+  }
+  .row.math .tag{background:var(--math-bg);color:var(--math);}
+  .row.eng .tag{background:var(--eng-bg);color:var(--eng);}
+  .row.other .tag{background:var(--other-bg);color:var(--other);}
+  .row.done label{color:var(--ink-soft);text-decoration:line-through;}
+  .progress{
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>2학기 대비 학습 체크리스트</h1>
+  <p class="sub">하루 세 항목, 답은 스스로 확인. 부모는 점수를 묻지 않기. 순서와 시간대는 자유롭게.</p>
+
+  <div class="tabs" id="tabs"></div>
+  <div class="phase-note" id="phaseNote"></div>
+  <div id="weeks"></div>
+</div>
+
+<script>
+var PHASES = [
+  {
+    label: "1주차",
+    note: "기준점 확인 주간 — 답은 스스로 확인하되, 점수나 개수로 평가하지 않고 어디까지 편하게 이해하는지만 확인.",
+    math: [
+      "강남인강 이어보기, 끝나고 오늘 배운 개념 한 가지 설명해보기",
+      "개념원리 막혔던 부분 다시 보기 + 강의 1개",
+      "어제 배운 개념, 책 덮고 스스로 설명해보기"
+    ],
+    eng: [
+      "단어 20~25개 + 지문 1개 가볍게 읽기",
+      "어제 외운 단어 떠올려보기 + 새 지문 1개",
+      "지문 다시 읽지 않고 내용 떠올려 말해보기"
+    ],
+    days: 5
+  },
+  {
+    label: "2주차",
+    note: "개념 학습 + 인출연습 — 강의는 보되, 반드시 책 덮고 설명하거나 문제로 확인.",
+    math: [
+      "개념원리 진도 + 인강 1~2강 (3주 안에 30강 완료 목표, 개수는 자율), 끝나고 설명해보기",
+      "어제 배운 개념 문제 3개, 인강 없이 풀어보기",
+      "막힌 부분만 다시 보기 (전체 재시청은 안 하기)"
+    ],
+    eng: [
+      "단어 세트 인출 확인 + 새 지문 분석 30분",
+      "지문 요약을 한두 문장으로 말해보기",
+      "헷갈리는 단어만 골라 다시 확인"
+    ],
+    days: 7
+  },
+  {
+    label: "3주차",
+    note: "같은 방식 유지 — 분량보다 오늘 하나를 확실히 이해했는지가 기준.",
+    math: [
+      "개념원리 진도 + 인강 1~2강 (3주 안에 30강 완료 목표, 개수는 자율), 끝나고 설명해보기",
+      "어제 배운 개념 문제 3개, 인강 없이 풀어보기",
+      "막힌 부분만 다시 보기 (전체 재시청은 안 하기)"
+    ],
+    eng: [
+      "단어 세트 인출 확인 + 새 지문 분석 30분",
+      "지문 요약을 한두 문장으로 말해보기",
+      "헷갈리는 단어만 골라 다시 확인"
+    ],
+    days: 7
+  },
+  {
+    label: "4주차",
+    note: "시험 형식 노출 주간 — 처음엔 시간 재지 않고, 익숙해지면 짧게 시간 재기. 답은 스스로 채점하되, 대화는 점수 대신 '어디까지 편했는지'로.",
+    math: [
+      "기출/유사문제 1회분, 시간 재지 않고 풀기",
+      "어제 푼 문제 다시 설명해보기",
+      "기출 1회분, 짧게 시간 재고 풀기"
+    ],
+    eng: [
+      "기출 지문 1개, 시간 재지 않고 풀기",
+      "어제 지문 내용 떠올려 말해보기",
+      "기출 지문 1개, 짧게 시간 재고 풀기"
+    ],
+    days: 7
+  }
+];
+var OTHER_TASK = "국어·사회 학교 진도 가볍게 훑기 (평소처럼, 부담 없이)";
+var STORAGE_KEY = "checklist-state-2학기";
+
+var tabsEl = document.getElementById("tabs");
+var weeksEl = document.getElementById("weeks");
+var phaseNoteEl = document.getElementById("phaseNote");
+var state = {};
+
+function dayLabel(globalIndex){
+  return "Day " + (globalIndex + 1);
+}
+
+function buildUI(){
+  var globalIndex = 0;
+  PHASES.forEach(function(phase, pIdx){
+    var tab = document.createElement("button");
+    tab.className = "tab" + (pIdx === 0 ? " active" : "");
+    tab.textContent = phase.label;
+    tab.onclick = function(){ showWeek(pIdx); };
+    tabsEl.appendChild(tab);
+
+    var weekDiv = document.createElement("div");
+    weekDiv.className = "week" + (pIdx === 0 ? " active" : "");
+    weekDiv.dataset.index = pIdx;
+
+    for(var d = 0; d < phase.days; d++){
+      var dayDiv = document.createElement("div");
+      dayDiv.className = "day";
+
+      var head = document.createElement("div");
+      head.className = "day-head";
+      var idLabel = dayLabel(globalIndex);
+      head.innerHTML = "<span>" + idLabel + "</span><span class='progress' data-day='" + globalIndex + "'>0/3</span>";
+      dayDiv.appendChild(head);
+
+      var mathText = phase.math[d % phase.math.length];
+      var engText = phase.eng[d % phase.eng.length];
+
+      dayDiv.appendChild(makeRow("math", "수학", mathText, "d" + globalIndex + "-math"));
+      dayDiv.appendChild(makeRow("eng", "영어", engText, "d" + globalIndex + "-eng"));
+      dayDiv.appendChild(makeRow("other", "기타", OTHER_TASK, "d" + globalIndex + "-other"));
+
+      weekDiv.appendChild(dayDiv);
+      globalIndex++;
+    }
+    weeksEl.appendChild(weekDiv);
+  });
+}
+
+function makeRow(cls, tagText, text, id){
+  var row = document.createElement("div");
+  row.className = "row " + cls;
+  row.innerHTML =
+    "<input type='checkbox' id='" + id + "'>" +
+    "<label for='" + id + "'><span class='tag'>" + tagText + "</span>" + text + "</label>";
+  return row;
+}
+
+function showWeek(idx){
+  document.querySelectorAll(".tab").forEach(function(t, i){
+    t.classList.toggle("active", i === idx);
+  });
+  document.querySelectorAll(".week").forEach(function(w){
+    w.classList.toggle("active", Number(w.dataset.index) === idx);
+  });
+  phaseNoteEl.textContent = PHASES[idx].note;
+}
+
+function updateDayProgress(globalIndex){
+  var ids = ["d" + globalIndex + "-math", "d" + globalIndex + "-eng", "d" + globalIndex + "-other"];
+  var done = 0;
+  ids.forEach(function(id){
+    var cb = document.getElementById(id);
+    if(cb && cb.checked) done++;
+    if(cb){
+      cb.closest(".row").classList.toggle("done", cb.checked);
+    }
+  });
+  var progEl = document.querySelector(".progress[data-day='" + globalIndex + "']");
+  if(progEl) progEl.textContent = done + "/3";
+}
+
+function loadState(){
+  try{
+    var raw = window.localStorage.getItem(STORAGE_KEY);
+    state = raw ? JSON.parse(raw) : {};
+  }catch(e){
+    state = {};
+  }
+  document.querySelectorAll("input[type=checkbox]").forEach(function(cb){
+    cb.checked = !!state[cb.id];
+  });
+  var totalDays = 0;
+  PHASES.forEach(function(p){ totalDays += p.days; });
+  for(var i = 0; i < totalDays; i++){ updateDayProgress(i); }
+}
+
+function saveState(){
+  try{
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }catch(e){}
+}
+
+document.addEventListener("change", function(e){
+  if(e.target.matches("input[type=checkbox]")){
+    state[e.target.id] = e.target.checked;
+    var m = e.target.id.match(/^d(\d+)-/);
+    if(m) updateDayProgress(Number(m[1]));
+    saveState();
+  }
+});
+
+buildUI();
+phaseNoteEl.textContent = PHASES[0].note;
+loadState();
+</script>
+</body>
+</html>
