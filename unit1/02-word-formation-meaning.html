@@ -73,6 +73,9 @@
     cursor:pointer; font-family:'Noto Sans KR', sans-serif;
   }
   .print-btn:hover{background:var(--indigo-soft);}
+  .header-btns{display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .practice-btn{text-decoration:none; border-color:var(--jade); color:var(--jade);}
+  .practice-btn:hover{background:var(--jade-soft);}
   .print-name-field{display:none;}
 
   @media (max-width:600px){ table{font-size:12px;} th, td{padding:6px 4px;} }
@@ -103,7 +106,10 @@
 <header>
 <div class="header-actions">
 <a class="back" href="index.html">← Ⅰ. 우리말 톺아보기</a>
+<div class="header-btns">
+<a class="print-btn practice-btn" href="02-practice.html">📝 문제</a>
 <button class="print-btn" onclick="window.print()">🖨️ 인쇄하기</button>
+</div>
 </div>
 <div class="eyebrow"><span class="dot"></span>Ⅰ. 우리말 톺아보기 · 2챕터</div>
 <h1>단어의 짜임과 의미 관계</h1>
