@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>한글 맞춤법 제57항 퀴즈 — 화법과 언어 문법</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF9F5; --paper:#FFFFFF; --ink:#232420; --ink-soft:#5B5D57;
+    --line:#E3DFD3; --indigo:#3B4D8C; --indigo-dark:#28345E; --indigo-soft:#EEF1F8;
+    --jade:#1F7A5C; --jade-soft:#E4F3EC; --amber:#C97F0E; --amber-soft:#FBF0E1;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Noto Sans KR', sans-serif; line-height:1.7; padding:0 0 6rem;}
+  .wrap{max-width:760px; margin:0 auto; padding:0 1.5rem;}
+  header{padding:3rem 0 2rem; border-bottom:1px solid var(--line); margin-bottom:1.6rem;}
+  .header-actions{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+  .back{font-size:13px; color:var(--indigo); text-decoration:none;}
+  .btns{display:flex; gap:8px; flex-wrap:wrap;}
+  .btn{font-size:12.5px; color:var(--indigo); background:var(--paper); border:1px solid var(--indigo); border-radius:20px; padding:6px 14px; cursor:pointer; font-family:'Noto Sans KR', sans-serif;}
+  .btn:hover{background:var(--indigo-soft);}
+  .eyebrow{font-size:13px; letter-spacing:.14em; color:var(--indigo); font-weight:700; margin:1rem 0 .7rem; display:flex; align-items:center; gap:10px;}
+  .eyebrow .dot{width:6px; height:6px; background:var(--indigo); border-radius:50%; display:inline-block;}
+  h1{font-family:'Noto Serif KR', serif; font-weight:700; font-size:30px; margin:0 0 .6rem;}
+  .subtitle{color:var(--ink-soft); font-size:14.5px;}
+  .rule{margin-top:1.1rem; background:var(--amber-soft); border:1px solid #EAD6B4; border-radius:var(--radius); padding:.85rem 1.05rem; font-size:13px; color:#6B4A17;}
+  .rule b{color:var(--amber);}
+
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:1.1rem 1.3rem; margin-bottom:1rem;}
+  .card-head{display:flex; align-items:baseline; gap:10px;}
+  .num{font-family:'Noto Serif KR', serif; font-weight:700; color:var(--indigo); font-size:14px;}
+  .card h2{font-family:'Noto Serif KR', serif; font-size:17px; margin:0;}
+  .choice{margin:.3rem 0 .6rem; font-size:13px; color:var(--indigo-dark); background:var(--indigo-soft); display:inline-block; border-radius:6px; padding:2px 10px;}
+
+  details.q{border-top:1px dashed var(--line);}
+  details.q > summary{cursor:pointer; list-style:none; display:flex; gap:8px; align-items:baseline; padding:.55rem .2rem; font-size:15px;}
+  details.q > summary::-webkit-details-marker{display:none;}
+  details.q > summary::after{content:'정답 보기'; margin-left:auto; flex-shrink:0; font-size:11.5px; color:var(--jade); border:1px solid var(--jade); border-radius:20px; padding:1px 9px;}
+  details.q[open] > summary::after{content:'접기'; background:var(--jade-soft);}
+  .qn{color:var(--ink-soft); font-size:13px; flex-shrink:0;}
+  .blank{color:var(--indigo); letter-spacing:.05em;}
+  .ans{margin:0 0 .7rem 1.6rem; font-size:13.5px; color:var(--ink-soft); background:var(--jade-soft); border-radius:8px; padding:.5rem .8rem;}
+  .ans b{color:var(--jade); font-size:15px;}
+
+  footer{max-width:760px; margin:0 auto; padding:1.5rem; text-align:center; color:var(--ink-soft); font-size:12.5px; border-top:1px solid var(--line);}
+  @media print{
+    body{background:#fff; padding-bottom:0;}
+    .back, .btns, details.q > summary::after{display:none !important;}
+    .card{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="header-actions">
+<a class="back" href="../index.html">← 문법 학습지 모음</a>
+<div class="btns">
+<button class="btn" type="button" onclick="toggleAll(true)">정답 모두 보기</button>
+<button class="btn" type="button" onclick="toggleAll(false)">정답 모두 숨기기</button>
+</div>
+</div>
+<div class="eyebrow"><span class="dot"></span>화법과 언어 · 맞춤법 퀴즈</div>
+<h1>한글 맞춤법 제57항 퀴즈</h1>
+<div class="subtitle">소리는 같거나 비슷하지만 뜻이 다른 말 32묶음 · 78문항 — 빈칸에 알맞은 말을 떠올린 뒤 문장을 클릭해 정답과 해설을 확인하세요.</div>
+<div class="rule"><b>한글 맞춤법 제57항</b> 다음 말들은 각각 구별하여 적는다. (가름/갈음, 거름/걸음, 걷히다/거치다 …)</div>
+</header>
+
+<section class="card" id="q01">
+<div class="card-head"><span class="num">01</span><h2>가름 · 갈음</h2></div>
+<p class="choice">선택할 말: 가름 / 갈음</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">둘로 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>가름</b> — ‘가름’은 나누거나 구별한다는 뜻이에요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">새 책상으로 <span class="blank">(　　　　)</span>하였다.</span></summary><div class="ans"><b>갈음</b> — 다른 책상으로 대신하므로 ‘갈음’이에요.</div></details>
+</section>
+
+<section class="card" id="q02">
+<div class="card-head"><span class="num">02</span><h2>거름 · 걸음</h2></div>
+<p class="choice">선택할 말: 거름 / 걸음</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">풀을 썩힌 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>거름</b> — 풀을 썩혀 만든 비료이므로 ‘거름’이에요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">빠른 <span class="blank">(　　　　)</span>으로 걸었다.</span></summary><div class="ans"><b>걸음</b> — 걷는 동작이나 발걸음을 뜻하므로 ‘걸음’이에요.</div></details>
+<details class="q"><summary><span class="qn">3.</span><span class="qt">농부가 배추밭에 <span class="blank">(　　　　)</span>을 주었다.</span></summary><div class="ans"><b>거름</b> — 농작물에 주는 비료이므로 ‘거름’이에요.</div></details>
+</section>
+
+<section class="card" id="q03">
+<div class="card-head"><span class="num">03</span><h2>걷히다 · 거치다</h2></div>
+<p class="choice">선택할 말: 걷히다 / 거치다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">영월을 <span class="blank">(　　　　)</span> 왔다.</span></summary><div class="ans"><b>거쳐</b> — 어떤 곳을 지나왔다는 뜻의 ‘거치다’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">외상값이 잘 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>걷힌다</b> — 받을 돈이 모인다는 뜻의 ‘걷히다’예요.</div></details>
+</section>
+
+<section class="card" id="q04">
+<div class="card-head"><span class="num">04</span><h2>겉잡다 · 걷잡다</h2></div>
+<p class="choice">선택할 말: 겉잡다 / 걷잡다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt"><span class="blank">(　　　　)</span>을 수 없는 상태.</span></summary><div class="ans"><b>걷잡</b> — 사태를 억누르거나 진정시킬 수 없다는 뜻이에요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt"><span class="blank">(　　　　)</span>아서 이틀 걸릴 일.</span></summary><div class="ans"><b>겉잡</b> — 겉으로 보아 대강 짐작한다는 뜻이에요.</div></details>
+</section>
+
+<section class="card" id="q05">
+<div class="card-head"><span class="num">05</span><h2>그러므로 · 그럼으로(써)</h2></div>
+<p class="choice">선택할 말: 그러므로 / 그럼으로(써)</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">그는 부지런하다. <span class="blank">(　　　　)</span> 잘 산다.</span></summary><div class="ans"><b>그러므로</b> — 앞의 내용이 뒤의 결과를 낳으므로 ‘그러니까’와 같아요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">그는 열심히 공부한다. <span class="blank">(　　　　)</span> 은혜에 보답한다.</span></summary><div class="ans"><b>그럼으로</b> — 그렇게 하는 것을 수단으로 삼으므로 ‘그럼으로’예요.</div></details>
+</section>
+
+<section class="card" id="q06">
+<div class="card-head"><span class="num">06</span><h2>노름 · 놀음</h2></div>
+<p class="choice">선택할 말: 노름 / 놀음</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt"><span class="blank">(　　　　)</span>판이 벌어졌다.</span></summary><div class="ans"><b>노름</b> — 돈이나 재물을 걸고 하는 놀이를 뜻해요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">즐거운 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>놀음</b> — 즐기며 노는 일을 뜻하므로 ‘놀음’이에요.</div></details>
+</section>
+
+<section class="card" id="q07">
+<div class="card-head"><span class="num">07</span><h2>느리다 · 늘리다 · 늘이다</h2></div>
+<p class="choice">선택할 말: 느리다 / 늘리다 / 늘이다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">진도가 너무 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>느리다</b> — 진행 속도가 더디다는 뜻의 ‘느리다’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">고무줄을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>늘이다</b> — 고무줄의 길이를 길게 하므로 ‘늘이다’예요.</div></details>
+<details class="q"><summary><span class="qn">3.</span><span class="qt">수출량을 더 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>늘리다</b> — 수출의 양을 많아지게 하므로 ‘늘리다’예요.</div></details>
+</section>
+
+<section class="card" id="q08">
+<div class="card-head"><span class="num">08</span><h2>달이다 · 다리다</h2></div>
+<p class="choice">선택할 말: 달이다 / 다리다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">옷을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>다리다</b> — 옷의 주름을 펴는 것은 ‘다리다’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">약을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>달이다</b> — 약재를 물에 넣고 끓여 우려내므로 ‘달이다’예요.</div></details>
+</section>
+
+<section class="card" id="q09">
+<div class="card-head"><span class="num">09</span><h2>다치다 · 닫치다 · 닫히다</h2></div>
+<p class="choice">선택할 말: 다치다 / 닫치다 / 닫히다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">부주의로 손을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>다치다</b> — 몸에 상처를 입는다는 뜻의 ‘다치다’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">문이 저절로 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>닫히다</b> — 문이 닫는 동작을 당하므로 ‘닫히다’예요.</div></details>
+<details class="q"><summary><span class="qn">3.</span><span class="qt">문을 힘껏 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>닫치다</b> — 문을 세게 닫는다는 뜻의 ‘닫치다’예요.</div></details>
+</section>
+
+<section class="card" id="q10">
+<div class="card-head"><span class="num">10</span><h2>맞히다 · 마치다</h2></div>
+<p class="choice">선택할 말: 맞히다 / 마치다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">벌써 일을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>마치다</b> — 일을 끝낸다는 뜻이므로 ‘마치다’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">여러 문제를 더 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>맞히다</b> — 문제의 답을 옳게 댄다는 뜻이므로 ‘맞히다’예요.</div></details>
+</section>
+
+<section class="card" id="q11">
+<div class="card-head"><span class="num">11</span><h2>목거리 · 목걸이</h2></div>
+<p class="choice">선택할 말: 목거리 / 목걸이</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt"><span class="blank">(　　　　)</span>가 덧났다.</span></summary><div class="ans"><b>목거리</b> — ‘목거리’는 목이 붓고 아픈 병을 뜻해요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">새로 산 <span class="blank">(　　　　)</span>가 옷과 잘 어울린다.</span></summary><div class="ans"><b>목걸이</b> — 목에 거는 장신구이므로 ‘목걸이’예요.</div></details>
+</section>
+
+<section class="card" id="q12">
+<div class="card-head"><span class="num">12</span><h2>받치다 · 바치다 · 밭치다 · 받히다</h2></div>
+<p class="choice">선택할 말: 받치다 / 바치다 / 밭치다 / 받히다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">나라를 위해 목숨을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>바치다</b> — 목숨을 나라에 드리므로 ‘바치다’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">우산을 <span class="blank">(　　　　)</span> 간다.</span></summary><div class="ans"><b>받치고</b> — 우산을 펴서 머리 위에 드는 것은 ‘받치다’예요.</div></details>
+<details class="q"><summary><span class="qn">3.</span><span class="qt">쇠뿔에 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>받히다</b> — 소가 뿔로 받는 동작을 당하므로 ‘받히다’예요.</div></details>
+<details class="q"><summary><span class="qn">4.</span><span class="qt">술을 체에 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>밭치다</b> — 체로 액체를 걸러 내는 것은 ‘밭치다’예요.</div></details>
+</section>
+
+<section class="card" id="q13">
+<div class="card-head"><span class="num">13</span><h2>반드시 · 반듯이</h2></div>
+<p class="choice">선택할 말: 반드시 / 반듯이</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">약속은 <span class="blank">(　　　　)</span> 지켜라.</span></summary><div class="ans"><b>반드시</b> — ‘꼭, 틀림없이’라는 뜻이므로 ‘반드시’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">고개를 <span class="blank">(　　　　)</span> 들어라.</span></summary><div class="ans"><b>반듯이</b> — 기울거나 비뚤어지지 않게 하므로 ‘반듯이’예요.</div></details>
+</section>
+
+<section class="card" id="q14">
+<div class="card-head"><span class="num">14</span><h2>부딪치다 · 부딪히다</h2></div>
+<p class="choice">선택할 말: 부딪치다 / 부딪히다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">차와 차가 마주 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>부딪치다</b> — 차들이 서로 힘 있게 맞닿는 동작이므로 ‘부딪치다’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">마차가 화물차에 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>부딪히다</b> — 다른 차가 부딪치는 일을 당하므로 ‘부딪히다’예요.</div></details>
+</section>
+
+<section class="card" id="q15">
+<div class="card-head"><span class="num">15</span><h2>부치다 · 붙이다 (1)</h2></div>
+<p class="choice">선택할 말: 부치다 / 붙이다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">힘이 <span class="blank">(　　　　)</span> 일이다.</span></summary><div class="ans"><b>부치는</b> — 힘이 모자라거나 감당하기 어렵다는 뜻이에요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">우표를 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>붙인다</b> — 우표가 봉투에 달라붙게 하므로 ‘붙이다’예요.</div></details>
+<details class="q"><summary><span class="qn">3.</span><span class="qt">책상을 벽에 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>붙인다</b> — 책상을 벽에 가까이 닿게 하므로 ‘붙이다’예요.</div></details>
+<details class="q"><summary><span class="qn">4.</span><span class="qt">편지를 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>부친다</b> — 편지를 다른 곳으로 보내므로 ‘부치다’예요.</div></details>
+</section>
+
+<section class="card" id="q16">
+<div class="card-head"><span class="num">16</span><h2>부치다 · 붙이다 (2)</h2></div>
+<p class="choice">선택할 말: 부치다 / 붙이다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">흥정을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>붙인다</b> — 흥정이 이루어지도록 중간에서 연결하므로 ‘붙이다’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">불을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>붙인다</b> — 불이 옮아 타게 하므로 ‘붙이다’예요.</div></details>
+<details class="q"><summary><span class="qn">3.</span><span class="qt">논밭을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>부친다</b> — 논밭을 이용해 농사짓는 것은 ‘부치다’예요.</div></details>
+<details class="q"><summary><span class="qn">4.</span><span class="qt">빈대떡을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>부친다</b> — 기름을 두르고 익히는 조리이므로 ‘부치다’예요.</div></details>
+</section>
+
+<section class="card" id="q17">
+<div class="card-head"><span class="num">17</span><h2>부치다 · 붙이다 (3)</h2></div>
+<p class="choice">선택할 말: 부치다 / 붙이다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">식목일에 <span class="blank">(　　　　)</span> 글.</span></summary><div class="ans"><b>부치는</b> — 식목일과 관련해 의견을 드러내는 글이므로 ‘부치다’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">감시원을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>붙인다</b> — 감시하는 일을 맡겨 곁에 두므로 ‘붙이다’예요.</div></details>
+<details class="q"><summary><span class="qn">3.</span><span class="qt">회의에 <span class="blank">(　　　　)</span> 안건.</span></summary><div class="ans"><b>부치는</b> — 안건을 회의에서 다루도록 넘기므로 ‘부치다’예요.</div></details>
+<details class="q"><summary><span class="qn">4.</span><span class="qt">조건을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>붙인다</b> — 조건을 덧붙인다는 뜻이므로 ‘붙이다’예요.</div></details>
+</section>
+
+<section class="card" id="q18">
+<div class="card-head"><span class="num">18</span><h2>부치다 · 붙이다 (4)</h2></div>
+<p class="choice">선택할 말: 부치다 / 붙이다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">취미를 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>붙인다</b> — 어떤 일에 관심과 흥미가 생기게 하므로 ‘붙이다’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">인쇄에 <span class="blank">(　　　　)</span> 원고.</span></summary><div class="ans"><b>부치는</b> — 원고를 인쇄하는 일에 넘기므로 ‘부치다’예요.</div></details>
+<details class="q"><summary><span class="qn">3.</span><span class="qt">별명을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>붙인다</b> — 별명을 지어 준다는 뜻이므로 ‘붙이다’예요.</div></details>
+<details class="q"><summary><span class="qn">4.</span><span class="qt">삼촌 집에 숙식을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>부친다</b> — 남의 집에 먹고 자는 일을 의탁하므로 ‘부치다’예요.</div></details>
+</section>
+
+<section class="card" id="q19">
+<div class="card-head"><span class="num">19</span><h2>시키다 · 식히다</h2></div>
+<p class="choice">선택할 말: 시킨다 / 식힌다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">인부들에게 일을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>시킨다</b> — 다른 사람에게 일을 하게 하므로 ‘시키다’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">끓인 물을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>식힌다</b> — 물의 온도를 낮추므로 ‘식히다’예요.</div></details>
+</section>
+
+<section class="card" id="q20">
+<div class="card-head"><span class="num">20</span><h2>앎 · 알음 · 아름</h2></div>
+<p class="choice">선택할 말: 앎 / 알음 / 아름</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">둘레가 세 <span class="blank">(　　　　)</span>이나 되는 나무.</span></summary><div class="ans"><b>아름</b> — 두 팔로 감싸는 둘레를 세는 단위는 ‘아름’이에요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">우리는 전부터 <span class="blank">(　　　　)</span>이 있는 사이다.</span></summary><div class="ans"><b>알음</b> — 서로 아는 관계를 뜻하므로 ‘알음’이에요.</div></details>
+<details class="q"><summary><span class="qn">3.</span><span class="qt"><span class="blank">(　　　　)</span>은 삶의 힘이다.</span></summary><div class="ans"><b>앎</b> — ‘알다’에 ‘-ㅁ’이 붙어 아는 것을 뜻하는 ‘앎’이에요.</div></details>
+</section>
+
+<section class="card" id="q21">
+<div class="card-head"><span class="num">21</span><h2>앉히다 · 안치다</h2></div>
+<p class="choice">선택할 말: 앉힌다 / 안친다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">밥을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>안친다</b> — 밥을 지으려고 쌀과 물을 솥에 넣는 것은 ‘안치다’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">윗자리에 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>앉힌다</b> — 사람을 앉게 하므로 ‘앉히다’예요.</div></details>
+</section>
+
+<section class="card" id="q22">
+<div class="card-head"><span class="num">22</span><h2>어름 · 얼음</h2></div>
+<p class="choice">선택할 말: 어름 / 얼음</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">두 물건의 <span class="blank">(　　　　)</span>에서 일어난 현상.</span></summary><div class="ans"><b>어름</b> — 두 물건의 경계나 그 부근을 뜻하므로 ‘어름’이에요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt"><span class="blank">(　　　　)</span>이 얼었다.</span></summary><div class="ans"><b>얼음</b> — 물이 얼어서 된 것이므로 ‘얼음’이에요.</div></details>
+</section>
+
+<section class="card" id="q23">
+<div class="card-head"><span class="num">23</span><h2>있다가 · 이따가</h2></div>
+<p class="choice">선택할 말: 있다가 / 이따가</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt"><span class="blank">(　　　　)</span> 오너라.</span></summary><div class="ans"><b>이따가</b> — 조금 뒤의 때를 가리키므로 ‘이따가’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">돈은 <span class="blank">(　　　　)</span>도 없다.</span></summary><div class="ans"><b>있다가</b> — 돈이 존재했다가 없어졌다는 뜻이므로 ‘있다가’예요.</div></details>
+</section>
+
+<section class="card" id="q24">
+<div class="card-head"><span class="num">24</span><h2>절이다 · 저리다</h2></div>
+<p class="choice">선택할 말: 절이다 / 저리다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">다친 다리가 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>저리다</b> — 감각이 둔해지거나 찌릿한 느낌은 ‘저리다’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">김장 배추를 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>절이다</b> — 배추에 소금기가 배게 하므로 ‘절이다’예요.</div></details>
+</section>
+
+<section class="card" id="q25">
+<div class="card-head"><span class="num">25</span><h2>졸이다 · 조리다</h2></div>
+<p class="choice">선택할 말: 졸이다 / 조리다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">생선을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>조리다</b> — 양념이 배도록 국물을 줄이며 익히므로 ‘조리다’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">마음을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>졸이다</b> — 초조하게 마음을 쓰는 것은 ‘마음을 졸이다’예요.</div></details>
+</section>
+
+<section class="card" id="q26">
+<div class="card-head"><span class="num">26</span><h2>주리다 · 줄이다</h2></div>
+<p class="choice">선택할 말: 주리다 / 줄이다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">여러 날을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>주렸다</b> — 음식을 먹지 못해 배고프다는 뜻이므로 ‘주리다’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">비용을 <span class="blank">(　　　　)</span>.</span></summary><div class="ans"><b>줄였다</b> — 드는 돈의 양을 적게 하므로 ‘줄이다’예요.</div></details>
+</section>
+
+<section class="card" id="q27">
+<div class="card-head"><span class="num">27</span><h2>하노라고 · 하느라고</h2></div>
+<p class="choice">선택할 말: 하노라고 / 하느라고</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt"><span class="blank">(　　　　)</span> 한 것이 이 모양이다.</span></summary><div class="ans"><b>하노라고</b> — 자기 나름대로 노력하여 했다는 뜻을 나타내요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">공부<span class="blank">(　　　　)</span> 밤을 새웠다.</span></summary><div class="ans"><b>하느라고</b> — 공부한 일이 밤을 새운 원인이므로 ‘하느라고’예요.</div></details>
+</section>
+
+<section class="card" id="q28">
+<div class="card-head"><span class="num">28</span><h2>-는 이보다 · -느니보다</h2></div>
+<p class="choice">선택할 말: -는 이보다 / -느니보다</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">나를 찾아오<span class="blank">(　　　　)</span> 집에 있거라.</span></summary><div class="ans"><b>느니보다</b> — 앞 행동보다 뒤 행동이 낫다고 비교하는 표현이에요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">오<span class="blank">(　　　　)</span> 가는 이가 많다.</span></summary><div class="ans"><b>는 이보다</b> — 오는 사람과 가는 사람을 비교하므로 ‘이(사람)’를 띄어요.</div></details>
+</section>
+
+<section class="card" id="q29">
+<div class="card-head"><span class="num">29</span><h2>-(으)리만큼 · -(으)ㄹ 이만큼</h2></div>
+<p class="choice">선택할 말: 하리만큼 / 할 이만큼</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">나를 미워<span class="blank">(　　　　)</span> 그에게 잘못한 일이 없다.</span></summary><div class="ans"><b>하리만큼</b> — 그 정도에 이를 만큼이라는 뜻의 어미 ‘-리만큼’이에요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">찬성<span class="blank">(　　　　)</span>이나 반대할 이가 많을 것이다.</span></summary><div class="ans"><b>할 이만큼</b> — 찬성할 사람만큼이라는 뜻이므로 ‘이(사람)’를 띄어요.</div></details>
+</section>
+
+<section class="card" id="q30">
+<div class="card-head"><span class="num">30</span><h2>-(으)려 · -(으)러</h2></div>
+<p class="choice">선택할 말: -(으)려(의도) / -(으)러(목적)</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">공부하<span class="blank">(　　)</span> 간다.</span></summary><div class="ans"><b>러</b> — ‘가다’의 목적을 나타내므로 ‘공부하러’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">서울 가<span class="blank">(　　)</span> 한다.</span></summary><div class="ans"><b>려</b> — 서울에 가려는 의도를 나타내므로 ‘가려’예요.</div></details>
+</section>
+
+<section class="card" id="q31">
+<div class="card-head"><span class="num">31</span><h2>-(으)로서 · -(으)로써</h2></div>
+<p class="choice">선택할 말: 로서 / 로써</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">사람으<span class="blank">(　　　　)</span> 그럴 수는 없다.</span></summary><div class="ans"><b>로서</b> — 사람이라는 지위나 자격을 나타내므로 ‘로서’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">닭으<span class="blank">(　　　　)</span> 꿩을 대신했다.</span></summary><div class="ans"><b>로써</b> — 꿩을 대신하는 수단이나 재료이므로 ‘로써’예요.</div></details>
+</section>
+
+<section class="card" id="q32">
+<div class="card-head"><span class="num">32</span><h2>(-ㅁ, -음)으로(써) · -(으)므로</h2></div>
+<p class="choice">선택할 말: 믿음으로 / 믿으므로</p>
+<details class="q"><summary><span class="qn">1.</span><span class="qt">그가 나를 <span class="blank">(　　　　)</span> 나도 그를 믿는다.</span></summary><div class="ans"><b>믿으므로</b> — ‘믿기 때문에’라는 이유를 나타내므로 ‘믿으므로’예요.</div></details>
+<details class="q"><summary><span class="qn">2.</span><span class="qt">그는 <span class="blank">(　　　　)</span> 산 보람을 느꼈다.</span></summary><div class="ans"><b>믿음으로</b> — 믿는 것을 수단으로 삼으므로 ‘믿음으로’예요.</div></details>
+</section>
+
+</div>
+<footer>화법과 언어 · 문법 · 한글 맞춤법 제57항 퀴즈</footer>
+<script>
+function toggleAll(open){ document.querySelectorAll('details.q').forEach(function(d){ d.open = open; }); }
+</script>
+</body>
+</html>
