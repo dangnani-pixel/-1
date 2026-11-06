@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>표준 발음으로 국어 생활하기 · 문제 — 화법과 언어 문법</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF9F5; --paper:#FFFFFF; --ink:#232420; --ink-soft:#5B5D57;
+    --line:#E3DFD3; --indigo:#3B4D8C; --indigo-dark:#28345E; --indigo-soft:#EEF1F8;
+    --jade:#1F7A5C; --jade-soft:#E4F3EC; --amber:#C97F0E; --amber-soft:#FBF0E1;
+    --radius:10px; --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Noto Sans KR', sans-serif; line-height:1.7; padding:0 0 6rem;}
+  .wrap{max-width:760px; margin:0 auto; padding:0 1.5rem;}
+
+  header{padding:3rem 0 2rem; border-bottom:1px solid var(--line); margin-bottom:2rem;}
+  .back{font-size:13px; color:var(--indigo); text-decoration:none;}
+  .eyebrow{font-size:13px; letter-spacing:.14em; color:var(--indigo); font-weight:700; text-transform:uppercase; margin:1rem 0 .7rem; display:flex; align-items:center; gap:10px;}
+  .eyebrow .dot{width:6px; height:6px; background:var(--indigo); border-radius:50%; display:inline-block;}
+  h1{font-family:'Noto Serif KR', serif; font-weight:700; font-size:30px; margin:0 0 .6rem; letter-spacing:-.01em;}
+  .subtitle{color:var(--ink-soft); font-size:14.5px;}
+  .curr-meta{margin-top:1.1rem; font-size:12.5px; color:var(--indigo-dark); background:var(--indigo-soft); border-radius:20px; padding:7px 14px; display:inline-block;}
+  .curr-meta b{font-family:var(--mono); font-weight:700;}
+
+  .header-actions{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+  .print-btn{
+    display:inline-flex; align-items:center; gap:6px; font-size:12.5px; color:var(--indigo);
+    background:var(--paper); border:1px solid var(--indigo); border-radius:20px; padding:6px 14px;
+    cursor:pointer; font-family:'Noto Sans KR', sans-serif; text-decoration:none;
+  }
+  .print-btn:hover{background:var(--indigo-soft);}
+  .header-btns{display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .print-name-field{display:none;}
+
+  .set{margin-bottom:2.2rem;}
+  .set-label{
+    font-family:var(--mono); font-size:12.5px; color:var(--indigo-dark); background:var(--indigo-soft);
+    display:inline-block; border-radius:6px; padding:4px 10px; margin-bottom:.7rem;
+  }
+  .passage-box{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+    padding:1.1rem 1.3rem; margin-bottom:1rem; font-size:14.5px; color:var(--ink);
+  }
+  .passage-box p{margin:0 0 .7rem;}
+  .passage-box p:last-child{margin-bottom:0;}
+
+  .problem{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:1.2rem 1.4rem; margin-bottom:1.1rem;}
+  .prob-head{display:flex; align-items:baseline; gap:10px; margin-bottom:.7rem;}
+  .prob-num{font-family:'Noto Serif KR', serif; font-weight:700; color:var(--indigo); font-size:15px; flex-shrink:0;}
+  .prob-tag{font-size:11.5px; color:var(--jade); background:var(--jade-soft); border-radius:20px; padding:2px 10px;}
+  .prob-tag.deep{color:var(--amber); background:var(--amber-soft);}
+  .prob-q{font-size:15px; margin:0 0 .8rem; font-weight:500;}
+  .prob-data{
+    background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:.8rem 1rem;
+    font-size:14px; color:var(--ink-soft); margin:0 0 .9rem;
+  }
+  .prob-data p{margin:0 0 .35rem;}
+  .prob-data p:last-child{margin-bottom:0;}
+  .prob-data b{color:var(--indigo-dark);}
+  .prob-data table{width:100%; border-collapse:collapse; font-size:13px; margin:.2rem 0;}
+  .prob-data th, .prob-data td{border:1px solid var(--line); text-align:center; padding:6px 5px;}
+  .prob-data th{background:var(--indigo-soft); color:var(--indigo-dark); font-weight:500;}
+  .choices{list-style:none; margin:0; padding:0; font-size:14.5px;}
+  .choices li{margin-bottom:6px; padding-left:1.6em; text-indent:-1.6em;}
+  .choices.match li{padding-left:0; text-indent:0;}
+  .choices.match li .l2{display:block; margin-top:3px; padding-left:1.3em;}
+  .snspost{background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:.9rem 1.1rem; font-size:13.5px; margin:0;}
+
+  details{border:1px solid var(--line); border-radius:8px; background:var(--bg); margin-top:1rem; padding:.2rem .2rem;}
+  details > summary{cursor:pointer; padding:.6rem .9rem; font-size:13px; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:10px; color:var(--indigo);}
+  details > summary::-webkit-details-marker{display:none;}
+  details > summary::after{content:'정답·해설 보기'; font-size:12px; color:var(--indigo); border:1px solid var(--indigo); border-radius:20px; padding:3px 10px; flex-shrink:0;}
+  details[open] > summary::after{content:'접기'; background:var(--indigo-soft);}
+  details .answer{padding:0 1rem 1rem; font-size:13.5px;}
+  details .answer .verdict{color:var(--jade); font-weight:700; margin-bottom:.3rem;}
+
+  footer{max-width:760px; margin:0 auto; padding:1.5rem; text-align:center; color:var(--ink-soft); font-size:12.5px; border-top:1px solid var(--line);}
+
+  @media (max-width:600px){ .problem, .passage-box{padding:1rem 1.1rem;} }
+
+  @media print{
+    @page{ size:A4; margin:16mm 14mm; }
+    body{background:#fff; -webkit-print-color-adjust:exact; print-color-adjust:exact; padding-bottom:0;}
+    .wrap{max-width:100%;}
+    .back, .print-btn{display:none !important;}
+    details > summary::after{display:none;}
+    a[href]{color:inherit; text-decoration:none;}
+    .problem, .passage-box{break-inside:avoid; page-break-inside:avoid;}
+    .print-name-field{display:flex; gap:22px; justify-content:flex-end; align-items:baseline; font-size:12px; color:#333; margin:0 0 14px;}
+    .print-name-field .blank{display:inline-block; width:46px; border-bottom:1px solid #333; margin-left:4px;}
+    .print-name-field .field.name .blank{width:100px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="print-name-field">
+<span class="field">학년<span class="blank"></span></span>
+<span class="field">반<span class="blank"></span></span>
+<span class="field">번호<span class="blank"></span></span>
+<span class="field name">이름<span class="blank"></span></span>
+</div>
+<header>
+<div class="header-actions">
+<a class="back" href="01-standard-pronunciation.html">← 표준 발음으로 국어 생활하기</a>
+<div class="header-btns">
+<button class="print-btn" onclick="window.print()">🖨️ 인쇄하기</button>
+</div>
+</div>
+<div class="eyebrow"><span class="dot"></span>Ⅱ. 언어와 국어 생활 · 1챕터 문제</div>
+<h1>표준 발음으로 국어 생활하기 · 문제</h1>
+<div class="subtitle">표준 발음법 총칙·모음·받침·동화·된소리되기·'ㄴ' 첨가 규정을 실제 단어에 적용해 보는 문제 14제</div>
+<div class="curr-meta">과목 화법과 언어 · 성취기준 <b>[12화언01-02]</b> 표준 발음을 이해하고 정확하게 발음하는 국어 생활을 한다</div>
+</header>
+
+<div class="set">
+<div class="set-label">01~08. 다음 물음에 답하시오. (심화 문제)</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">01</span><span class="prob-tag deep">심화 · 표준 발음의 원칙</span></div>
+<p class="prob-q">다음 표준 발음법 총칙을 이해한 내용으로 적절하지 <b>않은</b> 것은?</p>
+<div class="prob-data"><p><b>제1항</b> 표준 발음법은 표준어의 실제 발음을 따르되, 국어의 전통성과 합리성을 고려하여 정함을 원칙으로 한다.</p></div>
+<ol class="choices">
+<li>① 표준어인 현대 서울말의 현실 발음을 기반으로 표준 발음을 정하였군.</li>
+<li>② 표준어가 아닌 방언의 발음에 대해서는 표준 발음법에서 다루지 않겠군.</li>
+<li>③ 'ㅐ'와 'ㅔ'를 다르게 발음하도록 한 것은 국어의 전통성을 고려한 것이겠군.</li>
+<li>④ '맛있다'의 원칙 발음을 [마싣따]가 아닌 [마딛따]로 정한 것은 국어의 합리성을 고려한 것이겠군.</li>
+<li>⑤ 하늘에서 내리는 '눈[눈ː]'과 신체 기관인 '눈[눈]'의 모음 장단을 구별한 것은 국어의 합리성을 고려한 것이겠군.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ⑤</div>단어의 뜻을 소리의 길이(장단)로 구별하는 것은 중세 국어부터 이어져 온 특징으로, 문법 규칙의 논리적 일관성보다는 언어의 역사적 변화 과정에서 형성된 것이므로 국어의 <b>전통성</b>을 고려한 것으로 봐야 한다. ①표준어는 교양 있는 사람들이 두루 쓰는 현대 서울말이고, ②방언의 발음은 표준 발음법의 대상이 아니며, ③'ㅐ'와 'ㅔ'의 구분은 이어져 온 규범을 존중한 전통성, ④[마딛따]는 대표음 규칙을 일관되게 적용한 합리성을 고려한 것이다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">02</span><span class="prob-tag deep">심화 · 이중 모음의 발음</span></div>
+<p class="prob-q">&lt;보기&gt;의 표준 발음법 규정을 적용한 내용으로 적절하지 <b>않은</b> 것은?</p>
+<div class="prob-data">
+<p><b>제5항</b> 'ㅑ ㅒ ㅕ ㅖ ㅘ ㅙ ㅛ ㅝ ㅞ ㅠ ㅢ'는 이중 모음으로 발음한다.</p>
+<p>다만 1. 용언의 활용형에 나타나는 '져, 쪄, 쳐'는 [저, 쩌, 처]로 발음한다.</p>
+<p>다만 2. '예, 례' 이외의 'ㅖ'는 [ㅔ]로도 발음한다.</p>
+<p>다만 3. 자음을 첫소리로 가지고 있는 음절의 'ㅢ'는 [ㅣ]로 발음한다.</p>
+<p>다만 4. 단어의 첫음절 이외의 '의'는 [ㅣ]로, 조사 '의'는 [ㅔ]로 발음함도 허용한다.</p>
+</div>
+<ol class="choices">
+<li>① '다쳐'는 [다쳐]로 발음하지 않고 [다처]로 발음해야 한다.</li>
+<li>② '지혜'는 [지혜]가 원칙이지만 [지헤]로 발음할 수도 있다.</li>
+<li>③ '예의'는 [예의]가 원칙이지만 [에이]로 발음할 수도 있다.</li>
+<li>④ '건의'는 [거ː늬]로 발음해도 되고 [거ː니]로 발음해도 된다.</li>
+<li>⑤ '귀띔'은 [귀뜸]으로 발음하지 않고 [귀띰]으로 발음해야 한다.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ③</div>'예의'의 첫음절 '예'는 '다만 2'의 예외('예, 례' 이외의 'ㅖ')에 해당하지 않으므로 반드시 [예]로만 발음한다. 둘째 음절 '의'는 '다만 4'에 따라 [의] 또는 [이]로 발음할 수 있으므로 '예의'는 [예의]나 [예이]로만 발음할 수 있고 [에이]는 안 된다. ①'다쳐'는 '다만 1'에 따라 [다처], ②'지혜'는 '다만 2'에 따라 [지혜]/[지헤], ④'건의'는 '다만 4'에 따라 [거ː늬]/[거ː니], ⑤'귀띔'은 '다만 3'에 따라 [귀띰]으로 발음한다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">03</span><span class="prob-tag deep">심화 · 모음의 원칙·허용 발음</span></div>
+<p class="prob-q">&lt;보기&gt;를 바탕으로 할 때, 발음이 적절하게 짝지어지지 <b>않은</b> 것은?</p>
+<div class="prob-data">
+<p><b>제4항</b> 'ㅏ ㅐ ㅓ ㅔ ㅗ ㅚ ㅜ ㅟ ㅡ ㅣ'는 단모음(單母音)으로 발음한다. [붙임] 'ㅚ, ㅟ'는 이중 모음으로 발음할 수 있다.</p>
+<p><b>제5항</b> 'ㅑ ㅒ ㅕ ㅖ ㅘ ㅙ ㅛ ㅝ ㅞ ㅠ ㅢ'는 이중 모음으로 발음한다.</p>
+<p>다만 3. 자음을 첫소리로 가지고 있는 음절의 'ㅢ'는 [ㅣ]로 발음한다.</p>
+<p>다만 4. 단어의 첫음절 이외의 '의'는 [ㅣ]로, 조사 '의'는 [ㅔ]로 발음함도 허용한다.</p>
+</div>
+<ol class="choices match">
+<li>① 희망 — 원칙 [희망] / 허용 [히망]</li>
+<li>② 합의 — 원칙 [하븨] / 허용 [하비]</li>
+<li>③ 최고 — 원칙 [최ː고] / 허용 [췌ː고]</li>
+<li>④ 우리의 — 원칙 [우리의] / 허용 [우리에]</li>
+<li>⑤ 토의의 — 원칙 [토ː의의] / 허용 [토ː이에]</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ①</div>'제5항-다만 3'에 따르면 '희'처럼 자음을 첫소리로 가진 음절의 'ㅢ'는 [ㅣ]로만 발음해야 하므로 '희망'의 표준 발음은 [히망] 하나뿐이다. 원칙과 허용의 구분이 없으므로 [희망]을 원칙 발음으로 제시한 것은 적절하지 않다. ②'합의'는 첫음절 이외의 '의'이므로 [하비]도 허용, ③'ㅚ'는 '제4항-[붙임]'에 따라 [췌ː고]도 허용, ④조사 '의'는 [에]도 허용, ⑤첫 번째 '의'는 [이], 조사 '의'는 [에]가 허용되어 [토ː이에]도 가능하다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">04</span><span class="prob-tag deep">심화 · 홑받침·쌍받침의 발음</span></div>
+<p class="prob-q">&lt;보기&gt;를 참고할 때, 밑줄 친 부분의 발음이 적절하지 <b>않은</b> 것은?</p>
+<div class="prob-data">
+<p><b>제9항</b> 받침 'ㄲ, ㅋ', 'ㅅ, ㅆ, ㅈ, ㅊ, ㅌ', 'ㅍ'은 어말 또는 자음 앞에서 각각 대표음 [ㄱ, ㄷ, ㅂ]으로 발음한다.</p>
+<p><b>제13항</b> 홑받침이나 쌍받침이 모음으로 시작된 조사나 어미, 접미사와 결합되는 경우에는, 제 음가대로 뒤 음절 첫소리로 옮겨 발음한다.</p>
+<p><b>제15항</b> 받침 뒤에 모음 'ㅏ, ㅓ, ㅗ, ㅜ, ㅟ' 들로 시작되는 실질 형태소가 연결되는 경우에는, 대표음으로 바꾸어서 뒤 음절 첫소리로 옮겨 발음한다.</p>
+</div>
+<ol class="choices">
+<li>① <u>꽃 위에</u> 맺힌 이슬방울이 영롱하게 빛났다. … [꼬뒤에]</li>
+<li>② 사흘 밤낮을 걸어 마침내 <u>땅끝에</u> 이르렀다. … [땅끄데]</li>
+<li>③ 고양이 한 마리가 <u>부엌 앞을</u> 지나가고 있다. … [부어가플]</li>
+<li>④ 사냥꾼은 두툼한 <u>갖옷을</u> 여미며 밖으로 나섰다. … [가도슬]</li>
+<li>⑤ 해가 지자 고요한 <u>숲에는</u> 풀벌레 소리만 가득했다. … [수페는]</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ②</div>'땅끝'의 'ㅌ'이 모음으로 시작된 형식 형태소(조사) '에'와 결합하므로 '제13항'에 따라 'ㅌ'을 제 음가대로 연음하여 [땅끄테]로 발음해야 한다. ①'꽃'+실질 형태소 '위'는 '제15항'에 따라 [꼬뒤에], ③'부엌'+'앞'은 '제15항', '앞을'은 '제13항'에 따라 [부어가플], ④'갖옷'은 '제15항'으로 [가돋], 여기에 조사 '을'이 붙어 [가도슬], ⑤'숲에'는 '제13항'에 따라 [수페는]이다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">05</span><span class="prob-tag deep">심화 · 겹받침의 발음</span></div>
+<p class="prob-q">다음 &lt;자료&gt;를 바탕으로 표준 발음을 탐구한 내용으로 가장 적절한 것은?</p>
+<div class="prob-data">
+<p>㉮ 넋을[넉쓸] · 닭이[달기] · 값에[갑쎄]</p>
+<p>㉯ 넋 없다[너겁따] · 닭 앞에[다가페] · 값있는[가빈는]</p>
+</div>
+<ol class="choices">
+<li>① 겹받침은 어떠한 경우에든 대표음 하나만 발음할 수 있다.</li>
+<li>② 겹받침 뒤에 모음으로 시작된 형태소가 오면 둘 다 발음된다.</li>
+<li>③ 겹받침의 뒤엣것을 뒤 음절로 옮겨 발음할 경우 된소리로 바꾸어 발음한다.</li>
+<li>④ 겹받침 뒤에 실질 형태소가 오면 뒤엣것을 탈락시키고 앞엣것을 대표음으로 발음한다.</li>
+<li>⑤ 겹받침 뒤에 오는 형태소가 형식 형태소인지, 실질 형태소인지에 따라 겹받침의 발음이 달라진다.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ⑤</div>㉮처럼 겹받침 뒤에 형식 형태소가 오면 앞 자음은 제자리에 남고 뒤 자음만 뒷말의 첫소리로 옮겨 가며, ㉯처럼 실질 형태소가 오면 겹받침이 먼저 대표음으로 바뀐 뒤 그 대표음이 뒷말의 첫소리로 옮겨 간다. ①'닭이[달기]'는 'ㄹ'과 'ㄱ'이 모두 발음되고, ②'넋 없다[너겁따]'는 하나만 발음되며, ③'닭이[달기]'에서는 된소리되기가 일어나지 않고, ④'닭 앞에[다가페]'에서는 앞엣것인 'ㄹ'이 탈락했다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">06</span><span class="prob-tag deep">심화 · 받침의 연음</span></div>
+<p class="prob-q">&lt;보기&gt;를 참고하여 국어 자료의 발음을 정리한 것으로 적절하지 <b>않은</b> 것은?</p>
+<div class="prob-data">
+<p>받침이 있는 말 뒤에 모음으로 시작하는 형태소가 결합할 때, 그 발음은 뒤에 오는 형태소의 성격에 따라 달라진다. 모음으로 시작하는 형식 형태소가 올 경우, 받침은 다음 음절의 첫소리로 이어진다. 이때 홑받침이나 쌍받침은 제 음가대로 뒤 음절 첫소리로 옮겨 발음하며, 겹받침은 뒤엣것만 뒤 음절 첫소리로 옮겨 발음한다. 모음으로 시작하는 실질 형태소가 연결될 경우, 받침은 자신의 대표음으로 먼저 바뀐 후, 뒤 음절 첫소리로 옮겨 발음된다.</p>
+</div>
+<ol class="choices match">
+<li>① 겉옷 — 자주 틀리는 발음 [거톧] / 표준 발음 [거돋]</li>
+<li>② 여덟이 — 자주 틀리는 발음 [여덜비] / 표준 발음 [여더리]</li>
+<li>③ 동녘이 — 자주 틀리는 발음 [동녀기] / 표준 발음 [동녀키]</li>
+<li>④ 뒤끝을 — 자주 틀리는 발음 [뒤ː끄츨] / 표준 발음 [뒤ː끄틀]</li>
+<li>⑤ 맛없다 — 자주 틀리는 발음 [마섭따] / 표준 발음 [마덥따]</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ②</div>'여덟이'는 겹받침 뒤에 모음으로 시작하는 형식 형태소(조사) '이'가 결합한 경우이므로 겹받침의 뒤엣것만 연음하여 [여덜비]로 발음해야 한다. 표준 발음과 틀린 발음이 뒤바뀌었다. ①'겉옷'은 실질 형태소 '옷' 앞이라 대표음 [ㄷ]으로 바꾼 뒤 연음해 [거돋], ③'동녘이'와 ④'뒤끝을'은 형식 형태소 앞이라 제 음가대로 [동녀키], [뒤ː끄틀], ⑤'맛없다'는 실질 형태소 '없다' 앞이라 [마덥따]이다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">07</span><span class="prob-tag deep">심화 · 비음화와 유음화</span></div>
+<p class="prob-q">&lt;보기&gt;를 참고할 때, 밑줄 친 단어의 발음이 적절하지 <b>않은</b> 것은?</p>
+<div class="prob-data">
+<p><b>제18항</b> 받침 'ㄱ(ㄲ, ㅋ, ㄳ, ㄺ), ㄷ(ㅅ, ㅆ, ㅈ, ㅊ, ㅌ, ㅎ), ㅂ(ㅍ, ㄼ, ㄿ, ㅄ)'은 'ㄴ, ㅁ' 앞에서 [ㅇ, ㄴ, ㅁ]으로 발음한다.</p>
+<p><b>제19항</b> 받침 'ㅁ, ㅇ' 뒤에 연결되는 'ㄹ'은 [ㄴ]으로 발음한다. [붙임] 받침 'ㄱ, ㅂ' 뒤에 연결되는 'ㄹ'도 [ㄴ]으로 발음한다.</p>
+<p><b>제20항</b> 'ㄴ'은 'ㄹ'의 앞이나 뒤에서 [ㄹ]로 발음한다.</p>
+</div>
+<ol class="choices">
+<li>① 울창한 <u>삼림[살림]</u> 속에 있으니 기분이 상쾌해진다.</li>
+<li>② 그는 조국의 <u>독립[동닙]</u>을 위해 희생을 아끼지 않았다.</li>
+<li>③ 할아버지께서는 가끔씩 옛 시조를 <u>읊는[음는]</u> 것을 즐기셨다.</li>
+<li>④ 자연사 박물관에는 다양한 <u>공룡[공ː뇽]</u> 화석이 전시되어 있다.</li>
+<li>⑤ 기후 변화는 <u>인류[일류]</u>가 직면한 가장 심각한 위기 중 하나이다.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ①</div>'삼림'은 받침 'ㅁ' 뒤에 'ㄹ'이 연결되므로 '제19항'에 따라 'ㄹ'을 [ㄴ]으로 바꾸어 [삼님]으로 발음해야 한다. ②'독립'은 '제19항-[붙임]'으로 'ㄹ'→[ㄴ], 다시 '제18항'으로 'ㄱ'→[ㅇ]이 되어 [동닙], ③'읊는'은 '제18항'에 따라 [음는], ④'공룡'은 '제19항'에 따라 [공ː뇽], ⑤'인류'는 '제20항'에 따라 [일류]이다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">08</span><span class="prob-tag deep">심화 · 된소리되기</span></div>
+<p class="prob-q">&lt;보기&gt;를 참고할 때, 밑줄 친 부분에서 된소리되기가 일어나지 <b>않는</b> 것은?</p>
+<div class="prob-data">
+<p><b>제23항</b> 받침 'ㄱ(ㄲ, ㅋ, ㄳ, ㄺ), ㄷ(ㅅ, ㅆ, ㅈ, ㅊ, ㅌ), ㅂ(ㅍ, ㄼ, ㄿ, ㅄ)' 뒤에 연결되는 'ㄱ, ㄷ, ㅂ, ㅅ, ㅈ'은 된소리로 발음한다.</p>
+<p><b>제24항</b> 어간 받침 'ㄴ(ㄵ), ㅁ(ㄻ)' 뒤에 결합되는 어미의 첫소리 'ㄱ, ㄷ, ㅅ, ㅈ'은 된소리로 발음한다. 다만, 피동, 사동의 접미사 '-기-'는 된소리로 발음하지 않는다.</p>
+<p><b>제26항</b> 한자어에서, 'ㄹ' 받침 뒤에 연결되는 'ㄷ, ㅅ, ㅈ'은 된소리로 발음한다.</p>
+<p><b>제27항</b> 관형사형 '-(으)ㄹ' 뒤에 연결되는 'ㄱ, ㄷ, ㅂ, ㅅ, ㅈ'은 된소리로 발음한다. 다만, 끊어서 말할 적에는 예사소리로 발음한다. [붙임] '-(으)ㄹ'로 시작되는 어미의 경우에도 이에 준한다.</p>
+</div>
+<ol class="choices">
+<li>① 손님을 <u>홀대(忽待)</u>하지 말아야 한다.</li>
+<li>② 어떤 경우에도 <u>법과</u> 원칙을 지켜야 한다.</li>
+<li>③ 누나가 동생에게 새 신발을 <u>신기고</u> 있다.</li>
+<li>④ 나는 친구 어깨에 손을 <u>얹고</u> 위로해 주었다.</li>
+<li>⑤ 합격 소식에 너무 기뻐서 <u>어쩔 줄</u> 모르는 표정이었다.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ③</div>'신기고'는 '신다'의 어간 받침 'ㄴ' 뒤에 사동 접미사 '-기-'가 결합한 형태로, '제24항-다만'에 따라 된소리되기가 일어나지 않아 [신기고]로 발음한다. ①'홀대'는 한자어 'ㄹ' 받침 뒤 'ㄷ'이라 '제26항', ②'법과'는 받침 'ㅂ' 뒤 'ㄱ'이라 '제23항', ④'얹고'는 어간 받침 'ㄵ' 뒤 어미 '-고'라 '제24항', ⑤'어쩔 줄'은 관형사형 '-ㄹ' 뒤 'ㅈ'이라 '제27항'에 따라 된소리로 발음한다.</div></details>
+</div>
+</div>
+
+<div class="set">
+<div class="set-label">[09~11] 다음 표준 발음법을 참고하여 물음에 답하시오.</div>
+<div class="passage-box">
+<p><b>제9항</b> 받침 'ㄲ, ㅋ', 'ㅅ, ㅆ, ㅈ, ㅊ, ㅌ', 'ㅍ'은 어말 또는 자음 앞에서 각각 대표음 [ㄱ, ㄷ, ㅂ]으로 발음한다.</p>
+<p><b>제11항</b> 겹받침 'ㄺ, ㄻ, ㄿ'은 어말 또는 자음 앞에서 각각 [ㄱ, ㅁ, ㅂ]으로 발음한다.</p>
+<p><b>제12항</b> 받침 'ㅎ'의 발음은 다음과 같다.<br>1. 'ㅎ(ㄶ, ㅀ)' 뒤에 'ㄱ, ㄷ, ㅈ'이 결합되는 경우에는, 뒤 음절 첫소리와 합쳐서 [ㅋ, ㅌ, ㅊ]으로 발음한다.<br>2. 'ㅎ(ㄶ, ㅀ)' 뒤에 'ㅅ'이 결합되는 경우에는, 'ㅅ'을 [ㅆ]으로 발음한다.<br>3. 'ㅎ' 뒤에 'ㄴ'이 결합되는 경우에는, [ㄴ]으로 발음한다.<br>4. 'ㅎ(ㄶ, ㅀ)' 뒤에 모음으로 시작된 어미나 접미사가 결합되는 경우에는, 'ㅎ'을 발음하지 않는다.</p>
+<p><b>제17항</b> 받침 'ㄷ, ㅌ(ㄾ)'이 조사나 접미사의 모음 'ㅣ'와 결합되는 경우에는, [ㅈ, ㅊ]으로 바꾸어서 뒤 음절 첫소리로 옮겨 발음한다.</p>
+<p><b>제18항</b> 받침 'ㄱ(ㄲ, ㅋ, ㄳ, ㄺ), ㄷ(ㅅ, ㅆ, ㅈ, ㅊ, ㅌ, ㅎ), ㅂ(ㅍ, ㄼ, ㄿ, ㅄ)'은 'ㄴ, ㅁ' 앞에서 [ㅇ, ㄴ, ㅁ]으로 발음한다.</p>
+<p><b>제19항</b> 받침 'ㅁ, ㅇ' 뒤에 연결되는 'ㄹ'은 [ㄴ]으로 발음한다. [붙임] 받침 'ㄱ, ㅂ' 뒤에 연결되는 'ㄹ'도 [ㄴ]으로 발음한다.</p>
+<p><b>제20항</b> 'ㄴ'은 'ㄹ'의 앞이나 뒤에서 [ㄹ]로 발음한다.</p>
+<p><b>제23항</b> 받침 'ㄱ(ㄲ, ㅋ, ㄳ, ㄺ), ㄷ(ㅅ, ㅆ, ㅈ, ㅊ, ㅌ), ㅂ(ㅍ, ㄼ, ㄿ, ㅄ)' 뒤에 연결되는 'ㄱ, ㄷ, ㅂ, ㅅ, ㅈ'은 된소리로 발음한다.</p>
+<p><b>제29항</b> 합성어 및 파생어에서, 앞 단어나 접두사의 끝이 자음이고 뒤 단어나 접미사의 첫음절이 '이, 야, 여, 요, 유'인 경우에는, 'ㄴ' 음을 첨가하여 [니, 냐, 녀, 뇨, 뉴]로 발음한다.</p>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">09</span><span class="prob-tag">적용 · 규정 고르기</span></div>
+<p class="prob-q">다음을 발음할 때 적용되는 규정만을 있는 대로 고른 것은?</p>
+<div class="prob-data"><p>무릎 꿇고 기도했다.</p></div>
+<ol class="choices">
+<li>① 제9항, 제11항, 제23항</li>
+<li>② 제9항, 제12항-1, 제23항</li>
+<li>③ 제9항, 제12항-1, 제29항</li>
+<li>④ 제11항, 제12항-4, 제29항</li>
+<li>⑤ 제12항-4, 제19항, 제23항</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ②</div>'무릎'은 뒤에 자음 'ㄲ'이 오므로 받침 'ㅍ'이 '제9항'에 따라 [ㅂ]으로, '꿇고'는 받침 'ㅀ' 뒤에 'ㄱ'이 와서 '제12항-1'에 따라 [ㅋ]으로, '기도했다'는 'ㅆ'이 '제9항'에 따라 [ㄷ]으로 바뀌고 뒤의 'ㄷ'이 '제23항'에 따라 된소리가 된다. 따라서 [무릅 꿀코 기도핻따]로 발음한다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">10</span><span class="prob-tag">적용 · 규정 적용</span></div>
+<p class="prob-q">위 규정을 적용한 내용으로 적절하지 <b>않은</b> 것은?</p>
+<ol class="choices">
+<li>① '솥발'은 '제9항'과 '제23항'에 따라 [솓빨]로 발음해야 한다.</li>
+<li>② '연잎'은 '제29항'과 '제9항'에 따라 [연닙]으로 발음해야 한다.</li>
+<li>③ '놓지'는 '제12항-1'과 '제17항'에 따라 [노치]로 발음해야 한다.</li>
+<li>④ '학여울'은 '제29항'과 '제18항'에 따라 [항녀울]로 발음해야 한다.</li>
+<li>⑤ '협력'은 '제19항-[붙임]'과 '제18항'에 따라 [혐녁]으로 발음해야 한다.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ③</div>'놓지'는 받침 'ㅎ'과 뒤 음절 첫소리 'ㅈ'이 합쳐져 [ㅊ]으로 발음되는 것으로, '제12항-1'만으로 설명되며 '제17항'(구개음화)은 적용되지 않는다. ①'솥'의 'ㅌ'→[ㄷ](제9항) 후 'ㅂ'→[ㅃ](제23항), ②'ㄴ' 첨가(제29항) 후 'ㅍ'→[ㅂ](제9항), ④'ㄴ' 첨가(제29항) 후 'ㄱ'→[ㅇ](제18항), ⑤'ㄹ'→[ㄴ](제19항-[붙임]) 후 'ㅂ'→[ㅁ](제18항)이다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">11</span><span class="prob-tag">적용 · 탐구 과정</span></div>
+<p class="prob-q">&lt;보기&gt;의 ㉠, ㉡에 들어갈 규정이 모두 적절하게 짝지어진 것은?</p>
+<div class="prob-data">
+<p>• 탐구 과제: '읊다'의 표준 발음에 대해 알아보자.</p>
+<p>• 탐구 과정: ( ㉠ )에 의거하여 '-다'의 'ㄷ'은 [ㄸ]으로 발음한다. ( ㉡ )에 의거하여 'ㄿ'을 [ㅂ]으로 발음한다.</p>
+<p>• 탐구 결과: 이러한 과정에 따라 '읊다'는 [읍따]로 발음한다.</p>
+</div>
+<ol class="choices match">
+<li>① ㉠ 제9항 — ㉡ 제11항</li>
+<li>② ㉠ 제9항 — ㉡ 제17항</li>
+<li>③ ㉠ 제23항 — ㉡ 제9항</li>
+<li>④ ㉠ 제23항 — ㉡ 제11항</li>
+<li>⑤ ㉠ 제23항 — ㉡ 제17항</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ④</div>㉠ 'ㄷ'을 [ㄸ]으로 발음하는 것은 받침 'ㄿ' 뒤에 연결되는 'ㄷ'이 된소리로 발음된다는 '제23항'에 따른 것이고, ㉡ 'ㄿ'을 [ㅂ]으로 발음하는 것은 'ㄿ'이 어말 또는 자음 앞에서 [ㅂ]으로 발음된다는 '제11항'에 따른 것이다.</div></details>
+</div>
+</div>
+
+<div class="set">
+<div class="set-label">12~14. 다음 물음에 답하시오.</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">12</span><span class="prob-tag">적용 · 음운 변동 정리</span></div>
+<p class="prob-q">㉠~㉤의 표준 발음과 음운 변동을 정리한 것으로 적절하지 <b>않은</b> 것은?</p>
+<div class="prob-data"><p>㉠<u>선릉</u>은 조선 제9대 왕인 성종과 계비 정현왕후의 왕릉이다. 유네스코 세계 문화유산으로 등재된 조선 왕릉 중 하나로, 시민들에게 역사와 같이 자연을 느낄 수 있는 소중한 공간으로 사랑받고 있다. 잘 가꾸어진 ㉡<u>흙길</u>을 따라 걷다 보면 바쁜 일상을 잠시 잊게 된다. 계절마다 옷을 갈아입는 ㉢<u>나뭇잎</u>을 부드럽게 ㉣<u>밟는</u> 소리를 들으며 사색에 잠기기에도 좋은 이곳은, 도심 속에서 만나는 매우 ㉤<u>값진</u> 휴식처라 할 수 있다.</p></div>
+<ol class="choices match">
+<li>① ㉠ 선릉 — [설릉] — 유음화</li>
+<li>② ㉡ 흙길 — [흑낄] — 자음군 단순화, 된소리되기</li>
+<li>③ ㉢ 나뭇잎 — [나문닙] — 'ㄴ' 첨가, 비음화, 음절의 끝소리 규칙</li>
+<li>④ ㉣ 밟는 — [발ː른] — 자음군 단순화, 유음화</li>
+<li>⑤ ㉤ 값진 — [갑찐] — 자음군 단순화, 된소리되기</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ④</div>'밟-'은 자음 앞에서 예외적으로 [밥]으로 발음하므로(자음군 단순화), 받침 'ㅂ'이 뒤의 'ㄴ' 앞에서 [ㅁ]으로 바뀌는 비음화가 일어나 [밤ː는]으로 발음한다. ①'ㄴ'이 'ㄹ' 앞에서 [ㄹ]로 바뀌는 유음화, ②'ㄺ'→[ㄱ] 후 된소리되기, ③'ㄴ' 첨가와 음절의 끝소리 규칙('ㅅ'→[ㄷ], 'ㅍ'→[ㅂ]) 후 비음화, ⑤'ㅄ'→[ㅂ] 후 된소리되기로 모두 적절하다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">13</span><span class="prob-tag">적용 · 규정 적용</span></div>
+<p class="prob-q">밑줄 친 말의 발음 중, &lt;보기&gt;의 규정이 모두 적용된 것은?</p>
+<div class="prob-data">
+<p><b>제10항</b> 겹받침 'ㄳ', 'ㄵ', 'ㄼ, ㄽ, ㄾ', 'ㅄ'은 어말 또는 자음 앞에서 각각 [ㄱ, ㄴ, ㄹ, ㅂ]으로 발음한다. 다만, '밟-'은 자음 앞에서 [밥]으로 발음하고, '넓-'은 다음과 같은 경우에 [넙]으로 발음한다. — 넓-죽하다[넙쭈카다], 넓-둥글다[넙뚱글다]</p>
+<p><b>제20항</b> 'ㄴ'은 'ㄹ'의 앞이나 뒤에서 [ㄹ]로 발음한다. [붙임] 첫소리 'ㄴ'이 'ㅀ', 'ㄾ' 뒤에 연결되는 경우에도 이에 준한다.</p>
+</div>
+<ol class="choices">
+<li>① 그는 좀처럼 겁이 <u>없는[엄ː는]</u> 편이다.</li>
+<li>② 새로 이사 온 집이 생각보다 <u>넓네[널레]</u>.</li>
+<li>③ 이 신발 밑창은 빨리 <u>닳는[달른]</u> 편이다.</li>
+<li>④ 다시는 실패의 전철을 <u>밟지[밥ː찌]</u> 않겠다.</li>
+<li>⑤ 그 의자는 <u>낡고[날꼬]</u> 삐걱거렸지만 편안했다.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ②</div>'넓네'는 겹받침 'ㄼ'이 'ㄴ' 앞에서 [ㄹ]로 바뀌고(제10항, 자음군 단순화), 앞선 'ㄹ'의 영향으로 뒤의 'ㄴ'이 [ㄹ]로 바뀌어(제20항, 유음화) 두 규정이 모두 적용된다. ①'없는'은 제10항 후 비음화로 제20항과 무관하고, ③'닳는'은 'ㅀ'이라 제10항과 무관하며, ④'밟지'는 제10항-다만 후 된소리되기로 제20항과 무관하고, ⑤'ㄺ'의 발음은 &lt;보기&gt;에 제시되지 않았다.</div></details>
+</div>
+
+<div class="problem">
+<div class="prob-head"><span class="prob-num">14</span><span class="prob-tag">적용 · 발음 탐구</span></div>
+<p class="prob-q">&lt;보기&gt;를 바탕으로 단어의 발음을 탐구한 내용으로 적절하지 <b>않은</b> 것은?</p>
+<div class="prob-data">
+<p>㉮ 받침 'ㄱ(ㄲ, ㅋ, ㄳ, ㄺ), ㄷ(ㅅ, ㅆ, ㅈ, ㅊ, ㅌ, ㅎ), ㅂ(ㅍ, ㄼ, ㄿ, ㅄ)'은 'ㄴ, ㅁ' 앞에서 [ㅇ, ㄴ, ㅁ]으로 발음한다.</p>
+<p>㉯ 겹받침 'ㄺ, ㄻ, ㄿ'은 어말 또는 자음 앞에서 각각 [ㄱ, ㅁ, ㅂ]으로 발음한다.</p>
+<p>㉰ 받침 'ㄱ(ㄲ, ㅋ, ㄳ, ㄺ), ㄷ(ㅅ, ㅆ, ㅈ, ㅊ, ㅌ), ㅂ(ㅍ, ㄼ, ㄿ, ㅄ)' 뒤에 연결되는 'ㄱ, ㄷ, ㅂ, ㅅ, ㅈ'은 된소리로 발음한다.</p>
+<p>㉱ 합성어 및 파생어에서, 앞 단어나 접두사의 끝이 자음이고 뒤 단어나 접미사의 첫음절이 '이, 야, 여, 요, 유'인 경우에는, 'ㄴ' 음을 첨가하여 [니, 냐, 녀, 뇨, 뉴]로 발음한다.</p>
+</div>
+<ol class="choices">
+<li>① '먹물'은 ㉮에 따라 받침 'ㄱ'이 뒤의 'ㅁ'의 영향을 받아 [멍물]로 발음되겠군.</li>
+<li>② '색연필'은 ㉱에 따라 'ㄴ'이 첨가된 후, ㉮에 따라 'ㄱ'이 [ㅇ]으로 발음되어 [생년필]로 최종 발음되겠군.</li>
+<li>③ '홑이불'은 ㉱에 따라 'ㄴ'이 첨가된 후, ㉮에 따라 'ㅌ'이 [ㄴ]으로 발음되어 [혼니불]로 최종 발음되겠군.</li>
+<li>④ '긁적이다'는 ㉰에 따라 된소리되기가 일어나 '적'이 [쩍]으로 바뀌고, ㉯에 따라 [극쩌기다]로 최종 발음되겠군.</li>
+<li>⑤ '옮고'는 ㉯에 따라 겹받침에서 'ㄹ'이 탈락하고, ㉰에 따라 'ㄱ'을 된소리로 발음하여 [옴ː꼬]로 최종 발음되겠군.</li>
+</ol>
+<details><summary>정답 확인</summary><div class="answer"><div class="verdict">정답 ⑤</div>'옮고'는 [옴ː꼬]로 발음되지만, ㉰는 받침 'ㄱ, ㄷ, ㅂ' 계열 뒤에서만 적용되는 규정이고 겹받침 'ㄻ'은 조건에 없으므로 ㉰에 따라 된소리되기가 일어났다는 설명은 적절하지 않다. ①㉮에 따라 [멍물], ②㉱로 'ㄴ' 첨가 후 ㉮로 [생년필], ③㉱로 'ㄴ' 첨가 후 ㉮로 [혼니불], ④㉰로 된소리되기, ㉯로 'ㄺ'→[ㄱ]이 되어 [극쩌기다]이다.</div></details>
+</div>
+</div>
+
+</div>
+<footer>화법과 언어 · 문법 · Ⅱ. 언어와 국어 생활 — 표준 발음으로 국어 생활하기 문제</footer>
+</body>
+</html>
