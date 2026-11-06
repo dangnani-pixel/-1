@@ -45,7 +45,7 @@
   .ex{font-family:var(--mono); color:var(--indigo-dark); font-weight:500;}
   .pron{font-family:var(--mono); color:var(--jade); font-weight:600;}
 
-  table{width:100%; border-collapse:collapse; font-size:13.5px; margin:.6rem 0 1rem;}
+  table{width:100%; border-collapse:collapse; font-size:13.5px; margin:.6rem 0 1rem; word-break:keep-all; overflow-wrap:break-word;}
   th, td{border:1px solid var(--line); text-align:center; padding:8px 6px; vertical-align:middle;}
   th{background:var(--indigo-soft); color:var(--indigo-dark); font-weight:500;}
   td.left{text-align:left;}
@@ -53,6 +53,7 @@
 
   .note{background:var(--amber-soft); border:1px solid #EAD6B4; border-radius:var(--radius); padding:.85rem 1.05rem; font-size:13px; color:#6B4A17; margin-top:.9rem;}
   .note b{color:var(--amber);}
+  .fill{color:var(--jade); font-weight:700; border-bottom:1.5px solid var(--jade); padding:0 2px;}
 
   .summary-table td{text-align:left; padding:9px 10px;}
   .summary-table td:first-child{text-align:center; width:16%;}
@@ -143,82 +144,144 @@
 <div class="sec-head"><span class="sec-num">01</span><h2>표준 발음의 개념과 원칙</h2></div>
 <p class="lead">표준 발음은 국어를 쓰는 사람들 사이에 발음하는 법이 달라서 의사소통에 지장이 생기는 것을 막기 위해 발음의 표준을 정해 놓은 것이다.</p>
 <div class="card">
-<p class="body-text" style="margin:0;"><b>표준 발음법 제1항.</b> 표준 발음은 "표준어의 실제 발음을 따르되, 국어의 전통성과 합리성을 고려하여 정함을 원칙으로 한다."</p>
+<p class="body-text" style="margin:0;"><b>표준 발음법 제1항.</b> 표준 발음법은 "표준어의 실제 발음을 따르되, 국어의 전통성과 합리성을 고려하여 정함을 원칙으로 한다."</p>
 </div>
 <table>
 <tr><th>원칙</th><th>의미</th><th>예</th></tr>
-<tr><td>표준어의 실제 발음</td><td class="left">현대 서울말의 현실 발음을 기반으로 정함</td><td class="ex">'ㅚ, ㅟ'를 이중 모음으로도 발음 허용</td></tr>
-<tr><td>전통성</td><td class="left">이전부터 내려오던 발음상의 관습을 감안함</td><td class="ex">'ㅐ'와 'ㅔ'를 구별되는 단모음으로 인정</td></tr>
-<tr><td>합리성</td><td class="left">국어의 음운 규칙(변동)에 따라 합리적으로 정함</td><td class="ex">필수적 변동은 표준 발음으로 인정</td></tr>
+<tr><td>표준어의<br>실제 발음</td><td class="left">현대 서울말의 현실 발음을 기반으로 표준 발음을 정한다는 의미</td><td class="left">① 단모음 'ㅚ, ㅟ'를 이중 모음으로 발음하는 것 허용<br>② 이중 모음 'ㅢ'의 여러 발음 허용<br>③ '예, 례' 이외의 'ㅖ'를 [ㅔ]로 발음하는 것 허용</td></tr>
+<tr><td>전통성</td><td class="left">이전부터 내려오던 발음상의 관습을 감안한다는 의미</td><td class="left">① 'ㅐ', 'ㅔ'의 발음을 구분하게 함<br>② 모음의 장단에 대한 규정을 유지함</td></tr>
+<tr><td>합리성</td><td class="left">국어의 규칙에 따라서 합리적으로 정한다는 의미</td><td class="left">음운 변동에서 필수적 변동만 표준 발음으로 인정하고, 불규칙하게 발생하는 수의적 변동은 인정하지 않음</td></tr>
+</table>
+
+<h3>모음의 표준 발음</h3>
+<table>
+<tr><th>모음</th><th>원칙과 허용</th><th>예</th></tr>
+<tr><td>'ㅚ, ㅟ'</td><td class="left">원칙적으로 단모음 [ㅚ], [ㅟ]로 발음한다. 단모음 'ㅚ, ㅟ'는 이중 모음으로 발음할 수 있다.</td><td class="ex">외가[외ː가](○) [웨ː가](○)<br>참외[차뫼](○) [차뭬](○)</td></tr>
+<tr><td rowspan="3">'ㅢ'</td><td class="left">원칙적으로 이중 모음 [ㅢ]로 발음한다. 단, 자음을 첫소리로 가지고 있는 음절의 'ㅢ'는 [ㅣ]로 발음한다.</td><td class="ex">희망[희망](×) [히망](○)<br>무늬[무늬](×) [무니](○)</td></tr>
+<tr><td class="left">단어의 첫음절 이외의 '의'는 [ㅣ]로 발음함도 허용한다.</td><td class="ex">주의[주의](○) [주이](○)<br>협의[혀븨](○) [혀비](○)</td></tr>
+<tr><td class="left">조사 '의'는 [ㅔ]로 발음함도 허용한다.</td><td class="ex">우리의[우리의](○) [우리에](○)</td></tr>
+<tr><td>'ㅖ'</td><td class="left">원칙적으로 이중 모음 [ㅖ]로 발음한다. '예, 례' 이외의 'ㅖ'는 [ㅔ]로도 발음한다.</td><td class="ex">시계[시계](○) [시게](○)<br>지혜[지혜](○) [지헤](○)</td></tr>
 </table>
 <div class="note"><b>참고.</b> 음운 변동 중 일정한 조건에서 반드시 일어나는 <b>필수적 변동</b>은 표준 발음으로 인정하고, 그렇지 않은 <b>수의적 변동</b>은 표준 발음으로 인정하지 않는 것이 일반적이다.</div>
 </section>
 
 <section id="sec2">
 <div class="sec-head"><span class="sec-num">02</span><h2>홑받침·쌍받침의 발음</h2></div>
-<p class="lead">국어는 음절 끝에서 'ㄱ, ㄴ, ㄷ, ㄹ, ㅁ, ㅂ, ㅇ'의 7개 자음만 발음되는데, 이를 <b>음절의 끝소리 규칙</b>이라 한다(음운 변동 유형 중 '교체'). 뒤에 오는 말의 종류에 따라 발음 방식이 달라진다.</p>
+<h3>1. 어말 또는 자음 앞에서 — 음절의 끝소리 규칙</h3>
+<p class="body-text">음절의 끝소리로 <span class="fill">ㄱ, ㄴ, ㄷ, ㄹ, ㅁ, ㅂ, ㅇ</span>의 일곱 소리 이외의 자음이 올 때, 일곱 소리 중 하나로 바뀌어 발음되는 현상을 <span class="fill">음절의 끝소리 규칙</span>이라 한다. 국어 음운 변동의 유형 중 <span class="fill">교체</span>에 속한다.</p>
 <table>
-<tr><th>환경</th><th>발음 방식</th><th>예</th></tr>
-<tr><td>어말 또는 자음 앞</td><td class="left">대표음 [ㄱ, ㄷ, ㅂ]으로 바꾸어 발음</td><td class="ex">밖[박], 옷[옫], 잎[입]</td></tr>
-<tr><td>모음으로 시작하는 형식 형태소 앞</td><td class="left">대표음으로 바꾸지 않고 제 음가대로 연음</td><td class="ex">깊이 → [기피] (음가 그대로 연음)</td></tr>
-<tr><td>모음으로 시작하는 실질 형태소 앞</td><td class="left">대표음으로 바꾼 뒤 연음</td><td class="ex">겉옷[거돋], 맛있다[마딛따]</td></tr>
+<tr><th>표기</th><th>발음</th><th>적용 예시</th></tr>
+<tr><td>ㄱ, ㄲ, ㅋ</td><td>[ㄱ]</td><td class="left ex">목[목], 밖[박], 부엌[부억], 키읔[키윽]</td></tr>
+<tr><td>ㄴ</td><td>[ㄴ]</td><td class="left ex">돈[돈]</td></tr>
+<tr><td>ㄷ, ㅌ, ㅅ, ㅆ, ㅈ, ㅊ, ㅎ</td><td>[ㄷ]</td><td class="left ex">받침[받침], 낱[낟], 낫[낟], 있다[읻따], 낮[낟], 낯[낟], 히읗[히읃]</td></tr>
+<tr><td>ㄹ</td><td>[ㄹ]</td><td class="left ex">달[달]</td></tr>
+<tr><td>ㅁ</td><td>[ㅁ]</td><td class="left ex">감[감]</td></tr>
+<tr><td>ㅂ, ㅍ</td><td>[ㅂ]</td><td class="left ex">집[집], 잎[입], 늪[늡]</td></tr>
+<tr><td>ㅇ</td><td>[ㅇ]</td><td class="left ex">공[공]</td></tr>
 </table>
-<div class="note"><b>예외.</b> 받침 'ㅎ'은 모음으로 시작하는 형식 형태소 앞에서 발음하지 않는다('ㅎ' 탈락). 낳은[나은], 놓아[노아].</div>
+<h3>2. 모음으로 시작하는 형식 형태소 앞에서 — 연음</h3>
+<p class="body-text">앞 음절의 받침에 모음으로 시작하는 형식 형태소가 이어지면 받침의 원래 음가를 그대로 유지하면서 뒤 음절의 첫소리로 옮겨 발음한다(<span class="fill">연음</span>, 음운 변동은 아님). <span class="ex">밖에[바께], 부엌에[부어케], 꽃이[꼬치], 밭을[바틀]</span></p>
+<div class="note"><b>예외.</b> 받침 'ㅎ(ㄶ, ㅀ)'은 모음으로 시작하는 형식 형태소(어미, 접미사) 앞에서 아예 발음하지 않는다 — <span class="fill">'ㅎ' 탈락</span>(음운 변동 유형 중 <span class="fill">탈락</span>). 낳은[나은], 놓아[노아].</div>
+<h3>3. 모음으로 시작하는 실질 형태소 앞에서</h3>
+<p class="body-text"><span class="fill">음절의 끝소리 규칙</span>을 적용한 뒤 <span class="fill">연음</span>한다. 즉 홑받침이나 쌍받침을 대표음으로 바꾸고 뒤 음절의 첫소리로 옮겨 발음한다. <span class="ex">겉옷[거돋]</span></p>
+<div class="card">
+<p class="body-text" style="margin:0;"><b>'맛있다, 멋있다'의 발음.</b> '있다'는 <span class="fill">실질</span> 형태소이므로 대표음으로 바꾼 뒤 연음하여 표준 발음은 <span class="fill">[마딛따], [머딛따]</span>이다. 다만 여러 사람들의 실제 발음을 고려하여 [마싣따], [머싣따]도 표준 발음으로 인정한다.</p>
+</div>
 </section>
 
 <section id="sec3">
 <div class="sec-head"><span class="sec-num">03</span><h2>겹받침의 발음</h2></div>
-<p class="lead">음절 끝에 두 자음이 놓일 때 하나만 남고 나머지가 탈락하는 현상을 <b>자음군 단순화</b>라 한다(음운 변동 유형 중 '탈락').</p>
+<h3>1. 어말 또는 자음 앞에서 — 자음군 단순화</h3>
+<p class="body-text">음절 끝에 두 개의 자음이 놓일 때 둘 중 하나만 남고 나머지는 탈락하는 현상을 <span class="fill">자음군 단순화</span>라 한다(음운 변동 유형 중 <span class="fill">탈락</span>).</p>
 <table>
-<tr><th>환경</th><th>발음 방식</th><th>예</th></tr>
-<tr><td>어말 또는 자음 앞</td><td class="left">자음군 단순화로 하나만 발음</td><td class="ex">넋[넉], 여덟[여덜], 닭[닥]</td></tr>
-<tr><td>모음으로 시작하는 형식 형태소 앞</td><td class="left">첫째 받침은 앞 음절 끝소리로, 둘째 받침은 연음</td><td class="ex">넋을[넉쓸], 값에[갑쎄]</td></tr>
-<tr><td>모음으로 시작하는 실질 형태소 앞</td><td class="left">자음군 단순화 후 남은 자음을 연음</td><td class="ex">값있는[가빈는]</td></tr>
+<tr><th>받침</th><th>변화</th><th>적용 예시</th></tr>
+<tr><td>ㄳ, ㄵ, ㄼ, ㄽ, ㄾ, ㅄ</td><td><span class="fill">앞</span> 자음만 남음</td><td class="left ex">넋[넉], 앉다[안따], 여덟[여덜], 외곬[외골], 핥다[할따], 값[갑]</td></tr>
+<tr><td>ㄺ, ㄻ, ㄿ</td><td><span class="fill">뒤</span> 자음만 남음</td><td class="left ex">닭[닥], 삶[삼], 읊다[읍따]</td></tr>
 </table>
-<div class="note"><b>예외.</b> 겹받침 'ㄶ, ㅀ' 뒤에 모음으로 시작하는 형식 형태소가 오면 'ㅎ'을 발음하지 않고 첫째 받침을 연음한다. 않은[아는], 닳아[다라].</div>
+<div class="note"><b>예외.</b> ① '밟다'의 어간 '밟-'은 [밥]으로 발음한다. 밟다[밥따], 밟고[밥꼬] (cf. 넓다[널따])<br>② '넓죽하다, 넓둥글다' 등은 [넙]으로 발음한다. 넓죽하다[넙쭈카다], 넓둥글다[넙뚱글다]<br>③ 용언의 어간 끝소리 'ㄺ' 뒤에 'ㄱ'으로 시작하는 어미가 오면 앞 자음 'ㄹ'만 남는다. 읽고[일꼬] (cf. 읽다[익따], 닭과[닥꽈])</div>
+<h3>2. 모음으로 시작하는 형식 형태소 앞에서</h3>
+<p class="body-text">첫째 받침은 앞 음절의 끝소리로, 둘째 받침은 연음하여 뒤 음절의 첫소리로 옮겨 발음한다. 이때 'ㅅ'은 된소리로 발음한다. <span class="ex">넋을[넉쓸], 짧아[짤바], 값에[갑쎄], 닭이[달기], 삶을[살믈], 읊어[을퍼]</span></p>
+<div class="note"><b>예외.</b> 겹받침 'ㄶ, ㅀ'은 모음으로 시작하는 형식 형태소 앞에서 'ㅎ'을 발음하지 않고 첫째 받침을 연음한다 — <span class="fill">'ㅎ' 탈락</span>. 않은[아는], 닳아[다라], 싫어[시러].</div>
+<h3>3. 모음으로 시작하는 실질 형태소 앞에서</h3>
+<p class="body-text"><span class="fill">자음군 단순화</span> 뒤 <span class="fill">연음</span>한다. 즉 겹받침 중 하나를 탈락시키고 남은 자음을 뒤 음절의 첫소리로 옮겨 발음한다. <span class="ex">값있는[가빈는], 넋 없다[너겁따], 닭 앞에[다가페]</span></p>
 </section>
 
 <section id="sec4">
 <div class="sec-head"><span class="sec-num">04</span><h2>소리의 동화</h2></div>
 <p class="lead">음운과 음운이 만날 때 한 음운이 다른 음운의 영향을 받아 같거나 비슷하게 소리 나는 현상을 <b>동화</b>라 한다.</p>
+
+<h3>1. 구개음화 — 'ㅣ'로 시작하는 형식 형태소 앞 'ㄷ, ㅌ'</h3>
+<p class="body-text">치조음 'ㄷ, ㅌ'이 모음 'ㅣ'나 반모음 'j'로 시작하는 형식 형태소를 만나 경구개음 [ㅈ, ㅊ]으로 바뀌는 현상이다. <span class="fill">조음 위치</span>의 동화이며 음운 변동 유형 중 <span class="fill">교체</span>에 속한다.</p>
 <table>
-<tr><th>현상</th><th>환경</th><th>변화</th><th>예</th></tr>
-<tr><td>구개음화</td><td class="left">받침 'ㄷ, ㅌ' + 모음 'ㅣ'(조사·접미사)</td><td>ㄷ,ㅌ → [ㅈ,ㅊ]</td><td class="ex">굳이[구지], 밭이[바치]</td></tr>
-<tr><td>비음화</td><td class="left">받침 'ㄱ,ㄷ,ㅂ' + 'ㄴ,ㅁ'</td><td>ㄱ,ㄷ,ㅂ → [ㅇ,ㄴ,ㅁ]</td><td class="ex">국물[궁물], 닫는[단는]</td></tr>
-<tr><td>유음화</td><td class="left">'ㄴ'이 'ㄹ'의 앞 또는 뒤</td><td>ㄴ → [ㄹ]</td><td class="ex">신라[실라], 닳는[달른]</td></tr>
-<tr><td>'ㄹ'의 비음화</td><td class="left">받침 'ㅁ,ㅇ' + 'ㄹ'</td><td>ㄹ → [ㄴ]</td><td class="ex">담력[담녁], 강릉[강능]</td></tr>
+<tr><th>앞말 받침</th><th>뒷말</th><th>변화</th><th>예</th></tr>
+<tr><td>ㄷ</td><td rowspan="2">'ㅣ'나 반모음 'j'(ㅑ, ㅕ, ㅛ, ㅠ, ㅒ, ㅖ)로 시작하는 형식 형태소</td><td>ㄷ → [ㅈ]</td><td class="ex">굳이[구지]</td></tr>
+<tr><td>ㅌ</td><td>ㅌ → [ㅊ]</td><td class="ex">밭이[바치] (cf. 밭을[바틀])</td></tr>
+<tr><td>ㄷ</td><td>접미사 '-히-'</td><td>ㄷ(+ㅎ) → [ㅊ]</td><td class="ex">닫히다[다티다 → 다치다]</td></tr>
 </table>
-<div class="note"><b>구별.</b> 구개음화는 <b>조음 위치</b>가 바뀌는 동화(치조음→경구개음)이고, 비음화·유음화는 <b>조음 방법</b>이 바뀌는 동화(파열음→비음, 비음→유음)이다. 세 현상 모두 음운 변동 유형 중 '교체'에 속한다.</div>
+<div class="card">
+<p class="body-text" style="margin:0 0 .4rem;"><b>※ 거센소리되기.</b> 'ㅎ'의 앞이나 뒤에 예사소리 'ㄱ, ㄷ, ㅂ, ㅈ'이 놓일 때 둘이 합쳐져 [ㅋ, ㅌ, ㅍ, ㅊ]로 발음되는 현상이다(음운 변동 유형 중 <span class="fill">축약</span>, 순서 무관).</p>
+<p class="body-text ex" style="margin:0;">ㄱ+ㅎ → [ㅋ] 좋고[조코] · ㄷ+ㅎ → [ㅌ] 많다[만타] · ㅂ+ㅎ → [ㅍ] 법학[버팍] · ㅈ+ㅎ → [ㅊ] 옳지[올치]</p>
+</div>
+
+<h3>2. 비음화 — 'ㄴ, ㅁ' 앞 받침 'ㄱ, ㄷ, ㅂ'</h3>
+<p class="body-text">비음이 아닌 자음이 비음을 만나 비음으로 바뀌는 현상이다. <span class="fill">조음 방법</span>의 동화이며 <span class="fill">교체</span>에 속한다.</p>
+<table>
+<tr><th>앞말 받침</th><th>뒷말 첫소리</th><th>변화</th><th>예</th></tr>
+<tr><td>ㄱ (ㄲ, ㅋ, ㄳ, ㄺ)</td><td rowspan="3">ㄴ, ㅁ</td><td>ㄱ → [ㅇ]</td><td class="ex">국물[궁물]</td></tr>
+<tr><td>ㄷ (ㅅ, ㅆ, ㅈ, ㅊ, ㅌ, ㅎ)</td><td>ㄷ → [ㄴ]</td><td class="ex">닫는[단는]</td></tr>
+<tr><td>ㅂ (ㅍ, ㄼ, ㄿ, ㅄ)</td><td>ㅂ → [ㅁ]</td><td class="ex">밥만[밤만]</td></tr>
+</table>
+
+<h3>3. 'ㄹ'의 비음화 — 받침 'ㅁ, ㅇ' 뒤 'ㄹ'</h3>
+<p class="body-text">'ㄹ'이 다른 자음 뒤에서 비음 [ㄴ]으로 바뀌는 현상이다(<span class="fill">교체</span>).</p>
+<table>
+<tr><th>앞말 받침</th><th>뒷말 첫소리</th><th>변화</th><th>예</th></tr>
+<tr><td>ㅁ, ㅇ</td><td rowspan="2">ㄹ</td><td rowspan="2">ㄹ → [ㄴ]</td><td class="ex">담력[담녁], 강릉[강능]</td></tr>
+<tr><td>ㄱ, ㅂ</td><td class="ex">석류[석뉴 → 성뉴], 협력[협녁 → 혐녁]</td></tr>
+</table>
+
+<h3>4. 유음화 — 'ㄹ' 앞뒤의 'ㄴ'</h3>
+<p class="body-text">'ㄹ'의 앞이나 뒤에서 'ㄴ'이 [ㄹ]로 바뀌는 현상이다. 유음이 아닌 'ㄴ'이 유음으로 동화되는 <span class="fill">조음 방법</span>의 동화이며 <span class="fill">교체</span>에 속한다.</p>
+<table>
+<tr><th>앞말 받침</th><th>뒷말 첫소리</th><th>변화</th><th>예</th></tr>
+<tr><td>ㄴ</td><td>ㄹ</td><td rowspan="3">ㄴ → [ㄹ]</td><td class="ex">신라[실라]</td></tr>
+<tr><td>ㄹ</td><td>ㄴ</td><td class="ex">칼날[칼랄]</td></tr>
+<tr><td>ㅀ, ㄾ</td><td>ㄴ</td><td class="ex">닳는[달른], 핥네[할레]</td></tr>
+</table>
+<div class="note"><b>예외.</b> 한자어 받침 'ㄴ' 뒤에 'ㄹ'이 결합할 때는 뒤의 'ㄹ'을 [ㄴ]으로 발음하는 경우도 있다(항상 그런 것은 아님). 생산량[생산냥], 결단력[결딴녁], 의견란[의ː견난].</div>
+<div class="note"><b>구별.</b> 구개음화는 <b>조음 위치</b>가 바뀌는 동화(치조음→경구개음)이고, 비음화·유음화는 <b>조음 방법</b>이 바뀌는 동화(파열음→비음, 비음→유음)이다. 모두 음운 변동 유형 중 '교체'에 속한다.</div>
 </section>
 
 <section id="sec5">
 <div class="sec-head"><span class="sec-num">05</span><h2>된소리되기</h2></div>
-<p class="lead">특정 환경에서 예사소리가 된소리로 발음되는 현상이다.</p>
+<p class="lead">특정 환경에서 예사소리가 된소리로 발음되는 현상이다. 음운 변동 유형 중 <span class="fill">교체</span>에 속한다.</p>
 <table>
-<tr><th>환경</th><th>예</th></tr>
-<tr><td class="left">받침 'ㄱ,ㄷ,ㅂ' 뒤 'ㄱ,ㄷ,ㅂ,ㅅ,ㅈ'</td><td class="ex">국밥[국빱], 옆집[엽찝]</td></tr>
-<tr><td class="left">어간 받침 'ㄴ,ㅁ' 뒤 어미 첫소리 'ㄱ,ㄷ,ㅅ,ㅈ'</td><td class="ex">신고[신꼬], 신다[신따]</td></tr>
-<tr><td class="left">한자어에서 'ㄹ' 받침 뒤 'ㄷ,ㅅ,ㅈ'</td><td class="ex">갈등[갈뜽], 발전[발쩐]</td></tr>
-<tr><td class="left">관형사형 어미 '-(으)ㄹ' 뒤 'ㄱ,ㄷ,ㅂ,ㅅ,ㅈ'</td><td class="ex">할 것을[할꺼슬], 할 수는[할쑤는]</td></tr>
+<tr><th>환경</th><th>변화</th><th>예</th></tr>
+<tr><td class="left">① 받침 'ㄱ(ㄲ,ㅋ,ㄳ,ㄺ), ㄷ(ㅅ,ㅆ,ㅈ,ㅊ,ㅌ), ㅂ(ㅍ,ㄼ,ㄿ,ㅄ)' 뒤 'ㄱ, ㄷ, ㅂ, ㅅ, ㅈ'</td><td rowspan="4">ㄱ→[ㄲ]<br>ㄷ→[ㄸ]<br>ㅂ→[ㅃ]<br>ㅅ→[ㅆ]<br>ㅈ→[ㅉ]</td><td class="left ex">덮개[덥깨], 꽃도[꼳또], 국밥[국빱], 밥솥[밥쏟], 옆집[엽찝]</td></tr>
+<tr><td class="left">② 어간 받침 'ㄴ(ㄵ), ㅁ(ㄻ)' 뒤 어미 첫소리 'ㄱ, ㄷ, ㅅ, ㅈ'<br>(어간 받침 'ㄼ, ㄾ' 뒤도 포함)</td><td class="left ex">신고[신꼬], 신다[신따], 신습니다[신씀니다], 신지[신찌]<br>넓게[널께], 핥다[할따], 떫지[떨찌], 훑소[훌쏘]</td></tr>
+<tr><td class="left">③ 관형사형 어미 '-(으)ㄹ' 뒤 'ㄱ, ㄷ, ㅂ, ㅅ, ㅈ'<br>('-(으)ㄹ'로 시작하는 어미 포함)</td><td class="left ex">할 것을[할꺼슬], 할 데가[할떼가], 할 바를[할빠를], 할 수는[할쑤는], 할 적에[할쩌게]<br>할걸[할껄], 할밖에[할빠께], 할수록[할쑤록], 할지라도[할찌라도]</td></tr>
+<tr><td class="left">④ 한자어에서 'ㄹ' 받침 뒤 'ㄷ, ㅅ, ㅈ'</td><td class="left ex">갈등[갈뜽], 일시[일씨], 발전[발쩐] (cf. 갈구[갈구], 굴복[굴복])</td></tr>
 </table>
-<div class="note"><b>예외.</b> 어간 받침 'ㄴ,ㅁ' 뒤 피동·사동 접미사 '-기'는 된소리로 발음하지 않는다(안기다[안기다]). 같은 한자가 겹친 단어도 된소리로 발음하지 않는다(절절하다[절절하다]).</div>
+<div class="note"><b>예외.</b> 어간 받침 'ㄴ, ㅁ' 뒤에 오는 피동·사동 접미사 '-기-'는 된소리로 발음하지 않는다. 안기다[안기다], 신기다[신기다].<br>한자어라도 같은 한자가 겹쳐진 단어는 된소리로 발음하지 않는다. 허허실실[허허실실], 절절하다[절절하다].</div>
 </section>
 
 <section id="sec6">
 <div class="sec-head"><span class="sec-num">06</span><h2>소리의 첨가</h2></div>
 <p class="lead">두 형태소가 만날 때 본디 없던 소리가 새로 생겨나는 현상을 <b>첨가</b>라 한다.</p>
 <h3>'ㄴ' 첨가</h3>
-<p class="body-text">합성어·파생어에서 앞말이 자음으로 끝나고 뒷말이 '이, 야, 여, 요, 유'로 시작하면 'ㄴ'을 첨가하여 [니, 냐, 녀, 뇨, 뉴]로 발음한다.</p>
+<p class="body-text"><span class="fill">합성어, 파생어</span>에서 앞 단어나 접두사의 끝이 자음이고 뒤 단어나 접미사가 '이, 야, 여, 요, 유'로 시작하는 음절일 경우, 'ㄴ'음을 첨가하여 [니, 냐, 녀, 뇨, 뉴]로 발음한다(음운 변동 유형 중 <span class="fill">첨가</span>).</p>
 <table>
 <tr><th>예</th><th>비고</th></tr>
-<tr><td class="ex">솜이불[솜니불], 한여름[한녀름]</td><td class="left">기본형</td></tr>
-<tr><td class="ex">막일[막닐→망닐], 물엿[물녇→물렫]</td><td class="left">'ㄴ' 첨가 후 비음화/유음화가 이어서 일어남</td></tr>
+<tr><td class="ex">솜이불[솜니불], 한여름[한녀름], 눈요기[눈뇨기], 식용유[시굥뉴]</td><td class="left">기본형</td></tr>
+<tr><td class="ex">내복약[내복냑 → 내봉냑], 막일[막닐 → 망닐], 헛일[헏닐 → 헌닐]</td><td class="left">'ㄴ' 첨가 + 비음화: 앞말 받침이 'ㄱ, ㄷ, ㅂ'이면 첨가된 'ㄴ' 때문에 [ㅇ, ㄴ, ㅁ]으로 발음</td></tr>
+<tr><td class="ex">물엿[물녇 → 물렫], 솔잎[솔닙 → 솔립]</td><td class="left">'ㄴ' 첨가 + 유음화: 앞말 받침이 'ㄹ'이면 첨가된 'ㄴ'이 [ㄹ]로 발음</td></tr>
 </table>
+<div class="note"><b>예외.</b> 'ㄴ' 첨가가 일어날 음운 환경이라도 'ㄴ'을 첨가하지 않고 발음하는 경우도 있다. 송별연[송ː벼련], 등용문[등용문].</div>
 <h3>반모음 'j'의 첨가와 탈락</h3>
 <table>
-<tr><th>현상</th><th>환경</th><th>예</th></tr>
-<tr><td>반모음 j 첨가</td><td class="left">'ㅣ,ㅚ,ㅟ'로 끝나는 어간 + 어미 '-어/-오' → [여/요]도 허용</td><td class="ex">피어[피어/피여], 아니오[아니오/아니요]</td></tr>
-<tr><td>반모음 j 탈락</td><td class="left">활용형 '져, 쪄, 쳐' → [저, 쩌, 처]</td><td class="ex">가져[가저], 다쳐[다처]</td></tr>
+<tr><th>현상</th><th>환경과 발음</th><th>예</th></tr>
+<tr><td>반모음 'j' 첨가<br>(<span class="fill">첨가</span>)</td><td class="left">'ㅣ, ㅚ, ㅟ'로 끝나는 용언의 어간 뒤에 오는 어미 '-어'나 '-오'는 [어], [오]로 발음하는 것이 원칙이지만, [여], [요]로 발음하는 것도 허용한다.</td><td class="ex">피어[피어](○) [피여](○)<br>되어[되어](○) [되여](○)<br>쥐어[쥐어](○) [쥐여](○)<br>아니오[아니오](○) [아니요](○)<br>cf. 세어[세여](×), 깨어[깨여](×)</td></tr>
+<tr><td>반모음 'j' 탈락<br>(<span class="fill">탈락</span>)</td><td class="left">'ㅕ'는 이중 모음으로 발음하는 것이 원칙이지만, 용언의 활용형에 나타나는 '져, 쪄, 쳐'는 반모음 'j'를 탈락시켜 [저, 쩌, 처]로 발음한다.</td><td class="ex">가져[가져](×) [가저](○)<br>(만두를) 쪄[쪄](×) [쩌](○)<br>다쳐[다쳐](×) [다처](○)</td></tr>
 </table>
 </section>
 
@@ -232,7 +295,7 @@
 <tr><td>교체</td><td>유음화</td><td>제20항</td><td class="ex">신라[실라]</td></tr>
 <tr><td>교체</td><td>된소리되기</td><td>제23항</td><td class="ex">국밥[국빱]</td></tr>
 <tr><td>탈락</td><td>자음군 단순화</td><td>제10·11항</td><td class="ex">흙[흑]</td></tr>
-<tr><td>탈락</td><td>반모음 'j' 탈락</td><td>제15항 다만1</td><td class="ex">다쳐[다처]</td></tr>
+<tr><td>탈락</td><td>반모음 'j' 탈락</td><td>제5항 다만 1</td><td class="ex">다쳐[다처]</td></tr>
 <tr><td>첨가</td><td>'ㄴ' 첨가</td><td>제29항</td><td class="ex">솜이불[솜니불]</td></tr>
 <tr><td>첨가</td><td>반모음 'j' 첨가</td><td>제22항</td><td class="ex">되어[되여](허용)</td></tr>
 <tr><td>축약</td><td>거센소리되기</td><td>제12항</td><td class="ex">좋고[조코]</td></tr>
